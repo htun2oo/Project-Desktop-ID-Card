@@ -6,7 +6,7 @@
     
     <Window.DataContext>
         <vm:LoginViewModel/>
-    </Window.DataItem>
+    </Window.DataContext>
 
     <Grid Background="#F3F4F6" Margin="20">
         <StackPanel VerticalAlignment="Center">
