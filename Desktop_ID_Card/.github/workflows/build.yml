@@ -1,0 +1,36 @@
+name: Build IDCard Desktop App
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    - name: Build Project
+      run: dotnet build src/IDCard.Desktop/IDCard.Desktop.csproj --configuration Release
+
+    - name: Publish Project
+      run: dotnet publish src/IDCard.Desktop/IDCard.Desktop.csproj --configuration Release --output ./publish-output
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: IDCard-Desktop-App
+        path: ./publish-output/
