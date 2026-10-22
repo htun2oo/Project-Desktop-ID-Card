@@ -8,109 +8,145 @@
         <vm:MainViewModel/>
     </Window.DataContext>
 
-    <TabControl Margin="10">
-        <!-- HOME TAB: Data Management, Preview & Print -->
-        <TabItem Header="Home" Padding="15,8" FontWeight="Bold">
-            <Grid Margin="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="350"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+    <Grid>
+        <!-- TabControl ကို အပေါ်ဘက် အလယ်တည့်တည့်တွင် ပေါ်လာစေရန် HorizontalAlignment="Center" သုံးထားပါသည် -->
+        <TabControl Margin="10" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="1050">
+            
+            <!-- Tab Header များ အလယ်တည့်တည့်တွင် ကျရောက်စေရန် Style သတ်မှတ်ခြင်း -->
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="14" FontWeight="Bold" Padding="15,5"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
 
-                <!-- ဘယ်ဘက်ခြမ်း - Input Form & Data Entry -->
-                <StackPanel Grid.Column="0" Margin="0,0,15,0">
-                    <TextBlock Text="Card Data Management" FontSize="16" FontWeight="Bold" Margin="0,0,0,12" Foreground="#1F2937"/>
+            <!-- 1. HOME TAB -->
+            <TabItem Header="Home">
+                <Grid Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Select Card Design" FontWeight="SemiBold" Margin="0,0,0,3"/>
-                    <ComboBox Height="30" Margin="0,0,0,10" SelectedIndex="0">
-                        <ComboBoxItem Content="Standard Corporate Design"/>
-                        <ComboBoxItem Content="Modern Minimalist Design"/>
-                    </ComboBox>
+                    <!-- ဘယ်ဘက်ခြမ်း - Input Form & Data Entry -->
+                    <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                        <TextBlock Text="Card Data &amp; Management" FontSize="16" FontWeight="Bold" Margin="0,0,0,12" Foreground="#1F2937"/>
 
-                    <TextBlock Text="Full Name" FontWeight="SemiBold" Margin="0,0,0,3"/>
-                    <TextBox Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" Height="28" Padding="4" Margin="0,0,0,8"/>
+                        <TextBlock Text="Select Card Design" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <ComboBox Height="30" Margin="0,0,0,10" SelectedIndex="0">
+                            <ComboBoxItem Content="Standard Corporate Design"/>
+                            <ComboBoxItem Content="Modern Minimalist Design"/>
+                        </ComboBox>
 
-                    <TextBlock Text="Position / Title" FontWeight="SemiBold" Margin="0,0,0,3"/>
-                    <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" Height="28" Padding="4" Margin="0,0,0,8"/>
+                        <TextBlock Text="Full Name" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBox Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" Height="28" Padding="4" Margin="0,0,0,8"/>
 
-                    <TextBlock Text="Department" FontWeight="SemiBold" Margin="0,0,0,3"/>
-                    <TextBox Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}" Height="28" Padding="4" Margin="0,0,0,8"/>
+                        <TextBlock Text="Position / Title" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" Height="28" Padding="4" Margin="0,0,0,8"/>
 
-                    <Button Content="Browse Photo / Signature" Command="{Binding BrowsePhotoCommand}" Height="30" Margin="0,0,0,12"/>
+                        <TextBlock Text="Department" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBox Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}" Height="28" Padding="4" Margin="0,0,0,8"/>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
-                        <Button Content="Save" Command="{Binding SaveCommand}" Width="75" Height="30" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,8,0"/>
-                        <Button Content="Delete" Command="{Binding DeleteCommand}" Width="75" Height="30" Background="#DC2626" Foreground="White" FontWeight="Bold"/>
+                        <Button Content="Browse Photo / Signature" Command="{Binding BrowsePhotoCommand}" Height="30" Margin="0,0,0,12"/>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
+                            <Button Content="Save" Command="{Binding SaveCommand}" Width="75" Height="30" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,8,0"/>
+                            <Button Content="Delete" Command="{Binding DeleteCommand}" Width="75" Height="30" Background="#DC2626" Foreground="White" FontWeight="Bold"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Saved Employees List" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <ListBox ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" Height="130" DisplayMemberPath="FullName"/>
                     </StackPanel>
 
-                    <TextBlock Text="Saved Employees List" FontWeight="Bold" Margin="0,0,0,5"/>
-                    <ListBox ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" Height="130" DisplayMemberPath="FullName"/>
-                </StackPanel>
+                    <!-- ညာဘက်ခြမ်း - ID Card Live Preview & Print -->
+                    <Border Grid.Column="1" Background="#F3F4F6" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12" Padding="25" VerticalAlignment="Center" HorizontalAlignment="Center" Width="420" Height="520">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                <!-- ညာဘက်ခြမ်း - ID Card Live Preview & Print -->
-                <Border Grid.Column="1" Background="#F3F4F6" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="12" Padding="25" VerticalAlignment="Center" HorizontalAlignment="Center" Width="420" Height="520">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <!-- Card Preview Box -->
-                        <Border Grid.Row="0" Background="White" CornerRadius="10" Padding="20" BorderBrush="#D1D5DB" BorderThickness="1">
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="COMPANY ID CARD" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#2563EB" Margin="0,0,0,20"/>
-                                
-                                <!-- Photo & Barcode/QR Placeholder -->
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
-                                    <Border Width="100" Height="100" Background="#E5E7EB" CornerRadius="8" ClipToBounds="True" Margin="0,0,15,0">
-                                        <Image Source="{Binding PhotoPath}" Stretch="UniformToFill"/>
-                                    </Border>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <Border Width="80" Height="80" Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1">
-                                            <TextBlock Text="QR Code" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#9CA3AF"/>
+                            <Border Grid.Row="0" Background="White" CornerRadius="10" Padding="20" BorderBrush="#D1D5DB" BorderThickness="1">
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="COMPANY ID CARD" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#2563EB" Margin="0,0,0,20"/>
+                                    
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
+                                        <Border Width="100" Height="100" Background="#E5E7EB" CornerRadius="8" ClipToBounds="True" Margin="0,0,15,0">
+                                            <Image Source="{Binding PhotoPath}" Stretch="UniformToFill"/>
                                         </Border>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <Border Width="80" Height="80" Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1">
+                                                <TextBlock Text="QR Code" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#9CA3AF"/>
+                                            </Border>
+                                        </StackPanel>
                                     </StackPanel>
+
+                                    <TextBlock Text="{Binding FullName}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#111827"/>
+                                    <TextBlock Text="{Binding Position}" FontSize="14" Foreground="#4B5563" HorizontalAlignment="Center" Margin="0,0,0,3"/>
+                                    <TextBlock Text="{Binding Department}" FontSize="13" Foreground="#6B7280" HorizontalAlignment="Center"/>
                                 </StackPanel>
+                            </Border>
 
-                                <TextBlock Text="{Binding FullName}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5" Foreground="#111827"/>
-                                <TextBlock Text="{Binding Position}" FontSize="14" Foreground="#4B5563" HorizontalAlignment="Center" Margin="0,0,0,3"/>
-                                <TextBlock Text="{Binding Department, StringFormat='Department: {0}'}" FontSize="13" Foreground="#6B7280" HorizontalAlignment="Center"/>
-                            </StackPanel>
-                        </Border>
+                            <Button Grid.Row="1" Content="Print ID Card" Height="38" Background="#059669" Foreground="White" FontWeight="Bold" Margin="0,15,0,0"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
 
-                        <!-- Print Button -->
-                        <Button Grid.Row="1" Content="Print ID Card" Height="38" Background="#059669" Foreground="White" FontWeight="Bold" Margin="0,15,0,0"/>
-                    </Grid>
-                </Border>
-            </Grid>
-        </TabItem>
+            <!-- 2. DESIGN TAB -->
+            <TabItem Header="Design">
+                <Grid Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="280"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-        <!-- DESIGN TAB: Custom Card Designer -->
-        <TabItem Header="Design" Padding="15,8" FontWeight="Bold">
-            <Grid Margin="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="280"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                        <TextBlock Text="Designer Toolbox" FontSize="16" FontWeight="Bold" Margin="0,0,0,12" Foreground="#1F2937"/>
+                        <Button Content="Add Text Element" Height="32" Margin="0,0,0,8"/>
+                        <Button Content="Add Photo Placeholder" Height="32" Margin="0,0,0,8"/>
+                        <Button Content="Add Signature Box" Height="32" Margin="0,0,0,8"/>
+                        <Button Content="Add QR / Barcode" Height="32" Margin="0,0,0,8"/>
+                        <Button Content="Add Graphic Shape" Height="32" Margin="0,0,0,15"/>
+                        <Button Content="Save Custom Design" Height="38" Background="#2563EB" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
 
-                <!-- Designer ToolBox -->
-                <StackPanel Grid.Column="0" Margin="0,0,15,0">
-                    <TextBlock Text="Designer Toolbox" FontSize="16" FontWeight="Bold" Margin="0,0,0,12" Foreground="#1F2937"/>
-                    <Button Content="Add Text Element" Height="32" Margin="0,0,0,8"/>
-                    <Button Content="Add Photo Placeholder" Height="32" Margin="0,0,0,8"/>
-                    <Button Content="Add Signature Box" Height="32" Margin="0,0,0,8"/>
-                    <Button Content="Add QR / Barcode" Height="32" Margin="0,0,0,8"/>
-                    <Button Content="Add Graphic Shape" Height="32" Margin="0,0,0,15"/>
-                    <Button Content="Save Custom Design" Height="38" Background="#2563EB" Foreground="White" FontWeight="Bold"/>
-                </StackPanel>
+                    <Border Grid.Column="1" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8">
+                        <Canvas Background="White" Width="400" Height="550" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Canvas.Left="120" Canvas.Top="40" Text="Custom Design Canvas" FontWeight="Bold" Foreground="#6B7280"/>
+                        </Canvas>
+                    </Border>
+                </Grid>
+            </TabItem>
 
-                <!-- Freeform Design Canvas Area -->
-                <Border Grid.Column="1" Background="#E5E7EB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8">
-                    <Canvas Background="White" Width="400" Height="550" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Canvas.Left="120" Canvas.Top="40" Text="Custom Design Canvas" FontWeight="Bold" Foreground="#6B7280"/>
-                    </Canvas>
-                </Border>
-            </Grid>
-        </TabItem>
-    </TabControl>
+            <!-- 3. PRINTER QUEUES TAB -->
+            <TabItem Header="Printer Queues">
+                <Grid Margin="20">
+                    <StackPanel>
+                        <TextBlock Text="Print Queue Management" FontSize="18" FontWeight="Bold" Margin="0,0,0,15" Foreground="#1F2937"/>
+                        <DataGrid Height="350" AutoGenerateColumns="False" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Queue ID" Width="100"/>
+                                <DataGridTextColumn Header="Employee Name" Width="200"/>
+                                <DataGridTextColumn Header="Printer Name" Width="180"/>
+                                <DataGridTextColumn Header="Status" Width="150"/>
+                                <DataGridTextColumn Header="Time" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+                            <Button Content="Pause Print" Width="100" Height="32" Margin="0,0,10,0"/>
+                            <Button Content="Cancel Job" Width="100" Height="32" Background="#DC2626" Foreground="White"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
 </Window>
