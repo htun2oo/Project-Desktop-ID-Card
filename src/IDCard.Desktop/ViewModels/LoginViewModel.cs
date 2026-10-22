@@ -38,8 +38,22 @@ namespace IDCard.Desktop.ViewModels
 
             if (user != null)
             {
+                // Login အောင်မြင်ပါက
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                // ဤနေရာတွင် MainWindow သို့ ပြောင်းလဲဖွင့်လှစ်သည့် ကုဒ်များကို ထည့်သွင်းနိုင်ပါသည်။
+
+                // MainWindow ကို အသစ်ဖွင့်ခြင်း
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                // လက်ရှိ LoginWindow ကို ပိတ်ခြင်း
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is LoginWindow)
+                    {
+                        window.Close();
+                        break;
+                    }
+}
             }
             else
             {
