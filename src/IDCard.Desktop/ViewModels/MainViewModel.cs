@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using Microsoft.Win32;
 using IDCard.Desktop.Helpers;
@@ -75,11 +76,19 @@ namespace IDCard.Desktop.ViewModels
 
         private void LoadEmployees()
         {
-            using var context = new AppDbContext();
-            Employees.Clear();
-            foreach (var emp in context.Employees)
+            try
             {
-                Employees.Add(emp);
+                using var context = new AppDbContext();
+                context.Database.EnsureCreated(); // Database သေချာပေါက် ရှိမရှိ စစ်ဆေးရန်
+                Employees.Clear();
+                foreach (var emp in context.Employees)
+                {
+                    Employees.Add(emp);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Database Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -98,34 +107,39 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteSave(object? parameter)
         {
-            using var context = new AppDbContext();
-            if (SelectedEmployee == null)
+            try
             {
-                // Create New
-                var newEmp = new Employee
+                using var context = new AppDbContext();
+                if (SelectedEmployee == null)
                 {
-                    FullName = FullName,
-                    Position = Position,
-                    Department = Department,
-                    PhotoPath = PhotoPath
-                };
-                context.Employees.Add(newEmp);
-            }
-            else
-            {
-                // Update Existing
-                var empToUpdate = context.Employees.Find(SelectedEmployee.Id);
-                if (empToUpdate != null)
-                {
-                    empToUpdate.FullName = FullName;
-                    empToUpdate.Position = Position;
-                    empToUpdate.Department = Department;
-                    empToUpdate.PhotoPath = PhotoPath;
+                    var newEmp = new Employee
+                    {
+                        FullName = FullName,
+                        Position = Position,
+                        Department = Department,
+                        PhotoPath = PhotoPath
+                    };
+                    context.Employees.Add(newEmp);
                 }
+                else
+                {
+                    var empToUpdate = context.Employees.Find(SelectedEmployee.Id);
+                    if (empToUpdate != null)
+                    {
+                        empToUpdate.FullName = FullName;
+                        empToUpdate.Position = Position;
+                        empToUpdate.Department = Department;
+                        empToUpdate.PhotoPath = PhotoPath;
+                    }
+                }
+                context.SaveChanges();
+                LoadEmployees();
+                ClearForm();
             }
-            context.SaveChanges();
-            LoadEmployees();
-            ClearForm();
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Save Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private bool CanExecuteDelete(object? parameter) => SelectedEmployee != null;
@@ -134,15 +148,22 @@ namespace IDCard.Desktop.ViewModels
         {
             if (SelectedEmployee != null)
             {
-                using var context = new AppDbContext();
-                var emp = context.Employees.Find(SelectedEmployee.Id);
-                if (emp != null)
+                try
                 {
-                    context.Employees.Remove(emp);
-                    context.SaveChanges();
+                    using var context = new AppDbContext();
+                    var emp = context.Employees.Find(SelectedEmployee.Id);
+                    if (emp != null)
+                    {
+                        context.Employees.Remove(emp);
+                        context.SaveChanges();
+                    }
+                    LoadEmployees();
+                    ClearForm();
                 }
-                LoadEmployees();
-                ClearForm();
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show($"Delete Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
