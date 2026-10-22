@@ -1,0 +1,24 @@
+<Window x:Class="IDCard.Desktop.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:IDCard.Desktop.ViewModels"
+        Title="Login - IDCard System" Height="350" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    
+    <Window.DataContext>
+        <vm:LoginViewModel/>
+    </Window.DataItem>
+
+    <Grid Background="#F3F4F6" Margin="20">
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="ID Card System" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1F2937" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Username" FontWeight="SemiBold" Foreground="#4B5563" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="35" Padding="5" VerticalContentAlignment="Center" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Password" FontWeight="SemiBold" Foreground="#4B5563" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="PasswordBox" Height="35" Padding="5" VerticalContentAlignment="Center" Margin="0,0,0,20"/>
+
+            <Button Content="Login" Command="{Binding LoginCommand}" Height="40" Background="#2563EB" Foreground="White" FontWeight="Bold" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Window>
