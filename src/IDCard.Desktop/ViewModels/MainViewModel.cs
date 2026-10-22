@@ -73,13 +73,13 @@ namespace IDCard.Desktop.ViewModels
             
             // Test လုပ်ရန်အတွက် LoadEmployees() ကို Try-Catch အတွင်း ထည့်ထားပါ
             try
-            {
-                LoadEmployees();
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show("DB Error: " + ex.Message);
-            }
+            //{
+                //LoadEmployees();
+            //}
+            //catch (System.Exception ex)
+            //{
+                //MessageBox.Show("DB Error: " + ex.Message);
+            //}
         }
 
         private void LoadEmployees()
