@@ -8,8 +8,7 @@ namespace IDCard.Desktop
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
-            // Database နှင့် Default Admin အကောင့်ကို စတင်ဖန်တီးခြင်း
+            // အပလီကေးရှင်း စတင်သည်နှင့် Database နှင့် Table များကို ဖန်တီးရန်
             DatabaseService.InitializeDatabase();
         }
     }
