@@ -71,7 +71,15 @@ namespace IDCard.Desktop.ViewModels
             DeleteCommand = new RelayCommand(ExecuteDelete, CanExecuteDelete);
             BrowsePhotoCommand = new RelayCommand(ExecuteBrowsePhoto);
             
-            LoadEmployees();
+            // Test လုပ်ရန်အတွက် LoadEmployees() ကို Try-Catch အတွင်း ထည့်ထားပါ
+            try
+            {
+                LoadEmployees();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("DB Error: " + ex.Message);
+            }
         }
 
         private void LoadEmployees()
