@@ -53,7 +53,7 @@ namespace IDCard.Desktop.ViewModels
                         window.Close();
                         break;
                     }
-}
+                }
             }
             else
             {
