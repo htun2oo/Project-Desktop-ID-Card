@@ -6,6 +6,7 @@ namespace IDCard.Desktop.Services
     public class AppDbContext : DbContext
     {
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Employee> Employees { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
