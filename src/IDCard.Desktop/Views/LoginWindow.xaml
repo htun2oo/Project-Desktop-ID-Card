@@ -18,7 +18,7 @@
             <TextBlock Text="Password" FontWeight="SemiBold" Foreground="#4B5563" Margin="0,0,0,5"/>
             <PasswordBox x:Name="PasswordBox" Height="35" Padding="5" VerticalContentAlignment="Center" Margin="0,0,0,20"/>
 
-            <Button Content="Login" Command="{Binding LoginCommand}" Height="40" Background="#2563EB" Foreground="White" FontWeight="Bold" Cursor="Hand"/>
+            <Button Content="Login" Click="LoginButton_Click" Height="40" Background="#2563EB" Foreground="White" FontWeight="Bold" Cursor="Hand"/>
         </StackPanel>
     </Grid>
 </Window>
