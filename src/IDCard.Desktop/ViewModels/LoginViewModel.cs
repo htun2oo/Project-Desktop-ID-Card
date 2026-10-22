@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Services;
+using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop.ViewModels
 {
