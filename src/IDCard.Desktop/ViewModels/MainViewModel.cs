@@ -74,7 +74,7 @@ namespace IDCard.Desktop.ViewModels
             // Test လုပ်ရန်အတွက် LoadEmployees() ကို Try-Catch အတွင်း ထည့်ထားပါ
             try
             //{
-                //LoadEmployees();
+            LoadEmployees();
             //}
             //catch (System.Exception ex)
             //{
