@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -10,6 +12,9 @@ namespace IDCard.Desktop.Views
         public MainWindow()
         {
             InitializeComponent();
+            
+            // ဝင်းဒိုးပိတ်သည့်အခါ Background Process များကိုပါ တစ်ပါတည်း ပိတ်ရန် Event ချိတ်ဆက်ခြင်း
+            this.Closing += MainWindow_Closing;
         }
 
         private void AdminButton_Click(object sender, RoutedEventArgs e)
@@ -22,11 +27,31 @@ namespace IDCard.Desktop.Views
             }
         }
 
+        // Sign Out လုပ်သည့်အခါ Login ဝင်းဒိုးကိုဖွင့်ပြီး ကျန်ရှိနေသော Background Processes များကို ပိတ်ခြင်း
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
             var loginWindow = new LoginWindow();
             loginWindow.Show();
+            
+            // လက်ရှိ MainWindow ကို ပိတ်ခြင်း (Closing Event မှတစ်ဆင့် Background Processes များကို ရှင်းလင်းပေးမည်)
             this.Close();
+        }
+
+        // ဝင်းဒိုးပိတ်သွားသည့်အခါ Background တွင် Run နေသော App သက်ဆိုင်ရာ Process များကို အပြီးတိုင် ပိတ်ခြင်း
+        private void MainWindow_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
+        {
+            try
+            {
+                // လက်ရှိ Application ၏ Process အမည်ကို ရယူပြီး ရှင်းလင်းခြင်း
+                var currentProcess = Process.GetCurrentProcess();
+                
+                // အကယ်၍ အခြား dotnet background processes များ ကျန်ရှိနေပါက အပြည့်အစုံ ပိတ်ရန် (Application.Current.Shutdown() ကို အသုံးပြုသည်)
+                Application.Current.Shutdown();
+            }
+            catch (Exception)
+            {
+                // ဖြစ်ပေါ်လာနိုင်သော Error များကို ကျော်လွန်ရန်
+            }
         }
 
         private void Preferences_Click(object sender, RoutedEventArgs e)
@@ -38,33 +63,26 @@ namespace IDCard.Desktop.Views
             MainContentArea.Children.Add(preferencesView);
         }
 
-        // Credentials Tab Click Handler
         private void CredentialsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Tab Active အရောင်များ ချိန်ညှိခြင်း
             CredentialsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
             CredentialsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6B21A8"));
 
             ReportsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#581C87"));
             ReportsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
 
-            // MainContentArea တွင် Credentials Workspace ကို ပြန်လည်ပြသခြင်း
             var mainWindowInstance = new MainWindow();
-            // (သို့မဟုတ် ယာယီ MainContentArea အကြောင်းအရာများကို ပြန်ထည့်ခြင်း)
             this.Content = mainWindowInstance.Content;
         }
 
-        // Reports Tab Click Handler
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
         {
-            // Tab Active အရောင်များ ချိန်ညှိခြင်း (Reports Active ဖြစ်နေစဉ်)
             ReportsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
             ReportsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6B21A8"));
 
             CredentialsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#581C87"));
             CredentialsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
 
-            // ReportsView ကို ထည့်သွင်းပြသခြင်း
             var reportsView = new ReportsView();
 
             MainContentArea.Children.Clear();
