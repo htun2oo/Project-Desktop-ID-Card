@@ -71,7 +71,7 @@ namespace IDCard.Desktop.ViewModels
             DeleteCommand = new RelayCommand(ExecuteDelete, CanExecuteDelete);
             BrowsePhotoCommand = new RelayCommand(ExecuteBrowsePhoto);
             
-            LoadEmployees();
+            //LoadEmployees();
         }
 
         private void LoadEmployees()
