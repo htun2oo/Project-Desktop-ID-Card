@@ -16,31 +16,31 @@
             <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
 
-        <!-- 1. TOP HEADER BAR -->
-        <Border Grid.Row="0" Background="White" BorderBrush="#E5E7EB" BorderThickness="0,0,0,1">
+        <!-- 1. TOP HEADER BAR (Entrust Adaptive Issuance Theme) -->
+        <Border Grid.Row="0" Background="#4A154B" BorderBrush="#3F1140" BorderThickness="0,0,0,1">
             <Grid Margin="15,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="280"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Logo / Title -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="ENTRUST" FontSize="18" FontWeight="Bold" Foreground="#4F46E5"/>
-                    <TextBlock Text=" | Instant ID" FontSize="14" VerticalAlignment="Center" Foreground="#6B7280" Margin="5,2,0,0"/>
+                    <TextBlock Text="ENTRUST" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text=" | Adaptive Issuance™ Instant ID" FontSize="11" VerticalAlignment="Center" Foreground="#E0E0E0" Margin="5,2,0,0"/>
                 </StackPanel>
 
                 <!-- Main Menu -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Home" FontWeight="Bold" FontSize="14" Margin="15,0" Foreground="#1F2937" Background="Transparent" BorderBrush="Transparent"/>
-                    <Button Content="Design ▾" FontWeight="Bold" FontSize="14" Margin="15,0" Foreground="#4B5563" Background="Transparent" BorderBrush="Transparent"/>
-                    <Button Content="Printer Queues" FontWeight="Bold" FontSize="14" Margin="15,0" Foreground="#4B5563" Background="Transparent" BorderBrush="Transparent"/>
+                    <Button Content="Home" FontWeight="Bold" FontSize="14" Margin="15,0" Foreground="White" Background="Transparent" BorderBrush="Transparent"/>
+                    <Button Content="Design ▾" FontWeight="Bold" FontSize="14" Margin="15,0" Foreground="#E0E0E0" Background="Transparent" BorderBrush="Transparent"/>
+                    <Button Content="Printer Queues" FontWeight="Bold" FontSize="14" Margin="15,0" Foreground="#E0E0E0" Background="Transparent" BorderBrush="Transparent"/>
                 </StackPanel>
 
-                <!-- User & Settings Info (with Admin Dropdown Menu) -->
+                <!-- User & Notification Icons (Right Side) -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Content="admin ▾" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#374151" Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Click="AdminButton_Click">
+                    <Button Content="admin ▾" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Click="AdminButton_Click">
                         <Button.ContextMenu>
                             <ContextMenu x:Name="AdminMenu">
                                 <MenuItem Header="Preferences" Click="Preferences_Click"/>
@@ -50,22 +50,31 @@
                             </ContextMenu>
                         </Button.ContextMenu>
                     </Button>
-                    <Button Content="⚙" FontSize="14" Width="28" Height="28" Margin="0,0,5,0"/>
-                    <Button Content="🔔" FontSize="12" Width="28" Height="28" Margin="0,0,5,0"/>
-                    <Button Content="❓" FontSize="12" Width="28" Height="28"/>
+                    <Button Content="⚙" FontSize="14" Width="28" Height="28" Margin="0,0,5,0" Foreground="Black"/>
+                    
+                    <!-- Notification with Red Badge '1' -->
+                    <Grid Margin="0,0,5,0" Width="28" Height="28">
+                        <Button Content="🔔" FontSize="12" Width="28" Height="28"/>
+                        <Border Background="Red" CornerRadius="8" Width="16" Height="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,-4,0">
+                            <TextBlock Text="1" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    
+                    <Button Content="❓" FontSize="12" Width="28" Height="28" Margin="0,0,5,0"/>
+                    <Button Content="ℹ" FontSize="12" Width="28" Height="28"/>
                 </StackPanel>
             </Grid>
         </Border>
 
         <!-- 2. SUB-NAVIGATION BAR -->
-        <Border Grid.Row="1" Background="#4F46E5">
+        <Border Grid.Row="1" Background="#6B21A8">
             <StackPanel Orientation="Horizontal" Margin="15,0">
-                <Button Content="Credentials" Background="White" Foreground="#4F46E5" FontWeight="Bold" Padding="20,5" Margin="0,5,5,0" BorderThickness="0"/>
+                <Button Content="Credentials" Background="White" Foreground="#6B21A8" FontWeight="Bold" Padding="20,5" Margin="0,5,5,0" BorderThickness="0"/>
                 <Button Content="Reports" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="20,5" Margin="5,5,0,0" BorderThickness="0"/>
             </StackPanel>
         </Border>
 
-        <!-- 3. MAIN CONTENT AREA (Dynamic Workspace for Credentials & Preferences) -->
+        <!-- 3. MAIN CONTENT AREA (Dynamic Workspace for Credentials & PreferencesView) -->
         <Grid Grid.Row="2" Margin="15" x:Name="MainContentArea">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="380"/>
