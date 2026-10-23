@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using Microsoft.Data.Sqlite; // SQLite package ကို အသုံးပြုရန်
+using Microsoft.Data.Sqlite;
 
 namespace IDCard.Desktop.Services
 {
@@ -23,15 +23,24 @@ namespace IDCard.Desktop.Services
             using var connection = new SqliteConnection(GetConnectionString());
             connection.Open();
 
-            string commandText = @"
+            // Users Table တည်ဆောက်ခြင်း
+            string createTableQuery = @"
                 CREATE TABLE IF NOT EXISTS Users (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     Username TEXT NOT NULL UNIQUE,
                     Password TEXT NOT NULL
                 );";
 
-            using var command = new SqliteCommand(commandText, connection);
+            using var command = new SqliteCommand(createTableQuery, connection);
             command.ExecuteNonQuery();
+
+            // Default Admin Account ထည့်သွင်းခြင်း (မရှိသေးပါက)
+            string insertAdminQuery = @"
+                INSERT OR IGNORE INTO Users (Username, Password) 
+                VALUES ('admin', 'admin123');";
+
+            using var insertCommand = new SqliteCommand(insertAdminQuery, connection);
+            insertCommand.ExecuteNonQuery();
         }
     }
 }
