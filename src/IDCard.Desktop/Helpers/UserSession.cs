@@ -1,4 +1,4 @@
-using IDCard.Desktop.Models;
+using IDCard.Desktop.Models; // Model ကို အသုံးပြုရန် မဖြစ်မနေ ထည့်ရန်
 
 namespace IDCard.Desktop.Helpers
 {
