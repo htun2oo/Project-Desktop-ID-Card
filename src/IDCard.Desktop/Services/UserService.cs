@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using IDCard.Desktop.Models;
+using IDCard.Desktop.Models; // Model ကို အသုံးပြုရန် မဖြစ်မနေ ထည့်ရန်
 
 namespace IDCard.Desktop.Services
 {
