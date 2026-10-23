@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace IDCard.Desktop.Views
 {
@@ -37,19 +38,33 @@ namespace IDCard.Desktop.Views
             MainContentArea.Children.Add(preferencesView);
         }
 
-        // Credentials တက်ဘ်ကို နှိပ်သည့်အခါ မူလ Form/Workspace သို့ ပြန်သွားရန်
+        // Credentials Tab Click Handler
         private void CredentialsButton_Click(object sender, RoutedEventArgs e)
         {
-            // MainWindow.xaml တွင် သတ်မှတ်ထားသော Original Credentials Layout သို့ ပြန်လည်ပြသခြင်း
-            // (သို့မဟုတ် MainWindow ကို ယာယီအသစ်ဖွင့်ခြင်း သို့မဟုတ် UserControl အဖြစ် ခွဲထုတ်ခြင်းဖြင့် ချိတ်ဆက်နိုင်ပါသည်)
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            // Tab Active အရောင်များ ချိန်ညှိခြင်း
+            CredentialsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            CredentialsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6B21A8"));
+
+            ReportsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#581C87"));
+            ReportsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+
+            // MainContentArea တွင် Credentials Workspace ကို ပြန်လည်ပြသခြင်း
+            var mainWindowInstance = new MainWindow();
+            // (သို့မဟုတ် ယာယီ MainContentArea အကြောင်းအရာများကို ပြန်ထည့်ခြင်း)
+            this.Content = mainWindowInstance.Content;
         }
 
-        // Reports တက်ဘ်ကို နှိပ်သည့်အခါ Report ကတ်ပြားများ ပေါ်လာစေရန်
+        // Reports Tab Click Handler
         private void ReportsButton_Click(object sender, RoutedEventArgs e)
         {
+            // Tab Active အရောင်များ ချိန်ညှိခြင်း (Reports Active ဖြစ်နေစဉ်)
+            ReportsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            ReportsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6B21A8"));
+
+            CredentialsTabBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#581C87"));
+            CredentialsTabBtn.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+
+            // ReportsView ကို ထည့်သွင်းပြသခြင်း
             var reportsView = new ReportsView();
 
             MainContentArea.Children.Clear();
