@@ -66,11 +66,18 @@
             </Grid>
         </Border>
 
-        <!-- 2. SUB-NAVIGATION BAR -->
+        <!-- 2. SUB-NAVIGATION BAR (Entrust Instant ID Tabs) -->
         <Border Grid.Row="1" Background="#6B21A8">
             <StackPanel Orientation="Horizontal" Margin="15,0">
-                <Button Content="Credentials" Click="CredentialsButton_Click" Background="White" Foreground="#6B21A8" FontWeight="Bold" Padding="20,5" Margin="0,5,5,0" BorderThickness="0"/>
-                <Button Content="Reports" Click="ReportsButton_Click" Background="Transparent" Foreground="White" FontWeight="Bold" Padding="20,5" Margin="5,5,0,0" BorderThickness="0"/>
+                <!-- Credentials Tab Button -->
+                <Button x:Name="CredentialsTabBtn" Content="Credentials" Click="CredentialsButton_Click" 
+                        Background="White" Foreground="#6B21A8" FontWeight="Bold" 
+                        Padding="25,8" Margin="0,0,2,0" BorderThickness="0"/>
+        
+                <!-- Reports Tab Button -->
+                <Button x:Name="ReportsTabBtn" Content="Reports" Click="ReportsButton_Click" 
+                        Background="#581C87" Foreground="White" FontWeight="Bold" 
+                        Padding="25,8" Margin="0,0,0,0" BorderThickness="0"/>
             </StackPanel>
         </Border>
 
