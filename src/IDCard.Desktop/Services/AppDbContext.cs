@@ -10,8 +10,8 @@ namespace IDCard.Desktop.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // SQLite Database ဖိုင်သိမ်းဆည်းမည့် လမ်းကြောင်း
-            optionsBuilder.UseSqlite("Data Source=idcard.db");
+            // Local SQLite database ဖိုင် ဖန်တီးမည့် လမ်းကြောင်း
+            optionsBuilder.UseSqlite("Data Source=idcard_system.db");
         }
     }
 }
