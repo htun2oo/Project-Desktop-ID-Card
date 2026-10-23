@@ -74,77 +74,39 @@
             </StackPanel>
         </Border>
 
-        <!-- 3. MAIN CONTENT AREA (Dynamic Workspace for Credentials & PreferencesView) -->
+        <!-- 3. MAIN CONTENT AREA (Credentials Blank View with Toggle Buttons) -->
         <Grid Grid.Row="2" Margin="15" x:Name="MainContentArea">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="380"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <!-- ဘယ်ဘက်ခြမ်း - Data Form & Input -->
-            <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="15" BorderBrush="#E5E7EB" BorderThickness="1">
-                <StackPanel>
-                    <TextBlock Text="Employee ID Card Details" FontSize="16" FontWeight="Bold" Margin="0,0,0,12" Foreground="#1F2937"/>
+            <!-- View Mode Buttons (Grid/List Toggle) -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                <Button Content="🔲" Width="30" Height="26" Margin="0,0,2,0" Background="#E5E7EB" FontWeight="Bold"/>
+                <Button Content="☰" Width="30" Height="26" Background="White" FontWeight="Bold"/>
+            </StackPanel>
 
-                    <TextBlock Text="Full Name" FontWeight="SemiBold" Margin="0,0,0,3"/>
-                    <TextBox Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" Height="30" Padding="5" Margin="0,0,0,10"/>
+            <!-- Blank Workspace Content Area -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="380"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="Position / Title" FontWeight="SemiBold" Margin="0,0,0,3"/>
-                    <TextBox Text="{Binding Position, UpdateSourceTrigger=PropertyChanged}" Height="30" Padding="5" Margin="0,0,0,10"/>
+                <!-- ဘယ်ဘက်ခြမ်း အလွတ် (Blank Form Area)[cite: 19] -->
+                <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="15" BorderBrush="#E5E7EB" BorderThickness="1"/>
 
-                    <TextBlock Text="Department" FontWeight="SemiBold" Margin="0,0,0,3"/>
-                    <TextBox Text="{Binding Department, UpdateSourceTrigger=PropertyChanged}" Height="30" Padding="5" Margin="0,0,0,15"/>
-
-                    <Button Content="Browse Photo" Command="{Binding BrowsePhotoCommand}" Height="32" Margin="0,0,0,15"/>
-
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,15">
-                        <Button Content="Save Record" Command="{Binding SaveCommand}" Width="90" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,8,0"/>
-                        <Button Content="Delete" Command="{Binding DeleteCommand}" Width="80" Height="32" Background="#DC2626" Foreground="White" FontWeight="Bold"/>
-                    </StackPanel>
-
-                    <TextBlock Text="Saved Records List" FontWeight="Bold" Margin="0,0,0,5"/>
-                    <ListBox ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" Height="140" DisplayMemberPath="FullName"/>
-                </StackPanel>
-            </Border>
-
-            <!-- ညာဘက်ခြမ်း - ID Card Live Preview & Actions -->
-            <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" Padding="20" BorderBrush="#E5E7EB" BorderThickness="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <Border Grid.Row="0" Width="400" Height="250" Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="12" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Border Grid.Column="0" Width="100" Height="130" Background="#E5E7EB" CornerRadius="6" ClipToBounds="True">
-                                <Image Source="{Binding PhotoPath}" Stretch="UniformToFill"/>
-                            </Border>
-
-                            <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
-                                <TextBlock Text="COMPANY ID" FontSize="14" FontWeight="Bold" Foreground="#4F46E5" Margin="0,0,0,10"/>
-                                <TextBlock Text="{Binding FullName}" FontSize="16" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,5"/>
-                                <TextBlock Text="{Binding Position}" FontSize="13" Foreground="#4B5563" Margin="0,0,0,3"/>
-                                <TextBlock Text="{Binding Department}" FontSize="12" Foreground="#6B7280"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-
-                    <Button Grid.Row="1" Content="Print ID Card" Height="40" Width="200" HorizontalAlignment="Center" Background="#059669" Foreground="White" FontWeight="Bold" Margin="0,15,0,0"/>
-                </Grid>
-            </Border>
+                <!-- ညာဘက်ခြမ်း အလွတ် (Blank Preview Area)[cite: 19] -->
+                <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" Padding="20" BorderBrush="#E5E7EB" BorderThickness="1"/>
+            </Grid>
         </Grid>
 
         <!-- 4. BOTTOM STATUS BAR -->
         <Border Grid.Row="3" Background="White" BorderBrush="#E5E7EB" BorderThickness="0,1,0,0">
             <Grid Margin="15,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="🖨 Printer Queue Status: Ready" FontSize="12" FontWeight="SemiBold" Foreground="#374151"/>
+                    <TextBlock Text="🖨 Printer Queue Status" FontSize="12" FontWeight="SemiBold" Foreground="#374151"/>
                 </StackPanel>
             </Grid>
         </Border>
