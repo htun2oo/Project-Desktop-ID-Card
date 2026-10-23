@@ -27,7 +27,7 @@
 
                 <!-- Logo / Title -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="ENTRUST" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="TRUST" FontSize="20" FontWeight="Bold" Foreground="White"/>
                     <TextBlock Text=" | Adaptive Issuance™ Instant ID" FontSize="11" VerticalAlignment="Center" Foreground="#E0E0E0" Margin="5,2,0,0"/>
                 </StackPanel>
 
