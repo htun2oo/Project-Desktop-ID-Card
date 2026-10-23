@@ -35,117 +35,120 @@
                 </StackPanel>
             </Border>
 
-            <!-- Right Main Dynamic Container with ScrollViewer wrapping the entire form -->
+            <!-- Right Main Dynamic Container -->
             <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1">
-                <ScrollViewer VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
-                    <StackPanel Margin="30">
-                        <!-- Title -->
-                        <TextBlock Text="Manage Your Preferences" FontSize="22" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,15"/>
+                <ContentControl x:Name="SettingsContentArea">
+                    <!-- Default View: Preferences Form -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
+                        <StackPanel Margin="30">
+                            <!-- Title -->
+                            <TextBlock Text="Manage Your Preferences" FontSize="22" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,15"/>
 
-                        <!-- Sub-tab indicator -->
-                        <Border BorderBrush="#D1D5DB" BorderThickness="0,0,0,1" Margin="0,0,0,20">
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,-1">
-                                <Border BorderBrush="#2563EB" BorderThickness="0,0,0,2" Padding="10,8">
-                                    <TextBlock Text="Preferences" FontWeight="Bold" Foreground="#2563EB"/>
-                                </Border>
+                            <!-- Sub-tab indicator -->
+                            <Border BorderBrush="#D1D5DB" BorderThickness="0,0,0,1" Margin="0,0,0,20">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,-1">
+                                    <Border BorderBrush="#2563EB" BorderThickness="0,0,0,2" Padding="10,8">
+                                        <TextBlock Text="Preferences" FontWeight="Bold" Foreground="#2563EB"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- General Preferences -->
+                            <TextBlock Text="General Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
+                            
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Display tooltip for license expiration" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Always show Quick Start on sign in" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Display training tips for designing a credential" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Grid>
+
+                            <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
+
+                            <!-- Printer Preferences -->
+                            <TextBlock Text="Printer Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
+                            
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Printer" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <ComboBox Grid.Column="1" Height="28" VerticalContentAlignment="Center"/>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Always prompt for printer" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </Grid>
+
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="220"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Hopper" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <ComboBox Grid.Column="1" Height="28" VerticalContentAlignment="Center"/>
+                            </Grid>
+
+                            <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
+
+                            <!-- Quick Start Preferences -->
+                            <TextBlock Text="Quick Start Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Always confirm exit from Quick Start" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </Grid>
+
+                            <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
+
+                            <!-- Report Preferences -->
+                            <TextBlock Text="Report Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
+                            <Grid Margin="0,0,0,25">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Maximum number of records per report" VerticalAlignment="Center" Foreground="#4B5563"/>
+                                <TextBox Grid.Column="1" Text="1000" Height="28" VerticalContentAlignment="Center" Padding="5,0"/>
+                            </Grid>
+
+                            <!-- Save & Cancel Buttons -->
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+                                <Button Content="Save" Width="90" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
+                                <Button Content="Cancel" Width="90" Height="32" Background="#E5E7EB" Foreground="#374151" FontWeight="Bold"/>
                             </StackPanel>
-                        </Border>
-
-                        <!-- General Preferences -->
-                        <TextBlock Text="General Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
-                        
-                        <Grid Margin="0,0,0,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Display tooltip for license expiration" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </Grid>
-
-                        <Grid Margin="0,0,0,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Always show Quick Start on sign in" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </Grid>
-
-                        <Grid Margin="0,0,0,20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Display training tips for designing a credential" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </Grid>
-
-                        <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
-
-                        <!-- Printer Preferences -->
-                        <TextBlock Text="Printer Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
-                        
-                        <Grid Margin="0,0,0,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Printer" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <ComboBox Grid.Column="1" Height="28" VerticalContentAlignment="Center"/>
-                        </Grid>
-
-                        <Grid Margin="0,0,0,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Always prompt for printer" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        </Grid>
-
-                        <Grid Margin="0,0,0,20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="220"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Hopper" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <ComboBox Grid.Column="1" Height="28" VerticalContentAlignment="Center"/>
-                        </Grid>
-
-                        <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
-
-                        <!-- Quick Start Preferences -->
-                        <TextBlock Text="Quick Start Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
-                        <Grid Margin="0,0,0,20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Always confirm exit from Quick Start" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        </Grid>
-
-                        <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
-
-                        <!-- Report Preferences -->
-                        <TextBlock Text="Report Preferences" FontSize="14" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,12"/>
-                        <Grid Margin="0,0,0,25">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="250"/>
-                                <ColumnDefinition Width="150"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Maximum number of records per report" VerticalAlignment="Center" Foreground="#4B5563"/>
-                            <TextBox Grid.Column="1" Text="1000" Height="28" VerticalContentAlignment="Center" Padding="5,0"/>
-                        </Grid>
-
-                        <!-- Save & Cancel Buttons -->
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
-                            <Button Content="Save" Width="90" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
-                            <Button Content="Cancel" Width="90" Height="32" Background="#E5E7EB" Foreground="#374151" FontWeight="Bold"/>
                         </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>
+                    </ScrollViewer>
+                </ContentControl>
             </Border>
         </Grid>
     </Grid>
