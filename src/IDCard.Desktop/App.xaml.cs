@@ -11,17 +11,9 @@ namespace IDCard.Desktop
         {
             base.OnStartup(e);
 
-            try
-            {
-                // အပလီကေးရှင်း စတင်ချိန်တွင် SQLite Database နှင့် Users Table ကို ဖန်တီးခြင်း
-                DatabaseService.InitializeDatabase();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Database initialization error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            // အပလီကေးရှင်း စတင်သည်နှင့် Database နှင့် Table ကို မဖြစ်မနေ ဆောက်မည်
+            DatabaseService.InitializeDatabase();
 
-            // Global Exception Handling
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }
