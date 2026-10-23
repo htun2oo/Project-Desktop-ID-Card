@@ -42,25 +42,16 @@
                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
     
                     <!-- admin Menu with Dropdown -->
-                    <Button Content="admin ▾" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#374151" Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0">
+                    <Button Content="admin ▾" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#374151" Background="Transparent" BorderBrush="Transparent" Margin="0,0,15,0" Click="AdminButton_Click">
                         <Button.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Preferences"/>
-                                <MenuItem Header="Change Your Password"/>
-                                <Separator/>
-                                <MenuItem Header="Sign Out"/>
-                            </ContextMenu>
-                        </Button.ContextMenu>
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <!-- နှိပ်လိုက်ပါက ContextMenu ပေါ်လာစေရန် -->
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
+                                <ContextMenu x:Name="AdminMenu">
+                                    <MenuItem Header="Preferences"/>
+                                    <MenuItem Header="Change Your Password"/>
+                                    <Separator/>
+                                    <MenuItem Header="Sign Out"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
 
                     <Button Content="⚙" FontSize="14" Width="28" Height="28" Margin="0,0,5,0"/>
                     <Button Content="🔔" FontSize="12" Width="28" Height="28" Margin="0,0,5,0"/>
