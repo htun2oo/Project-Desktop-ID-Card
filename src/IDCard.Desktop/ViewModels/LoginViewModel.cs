@@ -35,7 +35,7 @@ namespace IDCard.Desktop.ViewModels
         private void ExecuteLogin(object? parameter)
         {
             // တိုက်ရိုက် Hardcode ဖြင့် စစ်ဆေးခြင်း
-            if (Username == "admin" && Password == "admin123")
+            if (Username == "admin" && Password == "admin")
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
