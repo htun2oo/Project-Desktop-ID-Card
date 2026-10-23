@@ -34,8 +34,10 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
-            // တိုက်ရိုက် Hardcode ဖြင့် စစ်ဆေးခြင်း
-            if (Username == "admin" && Password == "admin")
+            using var context = new AppDbContext();
+            var user = context.Users.FirstOrDefault(u => u.Username == Username && u.PasswordHash == Password);
+
+            if (user != null)
             {
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -56,7 +58,6 @@ namespace IDCard.Desktop.ViewModels
                 MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
