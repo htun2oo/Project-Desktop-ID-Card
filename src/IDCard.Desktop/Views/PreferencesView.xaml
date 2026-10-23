@@ -38,7 +38,7 @@
             <!-- Right Main Dynamic Container -->
             <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" Padding="30" BorderBrush="#E5E7EB" BorderThickness="1">
                 <ContentControl x:Name="SettingsContentArea">
-                    <!-- Default View: Preferences Form -->
+                    <!-- Default View: Preferences Form with Report Preferences Included -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <!-- Title -->
@@ -142,7 +142,7 @@
                             </Grid>
 
                             <!-- Save & Cancel Buttons -->
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                                 <Button Content="Save" Width="90" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
                                 <Button Content="Cancel" Width="90" Height="32" Background="#E5E7EB" Foreground="#374151" FontWeight="Bold"/>
                             </StackPanel>
