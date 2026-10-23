@@ -38,7 +38,7 @@
             <!-- Right Main Dynamic Container -->
             <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" Padding="30" BorderBrush="#E5E7EB" BorderThickness="1">
                 <ContentControl x:Name="SettingsContentArea">
-                    <!-- Default View: Preferences Form with Report Preferences Included -->
+                    <!-- Default View: Preferences Form -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <!-- Title -->
@@ -62,7 +62,7 @@
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Display tooltip for license expiration" VerticalAlignment="Center" Foreground="#4B5563"/>
-                                <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             </Grid>
 
                             <Grid Margin="0,0,0,10">
@@ -71,7 +71,7 @@
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Always show Quick Start on sign in" VerticalAlignment="Center" Foreground="#4B5563"/>
-                                <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             </Grid>
 
                             <Grid Margin="0,0,0,20">
@@ -80,7 +80,7 @@
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Display training tips for designing a credential" VerticalAlignment="Center" Foreground="#4B5563"/>
-                                <CheckBox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             </Grid>
 
                             <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
@@ -90,7 +90,7 @@
                             
                             <Grid Margin="0,0,0,10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="220"/>
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Printer" VerticalAlignment="Center" Foreground="#4B5563"/>
@@ -99,16 +99,16 @@
 
                             <Grid Margin="0,0,0,10">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="220"/>
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Always prompt for printer" VerticalAlignment="Center" Foreground="#4B5563"/>
-                                <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
 
                             <Grid Margin="0,0,0,20">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="220"/>
                                     <ColumnDefinition Width="200"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Hopper" VerticalAlignment="Center" Foreground="#4B5563"/>
@@ -125,7 +125,7 @@
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Always confirm exit from Quick Start" VerticalAlignment="Center" Foreground="#4B5563"/>
-                                <CheckBox Grid.Column="1" IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox Grid.Column="1" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
 
                             <Separator Background="#E5E7EB" Margin="0,0,0,20"/>
