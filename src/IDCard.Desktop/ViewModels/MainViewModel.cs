@@ -12,7 +12,7 @@ namespace IDCard.Desktop.ViewModels
             set { _currentView = value; OnPropertyChanged(); }
         }
 
-        public ICommand NavigatePreferencesCommand { get; }
+        public ICommand NavigatePreferencesCommand { get; set; } = null!;
         public ICommand ExitCommand { get; }
 
         public MainViewModel()
