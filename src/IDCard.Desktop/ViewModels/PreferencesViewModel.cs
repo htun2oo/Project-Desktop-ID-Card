@@ -1,10 +1,15 @@
 using System.Windows;
 using System.Windows.Input;
+using IDCard.Desktop.Models;
+using IDCard.Desktop.Services;
 
 namespace IDCard.Desktop.ViewModels
 {
     public class PreferencesViewModel : ViewModelBase
     {
+        private readonly SettingsService _settingsService;
+        private AppSettingsModel _currentSettings;
+
         private string _currentPassword = string.Empty;
         public string CurrentPassword
         {
@@ -26,26 +31,23 @@ namespace IDCard.Desktop.ViewModels
             set { _confirmPassword = value; OnPropertyChanged(); }
         }
 
-        // Settings Properties
-        private bool _displayLicenseTooltip;
+        // Settings Properties bound to UI
         public bool DisplayLicenseTooltip
         {
-            get => _displayLicenseTooltip;
-            set { _displayLicenseTooltip = value; OnPropertyChanged(); }
+            get => _currentSettings.DisplayLicenseTooltip;
+            set { _currentSettings.DisplayLicenseTooltip = value; OnPropertyChanged(); }
         }
 
-        private bool _alwaysShowQuickStart = true;
         public bool AlwaysShowQuickStart
         {
-            get => _alwaysShowQuickStart;
-            set { _alwaysShowQuickStart = value; OnPropertyChanged(); }
+            get => _currentSettings.AlwaysShowQuickStart;
+            set { _currentSettings.AlwaysShowQuickStart = value; OnPropertyChanged(); }
         }
 
-        private int _maxRecordsPerReport = 1000;
         public int MaxRecordsPerReport
         {
-            get => _maxRecordsPerReport;
-            set { _maxRecordsPerReport = value; OnPropertyChanged(); }
+            get => _currentSettings.MaxRecordsPerReport;
+            set { _currentSettings.MaxRecordsPerReport = value; OnPropertyChanged(); }
         }
 
         public ICommand SavePreferencesCommand { get; }
@@ -53,19 +55,21 @@ namespace IDCard.Desktop.ViewModels
 
         public PreferencesViewModel()
         {
+            _settingsService = new SettingsService();
+            _currentSettings = _settingsService.LoadSettings();
+
             SavePreferencesCommand = new RelayCommand(ExecuteSavePreferences);
             UpdatePasswordCommand = new RelayCommand(ExecuteUpdatePassword);
         }
 
         private void ExecuteSavePreferences(object? parameter)
         {
-            // Preferences setting များကို သိမ်းဆည်းသည့် လိုဂျစ်
-            MessageBox.Show("Preferences saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            _settingsService.SaveSettings(_currentSettings);
+            MessageBox.Show("Preferences saved successfully to local storage!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ExecuteUpdatePassword(object? parameter)
         {
-            // Password Validation
             if (string.IsNullOrWhiteSpace(CurrentPassword) || string.IsNullOrWhiteSpace(NewPassword))
             {
                 MessageBox.Show("Please fill in all password fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -78,10 +82,8 @@ namespace IDCard.Desktop.ViewModels
                 return;
             }
 
-            // Password အောင်မြင်စွာ ပြောင်းလဲသည့် လိုဂျစ်
             MessageBox.Show("Password updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             
-            // Clear fields after success
             CurrentPassword = string.Empty;
             NewPassword = string.Empty;
             ConfirmPassword = string.Empty;
