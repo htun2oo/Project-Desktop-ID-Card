@@ -20,7 +20,7 @@
             </StackPanel>
         </Border>
 
-        <!-- 2. CONTENT AREA WITH SIDEBAR & DYNAMIC FORM -->
+        <!-- 2. CONTENT AREA WITH SIDEBAR & DYNAMIC FORMS -->
         <Grid Grid.Row="1" Margin="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
@@ -35,13 +35,12 @@
                 </StackPanel>
             </Border>
 
-            <!-- Right Main Dynamic Container -->
+            <!-- Right Main Container -->
             <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1">
-                <ContentControl x:Name="SettingsContentArea">
-                    <!-- Default View: Preferences Form -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
+                <Grid>
+                    <!-- Preferences Form Panel -->
+                    <ScrollViewer x:Name="PreferencesPanel" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly" Visibility="Visible">
                         <StackPanel Margin="30">
-                            <!-- Title -->
                             <TextBlock Text="Manage Your Preferences" FontSize="22" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,15"/>
 
                             <!-- Sub-tab indicator -->
@@ -138,7 +137,7 @@
                                     <ColumnDefinition Width="150"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="Maximum number of records per report" VerticalAlignment="Center" Foreground="#4B5563"/>
-                                <TextBox Grid.Column="1" Text="1000" Height="28" VerticalContentAlignment="Center" Padding="5,0"/>
+                                <TextBox Grid.Column="1" Text="1000" Height="28" VerticalContentAlignment="Center" Padding="5,0,5,0"/>
                             </Grid>
 
                             <!-- Save & Cancel Buttons -->
@@ -148,7 +147,25 @@
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
-                </ContentControl>
+
+                    <!-- Change Password Form Panel -->
+                    <ScrollViewer x:Name="ChangePasswordPanel" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly" Visibility="Collapsed">
+                        <StackPanel Margin="30">
+                            <TextBlock Text="Change Your Password" FontSize="22" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,20"/>
+
+                            <TextBlock Text="Current Password" FontWeight="SemiBold" Foreground="#374151" Margin="0,0,0,5"/>
+                            <PasswordBox Height="32" VerticalContentAlignment="Center" Margin="0,0,0,15"/>
+
+                            <TextBlock Text="New Password" FontWeight="SemiBold" Foreground="#374151" Margin="0,0,0,5"/>
+                            <PasswordBox Height="32" VerticalContentAlignment="Center" Margin="0,0,0,15"/>
+
+                            <TextBlock Text="Confirm New Password" FontWeight="SemiBold" Foreground="#374151" Margin="0,0,0,5"/>
+                            <PasswordBox Height="32" VerticalContentAlignment="Center" Margin="0,0,0,20"/>
+
+                            <Button Content="Update Password" Width="140" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
             </Border>
         </Grid>
     </Grid>
