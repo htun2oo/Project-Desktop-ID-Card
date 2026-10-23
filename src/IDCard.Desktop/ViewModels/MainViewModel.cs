@@ -71,15 +71,7 @@ namespace IDCard.Desktop.ViewModels
             DeleteCommand = new RelayCommand(ExecuteDelete, CanExecuteDelete);
             BrowsePhotoCommand = new RelayCommand(ExecuteBrowsePhoto);
             
-            // Test လုပ်ရန်အတွက် LoadEmployees() ကို Try-Catch အတွင်း ထည့်ထားပါ
-            try
-            //{
             LoadEmployees();
-            //}
-            //catch (System.Exception ex)
-            //{
-                //MessageBox.Show("DB Error: " + ex.Message);
-            //}
         }
 
         private void LoadEmployees()
@@ -87,7 +79,7 @@ namespace IDCard.Desktop.ViewModels
             try
             {
                 using var context = new AppDbContext();
-                context.Database.EnsureCreated(); // Database သေချာပေါက် ရှိမရှိ စစ်ဆေးရန်
+                context.Database.EnsureCreated();
                 Employees.Clear();
                 foreach (var emp in context.Employees)
                 {
