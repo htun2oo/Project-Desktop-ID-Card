@@ -20,7 +20,7 @@
             </StackPanel>
         </Border>
 
-        <!-- 2. CONTENT AREA WITH SIDEBAR & FORMS -->
+        <!-- 2. CONTENT AREA WITH SIDEBAR & SCROLLABLE FORMS -->
         <Grid Grid.Row="1" Margin="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
@@ -35,9 +35,9 @@
                 </StackPanel>
             </Border>
 
-            <!-- Right Main Scrollable Container -->
+            <!-- Right Main Scrollable Container with Vertical Scrollbar -->
             <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <Grid>
                         <!-- Preferences Form Panel -->
                         <StackPanel x:Name="PreferencesPanel" Margin="30" Visibility="Visible">
@@ -141,7 +141,7 @@
                             </Grid>
 
                             <!-- Save & Cancel Buttons -->
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
                                 <Button Content="Save" Width="90" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
                                 <Button Content="Cancel" Width="90" Height="32" Background="#E5E7EB" Foreground="#374151" FontWeight="Bold"/>
                             </StackPanel>
