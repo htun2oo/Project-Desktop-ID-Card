@@ -1,32 +1,37 @@
-using IDCard.Desktop.Models;
-using System.Linq;
+using System;
+using System.IO;
+using Microsoft.Data.Sqlite; // SQLite package ကို အသုံးပြုရန်
 
 namespace IDCard.Desktop.Services
 {
     public static class DatabaseService
     {
+        private static readonly string DbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "IDCardApp", "idcard.db");
+
+        public static string GetConnectionString()
+        {
+            string? dir = Path.GetDirectoryName(DbPath);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            return $"Data Source={DbPath}";
+        }
+
         public static void InitializeDatabase()
         {
-            try
-            {
-                using var context = new AppDbContext();
-                context.Database.EnsureCreated();
+            using var connection = new SqliteConnection(GetConnectionString());
+            connection.Open();
 
-                // Admin အကောင့် ရှိမရှိ စစ်ဆေးပြီး မရှိပါက အလိုအလျောက် ထည့်သွင်းပေးရန်
-                if (!context.Users.Any(u => u.Username == "admin"))
-                {
-                    context.Users.Add(new User
-                    {
-                        Username = "admin",
-                        PasswordHash = "admin" // လိုအပ်ပါက Hash လုပ်၍ သို့မဟုတ် တိုက်ရိုက်ထည့်နိုင်သည်
-                    });
-                    context.SaveChanges();
-                }
-            }
-            catch (System.Exception ex)
-            {
-                System.Windows.MessageBox.Show($"Database Error: {ex.Message}");
-            }
+            string commandText = @"
+                CREATE TABLE IF NOT EXISTS Users (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Username TEXT NOT NULL UNIQUE,
+                    Password TEXT NOT NULL
+                );";
+
+            using var command = new SqliteCommand(commandText, connection);
+            command.ExecuteNonQuery();
         }
     }
 }
