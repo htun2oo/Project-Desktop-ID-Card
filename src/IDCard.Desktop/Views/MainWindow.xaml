@@ -28,7 +28,7 @@
                 <!-- Logo / Title -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="TRUST" FontSize="20" FontWeight="Bold" Foreground="White"/>
-                    <TextBlock Text=" | Adaptive Issuance™ Instant ID" FontSize="11" VerticalAlignment="Center" Foreground="#E0E0E0" Margin="5,2,0,0"/>
+                    <TextBlock Text=" | Desktop ID Card" FontSize="14" VerticalAlignment="Center" Foreground="#E0E0E0" Margin="5,2,0,0"/>
                 </StackPanel>
 
                 <!-- Main Menu -->
