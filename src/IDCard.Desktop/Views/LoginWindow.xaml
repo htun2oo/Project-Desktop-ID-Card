@@ -26,7 +26,7 @@
             </Border>
 
             <!-- Forgot Password Link -->
-            <TextBlock Text="Forgot Password?" Foreground="White" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,20,0,15" Cursor="Hand"/>
+            <TextBlock Text="Forgot Password?" MouseDown="ForgotPassword_Click" Foreground="White" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,20,0,15" Cursor="Hand"/>
 
             <!-- Sign In Button -->
             <Button Content="Sign In" Command="{Binding LoginCommand}" Width="180" Height="40" Background="#2563EB" Foreground="White" FontSize="14" FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
