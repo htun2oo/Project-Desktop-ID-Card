@@ -2,6 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Threading;
 using IDCard.Desktop.Services;
+using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop
 {
@@ -11,14 +12,22 @@ namespace IDCard.Desktop
         {
             base.OnStartup(e);
 
-            // Main Window ပိတ်သွားပါက အပလီကေးရှင်း တစ်ခုလုံး တိုက်ရိုက် ပိတ်သွားစေရန်
+            // MainWindow ပိတ်မှသာ အပလီကေးရှင်း ပိတ်မည်
             this.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
-            // အပလီကေးရှင်း စတင်သည်နှင့် Database နှင့် Table ကို မဖြစ်မနေ ဆောက်မည်
+            // Database စတင်ချိတ်ဆက်ခြင်း
             DatabaseService.InitializeDatabase();
 
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+            // LoginWindow ကို ပထမဆုံး စတင်ဖွင့်လှစ်ခြင်း
+            var loginWindow = new LoginWindow();
+            
+            // LoginWindow ကို Application ၏ Main Window အဖြစ် ဦးစွာသတ်မှတ်ပါ
+            this.MainWindow = loginWindow;
+            
+            loginWindow.Show();
         }
 
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
