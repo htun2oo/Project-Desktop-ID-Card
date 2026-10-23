@@ -7,20 +7,20 @@
     <Grid>
         <Grid.RowDefinitions>
             <!-- Top Settings Header -->
-            <RowDefinition Height="50"/>
-            <!-- Main Preferences Body -->
+            <RowDefinition Height="Auto"/>
+            <!-- Main Content Area -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- 1. SETTINGS HEADER BAR (Deep Purple) -->
-        <Border Grid.Row="0" Background="#4A154B">
+        <Border Grid.Row="0" Background="#4A154B" Height="50">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
                 <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
                 <TextBlock Text="Manage Your Settings" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
             </StackPanel>
         </Border>
 
-        <!-- 2. CONTENT AREA WITH SIDEBAR & DYNAMIC FORMS -->
+        <!-- 2. CONTENT AREA WITH SIDEBAR & FORMS -->
         <Grid Grid.Row="1" Margin="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
@@ -28,19 +28,19 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left Navigation Sidebar -->
-            <Border Grid.Column="0" Background="#E5E7EB" CornerRadius="4" Padding="10,15">
+            <Border Grid.Column="0" Background="#E5E7EB" CornerRadius="4" Padding="10,15" VerticalAlignment="Top">
                 <StackPanel>
                     <Button x:Name="PreferencesNavBtn" Content="Preferences" Click="PreferencesTab_Click" Background="White" Foreground="#1E3A8A" FontWeight="Bold" HorizontalContentAlignment="Left" Padding="12,8" Margin="0,0,0,5" BorderThickness="0"/>
                     <Button x:Name="ChangePasswordNavBtn" Content="Change Your Password" Click="ChangePasswordTab_Click" Background="Transparent" Foreground="#1E3A8A" FontWeight="SemiBold" HorizontalContentAlignment="Left" Padding="12,8" BorderThickness="0"/>
                 </StackPanel>
             </Border>
 
-            <!-- Right Main Container -->
+            <!-- Right Main Scrollable Container -->
             <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1">
-                <Grid>
-                    <!-- Preferences Form Panel -->
-                    <ScrollViewer x:Name="PreferencesPanel" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly" Visibility="Visible">
-                        <StackPanel Margin="30">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <!-- Preferences Form Panel -->
+                        <StackPanel x:Name="PreferencesPanel" Margin="30" Visibility="Visible">
                             <TextBlock Text="Manage Your Preferences" FontSize="22" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,15"/>
 
                             <!-- Sub-tab indicator -->
@@ -141,16 +141,14 @@
                             </Grid>
 
                             <!-- Save & Cancel Buttons -->
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                                 <Button Content="Save" Width="90" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
                                 <Button Content="Cancel" Width="90" Height="32" Background="#E5E7EB" Foreground="#374151" FontWeight="Bold"/>
                             </StackPanel>
                         </StackPanel>
-                    </ScrollViewer>
 
-                    <!-- Change Password Form Panel -->
-                    <ScrollViewer x:Name="ChangePasswordPanel" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly" Visibility="Collapsed">
-                        <StackPanel Margin="30">
+                        <!-- Change Password Form Panel -->
+                        <StackPanel x:Name="ChangePasswordPanel" Margin="30" Visibility="Collapsed">
                             <TextBlock Text="Change Your Password" FontSize="22" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,20"/>
 
                             <TextBlock Text="Current Password" FontWeight="SemiBold" Foreground="#374151" Margin="0,0,0,5"/>
@@ -164,8 +162,8 @@
 
                             <Button Content="Update Password" Width="140" Height="32" Background="#2563EB" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left"/>
                         </StackPanel>
-                    </ScrollViewer>
-                </Grid>
+                    </Grid>
+                </ScrollViewer>
             </Border>
         </Grid>
     </Grid>
