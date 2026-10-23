@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using System.Windows.Threading;
+using IDCard.Desktop.Services;
 
 namespace IDCard.Desktop
 {
@@ -10,18 +11,24 @@ namespace IDCard.Desktop
         {
             base.OnStartup(e);
 
-            // Global Exception Handling for UI Thread
-            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
+            try
+            {
+                // အပလီကေးရှင်း စတင်ချိန်တွင် SQLite Database နှင့် Users Table ကို ဖန်တီးခြင်း
+                DatabaseService.InitializeDatabase();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Database initialization error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
-            // Global Exception Handling for Non-UI Threads
+            // Global Exception Handling
+            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         }
 
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show($"An unexpected error occurred: {e.Exception.Message}", "Application Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            
-            // Prevent application from crashing immediately if recoverable
             e.Handled = true;
         }
 
