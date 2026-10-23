@@ -1,4 +1,3 @@
-using System.Linq;
 using IDCard.Desktop.Models;
 
 namespace IDCard.Desktop.Services
@@ -7,21 +6,15 @@ namespace IDCard.Desktop.Services
     {
         public static void InitializeDatabase()
         {
-            using var context = new AppDbContext();
-            // Database နှင့် Table များ မရှိသေးပါက အလိုအလျောက် တည်ဆောက်ပေးမည်
-            context.Database.EnsureCreated();
-        }
-    }
-
-            // အကယ်၍ Users ဇယားတွင် အကောင့်မရှိသေးပါက Default Admin အကောင့်ကို အလိုအလျောက် ထည့်သွင်းပေးမည်
-            if (!context.Users.Any())
+            try
             {
-                context.Users.Add(new User
-                {
-                    Username = "admin",
-                    PasswordHash = "admin123" // လိုအပ်ပါက Password ကို ပြောင်းလဲနိုင်ပါသည်
-                });
-                context.SaveChanges();
+                using var context = new AppDbContext();
+                // Database နှင့် ဇယားများ မရှိသေးပါက အလိုအလျောက် ဖန်တီးပေးမည်
+                context.Database.EnsureCreated();
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.MessageBox.Show($"Database Initialization Error: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
         }
     }
