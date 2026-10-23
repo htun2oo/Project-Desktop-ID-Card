@@ -34,6 +34,9 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
+            // Database နှင့် Users Table မရှိပါက အလိုအလျောက် ဦးစွာ ဖန်တီးပေးမည်
+            DatabaseService.InitializeDatabase();
+
             using var context = new AppDbContext();
             var user = context.Users.FirstOrDefault(u => u.Username == Username && u.PasswordHash == Password);
 
@@ -58,6 +61,7 @@ namespace IDCard.Desktop.ViewModels
                 MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
