@@ -45,8 +45,13 @@ namespace IDCard.Desktop.ViewModels
                 MessageBox.Show($"Login Successful! Welcome {user.Username} ({user.Role})", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 var mainWindow = new MainWindow();
+
+                // အရေးကြီးသည် - MainWindow အသစ်ကို Application ၏ Main Window အဖြစ် ဦးစွာသတ်မှတ်ပါ
+                Application.Current.MainWindow = mainWindow;
+
                 mainWindow.Show();
 
+                // ထို့နောက်မှ Login Window ကို ပိတ်ပါ
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window is LoginWindow)
