@@ -34,15 +34,15 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
-            // Database နှင့် Users Table မရှိပါက အလိုအလျောက် ဦးစွာ ဖန်တီးပေးမည်
-            DatabaseService.InitializeDatabase();
-
-            using var context = new AppDbContext();
-            var user = context.Users.FirstOrDefault(u => u.Username == Username && u.PasswordHash == Password);
+            // JSON File မှတဆင့် Username နှင့် Password စစ်ဆေးခြင်း
+            var user = UserService.Authenticate(Username, Password);
 
             if (user != null)
             {
-                MessageBox.Show("Login Successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                // Active User Session သတ်မှတ်ခြင်း
+                UserSession.CurrentUser = user;
+
+                MessageBox.Show($"Login Successful! Welcome {user.Username} ({user.Role})", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 var mainWindow = new MainWindow();
                 mainWindow.Show();
@@ -58,7 +58,7 @@ namespace IDCard.Desktop.ViewModels
             }
             else
             {
-                MessageBox.Show("Invalid Username or Password!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
