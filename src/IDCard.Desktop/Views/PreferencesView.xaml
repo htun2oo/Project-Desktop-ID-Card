@@ -8,7 +8,7 @@
         <Grid.RowDefinitions>
             <!-- Top Settings Header -->
             <RowDefinition Height="Auto"/>
-            <!-- Main Content Area -->
+            <!-- Main Content Area taking rest of the window -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -20,7 +20,7 @@
             </StackPanel>
         </Border>
 
-        <!-- 2. CONTENT AREA WITH SIDEBAR & SCROLLABLE FORMS -->
+        <!-- 2. CONTENT AREA WITH FIXED HEIGHT SCROLLVIEWER -->
         <Grid Grid.Row="1" Margin="15">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
@@ -35,8 +35,8 @@
                 </StackPanel>
             </Border>
 
-            <!-- Right Main Scrollable Container with Vertical Scrollbar -->
-            <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1">
+            <!-- Right Main Container wrapping the ScrollViewer with Height constraint -->
+            <Border Grid.Column="1" Margin="15,0,0,0" Background="White" CornerRadius="8" BorderBrush="#E5E7EB" BorderThickness="1" VerticalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <Grid>
                         <!-- Preferences Form Panel -->
