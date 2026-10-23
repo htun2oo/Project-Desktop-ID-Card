@@ -18,7 +18,7 @@ namespace IDCard.Desktop.Services
                     context.Users.Add(new User
                     {
                         Username = "admin",
-                        PasswordHash = "admin123" // လိုအပ်ပါက Hash လုပ်၍ သို့မဟုတ် တိုက်ရိုက်ထည့်နိုင်သည်
+                        PasswordHash = "admin" // လိုအပ်ပါက Hash လုပ်၍ သို့မဟုတ် တိုက်ရိုက်ထည့်နိုင်သည်
                     });
                     context.SaveChanges();
                 }
