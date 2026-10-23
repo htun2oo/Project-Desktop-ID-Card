@@ -11,6 +11,9 @@ namespace IDCard.Desktop
         {
             base.OnStartup(e);
 
+            // Main Window ပိတ်သွားပါက အပလီကေးရှင်း တစ်ခုလုံး တိုက်ရိုက် ပိတ်သွားစေရန်
+            this.ShutdownMode = ShutdownMode.OnMainWindowClose;
+
             // အပလီကေးရှင်း စတင်သည်နှင့် Database နှင့် Table ကို မဖြစ်မနေ ဆောက်မည်
             DatabaseService.InitializeDatabase();
 
