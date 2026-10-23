@@ -8,7 +8,10 @@ namespace IDCard.Desktop.Services
         public static void InitializeDatabase()
         {
             using var context = new AppDbContext();
+            // Database နှင့် Table များ မရှိသေးပါက အလိုအလျောက် တည်ဆောက်ပေးမည်
             context.Database.EnsureCreated();
+        }
+    }
 
             // အကယ်၍ Users ဇယားတွင် အကောင့်မရှိသေးပါက Default Admin အကောင့်ကို အလိုအလျောက် ထည့်သွင်းပေးမည်
             if (!context.Users.Any())
