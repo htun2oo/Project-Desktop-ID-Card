@@ -34,19 +34,14 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
-            using var context = new AppDbContext();
-            var user = context.Users.FirstOrDefault(u => u.Username == Username && u.PasswordHash == Password);
-
-            if (user != null)
+            // တိုက်ရိုက် Hardcode ဖြင့် စစ်ဆေးခြင်း
+            if (Username == "admin" && Password == "admin123")
             {
-                // Login အောင်မြင်ပါက
                 MessageBox.Show("Login Successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                // MainWindow ကို အသစ်ဖွင့်ခြင်း
                 var mainWindow = new MainWindow();
                 mainWindow.Show();
 
-                // လက်ရှိ LoginWindow ကို ပိတ်ခြင်း
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window is LoginWindow)
