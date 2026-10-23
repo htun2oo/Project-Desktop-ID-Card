@@ -19,10 +19,9 @@
                     <TextBlock Text="User ID" FontSize="14" FontWeight="SemiBold" Foreground="#6B21A8" Margin="0,0,0,6"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="36" Padding="8,6" FontSize="14" BorderBrush="#D1D5DB" BorderThickness="1" Margin="0,0,0,20"/>
 
-                    <!-- Password Field -->
+                    <!-- Password Field (Using TextBox with PasswordChar equivalent or standard TextBox for simplicity) -->
                     <TextBlock Text="Password" FontSize="14" FontWeight="SemiBold" Foreground="#6B21A8" Margin="0,0,0,6"/>
-                    <!-- အကယ်၍ PasswordBox ကို သုံးလိုပါက Code-behind ဖြင့် ချိတ်ဆက်နိုင်ပါသည် -->
-                    <PasswordBox x:Name="PasswordBoxField" Height="36" FontSize="14" BorderBrush="#D1D5DB" BorderThickness="1"/>
+                    <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Height="36" Padding="8,6" FontSize="14" BorderBrush="#D1D5DB" BorderThickness="1"/>
                 </StackPanel>
             </Border>
 
