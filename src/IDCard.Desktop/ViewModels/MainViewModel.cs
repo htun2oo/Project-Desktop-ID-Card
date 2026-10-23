@@ -1,29 +1,30 @@
 using System.Windows;
 using System.Windows.Input;
+using IDCard.Desktop.Helpers;
 
 namespace IDCard.Desktop.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private object? _currentView;
-        public object? CurrentView
-        {
-            get => _currentView;
-            set { _currentView = value; OnPropertyChanged(); }
-        }
-
-        public ICommand NavigatePreferencesCommand { get; set; } = null!;
-        public ICommand ExitCommand { get; }
+        public ICommand SignOutCommand { get; }
 
         public MainViewModel()
         {
-            // Default View သို့မဟုတ် Command များ ချိတ်ဆက်ခြင်း
-            ExitCommand = new RelayCommand(ExecuteExit);
+            // Sign Out Command ကို သတ်မှတ်ခြင်း
+            SignOutCommand = new RelayCommand(ExecuteSignOut);
         }
 
-        private void ExecuteExit(object? parameter)
+        private void ExecuteSignOut(object? parameter)
         {
-            Application.Current.Shutdown();
+            // MainWindow ကိုသာ Login Window မပြဘဲ တိုက်ရိုက်ပိတ်ရန်
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window is Views.MainWindow)
+                {
+                    window.Close();
+                    break;
+                }
+            }
         }
     }
 }
