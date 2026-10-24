@@ -1,4 +1,5 @@
 using System.Windows;
+using IDCard.Desktop.Services;
 using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop
@@ -8,6 +9,9 @@ namespace IDCard.Desktop
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            // App စတင်ဖွင့်လှစ်ချိန်တွင် Database နှင့် Default Tables များကို အလိုအလျောက် ဖန်တီးခြင်း
+            DatabaseService.InitializeDatabase();
 
             // App တစ်ခုလုံး အလိုအလျောက် ပိတ်မသွားစေရန်
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
