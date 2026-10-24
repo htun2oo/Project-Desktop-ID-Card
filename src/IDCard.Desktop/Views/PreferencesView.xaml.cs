@@ -1,6 +1,5 @@
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace IDCard.Desktop.Views
 {
@@ -13,10 +12,13 @@ namespace IDCard.Desktop.Views
 
         private void PreferencesTab_Click(object sender, RoutedEventArgs e)
         {
-            PreferencesNavBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            // ModernWPF Accent Style ကို Preferences Button သို့ ပြန်လည်သတ်မှတ်ခြင်း
+            PreferencesNavBtn.SetResourceReference(StyleProperty, "AccentButtonStyle");
             PreferencesNavBtn.FontWeight = FontWeights.Bold;
 
-            ChangePasswordNavBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Transparent"));
+            // Change Password Button ကို Default ပုံစံသို့ ပြောင်းခြင်း
+            ChangePasswordNavBtn.ClearValue(StyleProperty);
+            ChangePasswordNavBtn.Background = System.Windows.Media.Brushes.Transparent;
             ChangePasswordNavBtn.FontWeight = FontWeights.SemiBold;
 
             PreferencesPanel.Visibility = Visibility.Visible;
@@ -25,10 +27,13 @@ namespace IDCard.Desktop.Views
 
         private void ChangePasswordTab_Click(object sender, RoutedEventArgs e)
         {
-            ChangePasswordNavBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"));
+            // ModernWPF Accent Style ကို Change Password Button သို့ ပြန်လည်သတ်မှတ်ခြင်း
+            ChangePasswordNavBtn.SetResourceReference(StyleProperty, "AccentButtonStyle");
             ChangePasswordNavBtn.FontWeight = FontWeights.Bold;
 
-            PreferencesNavBtn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("Transparent"));
+            // Preferences Button ကို Default ပုံစံသို့ ပြောင်းခြင်း
+            PreferencesNavBtn.ClearValue(StyleProperty);
+            PreferencesNavBtn.Background = System.Windows.Media.Brushes.Transparent;
             PreferencesNavBtn.FontWeight = FontWeights.SemiBold;
 
             ChangePasswordPanel.Visibility = Visibility.Visible;
