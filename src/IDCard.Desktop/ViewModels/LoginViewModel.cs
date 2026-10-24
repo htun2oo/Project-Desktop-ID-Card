@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using IDCard.Desktop.Services;
@@ -5,7 +7,7 @@ using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : INotifyPropertyChanged
     {
         private readonly DatabaseService _databaseService;
 
@@ -62,6 +64,12 @@ namespace IDCard.Desktop.ViewModels
             {
                 MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
