@@ -1,10 +1,12 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Models;
+using IDCard.Desktop.Services;
 
 namespace IDCard.Desktop.ViewModels
 {
@@ -22,23 +24,49 @@ namespace IDCard.Desktop.ViewModels
 
         public ICommand SwitchToGridViewCommand { get; }
         public ICommand SwitchToListViewCommand { get; }
+        public ICommand LoadDataCommand { get; }
 
         public CredentialsViewModel()
         {
-            // ယာယီ Test Data များ ထည့်သွင်းခြင်း
-            CardDesigns.Add(new CardDesignModel { DesignName = "Staff ID Card", OwnerUsername = "admin" });
-            CardDesigns.Add(new CardDesignModel { DesignName = "Visitor Badge", OwnerUsername = "user1" });
-            CardDesigns.Add(new CardDesignModel { DesignName = "Contractor Pass", OwnerUsername = "user1" });
+            // Database မှ Card Design များကို Load လုပ်ခြင်း
+            LoadCardDesignsFromDatabase();
 
             // Command များ ချိတ်ဆက်ခြင်း
             SwitchToGridViewCommand = new RelayCommand(o => SetViewMode("Grid"));
             SwitchToListViewCommand = new RelayCommand(o => SetViewMode("List"));
+            LoadDataCommand = new RelayCommand(o => LoadCardDesignsFromDatabase());
 
             // Default အနေဖြင့် Grid View ဖြင့် စတင်ပြသရန်
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 SetViewMode("Grid");
             });
+        }
+
+        private void LoadCardDesignsFromDatabase()
+        {
+            try
+            {
+                using var context = new AppDbContext();
+                var designs = context.CardDesigns.ToList();
+                
+                CardDesigns.Clear();
+                foreach (var design in designs)
+                {
+                    CardDesigns.Add(design);
+                }
+
+                // အကယ်၍ Database ထဲတွင် Data လုံးဝမရှိသေးပါက Default များကို ထည့်ပေးနိုင်သည်
+                if (CardDesigns.Count == 0)
+                {
+                    CardDesigns.Add(new CardDesignModel { DesignName = "Staff ID Card", OwnerUsername = "admin" });
+                    CardDesigns.Add(new CardDesignModel { DesignName = "Visitor Badge", OwnerUsername = "user1" });
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error loading card designs: {ex.Message}");
+            }
         }
 
         private void SetViewMode(string mode)
