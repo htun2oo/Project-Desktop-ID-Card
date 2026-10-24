@@ -36,14 +36,14 @@
                     <Grid Margin="10,0">
                         <ToggleButton x:Name="DesignToggle" Content="Design ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
                         <Popup IsOpen="{Binding IsChecked, ElementName=DesignToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=DesignToggle}" PopupAnimation="Fade">
-                            <Border Background="#F1F1F1" BorderBrush="#B0B0B0" BorderThickness="1" Width="180">
+                            <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="180">
                                 <StackPanel>
                                     <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    <Border Height="1" Background="#A0A0A0"/>
+                                    <Border Height="1" Background="#E0E0E0"/>
                                     <Button Content="Workflows" Command="{Binding NavigateWorkflowsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    <Border Height="1" Background="#A0A0A0"/>
+                                    <Border Height="1" Background="#E0E0E0"/>
                                     <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    <Border Height="1" Background="#A0A0A0"/>
+                                    <Border Height="1" Background="#E0E0E0"/>
                                     <Button Content="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
                                 </StackPanel>
                             </Border>
@@ -58,12 +58,12 @@
                         <Grid Margin="5,0">
                             <ToggleButton x:Name="AdminToggle" Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
                             <Popup IsOpen="{Binding IsChecked, ElementName=AdminToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=AdminToggle}" PopupAnimation="Fade">
-                                <Border Background="#F1F1F1" BorderBrush="#B0B0B0" BorderThickness="1" Width="200">
+                                <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="200">
                                     <StackPanel>
                                         <Button Content="Preferences" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#A0A0A0"/>
+                                        <Border Height="1" Background="#E0E0E0"/>
                                         <Button Content="Change Your Password" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#A0A0A0"/>
+                                        <Border Height="1" Background="#E0E0E0"/>
                                         <Button Content="Sign Out" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
                                     </StackPanel>
                                 </Border>
@@ -74,14 +74,14 @@
                         <Grid Margin="5,0">
                             <ToggleButton x:Name="SettingsToggle" Content="⚙ ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
                             <Popup IsOpen="{Binding IsChecked, ElementName=SettingsToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=SettingsToggle}" PopupAnimation="Fade">
-                                <Border Background="#F1F1F1" BorderBrush="#B0B0B0" BorderThickness="1" Width="180">
+                                <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="180">
                                     <StackPanel>
                                         <Button Content="Settings" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#A0A0A0"/>
+                                        <Border Height="1" Background="#E0E0E0"/>
                                         <Button Content="Tools" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#A0A0A0"/>
+                                        <Border Height="1" Background="#E0E0E0"/>
                                         <Button Content="User Management" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#A0A0A0"/>
+                                        <Border Height="1" Background="#E0E0E0"/>
                                         <Button Content="System Dashboard" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
                                     </StackPanel>
                                 </Border>
