@@ -64,10 +64,10 @@
                 
                 <!-- Right Side Menu -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <!-- Home (FontSize="14" ထည့်သွင်းထားသည်) -->
+                    <!-- Home -->
                     <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
-                    <!-- Design Dropdown Menu (FontSize="14") -->
+                    <!-- Design Dropdown Menu -->
                     <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
                         <MenuItem Header="Design" Foreground="White" FontSize="14">
                             <MenuItem Header="Credentials" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateCredentialsCommand}"/>
@@ -77,15 +77,37 @@
                         </MenuItem>
                     </Menu>
 
-                    <!-- Printer Queues (FontSize="14" ထည့်သွင်းထားသည်) -->
+                    <!-- Printer Queues -->
                     <Button Content="Printer Queues" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
                     <!-- Admin နှင့် ညာဘက် Icon များ -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                        <!-- admin (FontSize="14" ထည့်သွင်းထားသည်) -->
-                        <Button Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="5,0"/>
-                        <Button Content="⚙ ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
                         
+                        <!-- admin Dropdown Menu (Preferences, Change Your Password, Sign Out) -->
+                        <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
+                            <MenuItem Header="admin ▾" Foreground="White" FontSize="14">
+                                <MenuItem Header="Preferences" Style="{StaticResource CleanMenuItemStyle}"/>
+                                <Separator/>
+                                <MenuItem Header="Change Your Password" Style="{StaticResource CleanMenuItemStyle}"/>
+                                <Separator/>
+                                <MenuItem Header="Sign Out" Style="{StaticResource CleanMenuItemStyle}"/>
+                            </MenuItem>
+                        </Menu>
+
+                        <!-- Settings ⚙ ▾ Dropdown Menu (Settings, Tools, User Management, System Dashboard) -->
+                        <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
+                            <MenuItem Header="⚙ ▾" Foreground="White" FontSize="14">
+                                <MenuItem Header="Settings" Style="{StaticResource CleanMenuItemStyle}"/>
+                                <Separator/>
+                                <MenuItem Header="Tools" Style="{StaticResource CleanMenuItemStyle}"/>
+                                <Separator/>
+                                <MenuItem Header="User Management" Style="{StaticResource CleanMenuItemStyle}"/>
+                                <Separator/>
+                                <MenuItem Header="System Dashboard" Style="{StaticResource CleanMenuItemStyle}"/>
+                            </MenuItem>
+                        </Menu>
+                        
+                        <!-- Notification Bell with Badge (🔔 1) -->
                         <Grid Margin="8,0" VerticalAlignment="Center">
                             <Button Content="🔔" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
                             <Border Background="Red" CornerRadius="8" Width="16" Height="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,-6,0">
@@ -93,7 +115,9 @@
                             </Border>
                         </Grid>
                         
+                        <!-- Help (?) -->
                         <Button Content="❓" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
+                        <!-- Info (ⓘ) -->
                         <Button Content="ℹ" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
                     </StackPanel>
                 </StackPanel>
