@@ -1,61 +1,50 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
-using IDCard.Desktop.Models; // Model ကို အသုံးပြုရန် မဖြစ်မနေ ထည့်ရန်
+using IDCard.Desktop.Models;
 
 namespace IDCard.Desktop.Services
 {
     public static class UserService
     {
-        private static readonly string FilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "IDCardApp", "users.json");
-
-        public static List<User> LoadUsers()
-        {
-            try
-            {
-                if (File.Exists(FilePath))
-                {
-                    string json = File.ReadAllText(FilePath);
-                    return JsonSerializer.Deserialize<List<User>>(json) ?? GetDefaultUsers();
-                }
-            }
-            catch { }
-            
-            return GetDefaultUsers();
-        }
-
-        private static List<User> GetDefaultUsers()
-        {
-            var defaultUsers = new List<User>
-            {
-                new User { Username = "admin", Password = "admin123", Role = "Admin" },
-                new User { Username = "user1", Password = "123", Role = "User" }
-            };
-            SaveUsers(defaultUsers);
-            return defaultUsers;
-        }
-
-        public static void SaveUsers(List<User> users)
-        {
-            try
-            {
-                string? dir = Path.GetDirectoryName(FilePath);
-                if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-                string json = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(FilePath, json);
-            }
-            catch { }
-        }
-
         public static User? Authenticate(string username, string password)
         {
-            var users = LoadUsers();
-            return users.FirstOrDefault(u => u.Username.Equals(username, StringComparison.OrdinalIgnoreCase) && u.Password == password);
+            try
+            {
+                using var context = new AppDbContext();
+                return context.Users.FirstOrDefault(u => 
+                    u.Username.ToLower() == username.ToLower() && u.Password == password);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Auth Error: {ex.Message}");
+                return null;
+            }
+        }
+
+        public static bool RegisterUser(string username, string password, string role = "User")
+        {
+            try
+            {
+                using var context = new AppDbContext();
+                if (context.Users.Any(u => u.Username.ToLower() == username.ToLower()))
+                {
+                    return false; // User ရှိပြီးသားဖြစ်ပါက
+                }
+
+                context.Users.Add(new User
+                {
+                    Username = username,
+                    Password = password,
+                    Role = role
+                });
+                context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Register Error: {ex.Message}");
+                return false;
+            }
         }
     }
 }
