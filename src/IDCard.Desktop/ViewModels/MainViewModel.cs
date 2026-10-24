@@ -18,11 +18,12 @@ namespace IDCard.Desktop.ViewModels
 
         public MainViewModel()
         {
-            // Default အနေဖြင့် Credentials View ကို စတင်ပြသမည်
+            // Default View အဖြစ် CredentialsViewModel ကို သတ်မှတ်ခြင်း
             CurrentView = new CredentialsViewModel();
 
+            // RelayCommand ကို အသုံးပြု၍ Command များကို ချိတ်ဆက်ခြင်း
             NavigateCredentialsCommand = new RelayCommand(_ => CurrentView = new CredentialsViewModel());
-            NavigateReportsCommand = _ => CurrentView = new ReportsViewModel();
+            NavigateReportsCommand = new RelayCommand(_ => CurrentView = new ReportsViewModel());
         }
     }
 }
