@@ -33,7 +33,7 @@ namespace IDCard.Desktop.ViewModels
             LoginCommand = new RelayCommand(ExecuteLogin);
         }
 
-        private void ExecuteLogin(object parameter)
+        private void ExecuteLogin(object? parameter)
         {
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
