@@ -1,9 +1,11 @@
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Models;
+using IDCard.Desktop.Services;
 
 namespace IDCard.Desktop.ViewModels
 {
@@ -53,8 +55,30 @@ namespace IDCard.Desktop.ViewModels
                 return;
             }
 
-            // ခွင့်ပြုချက်ရှိပါက ဆက်လက် သိမ်းဆည်းခြင်း လုပ်ငန်းစဉ်များ လုပ်ဆောင်ရန်
-            MessageBox.Show("Card design saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                using var context = new AppDbContext();
+                
+                // Database ထဲတွင် ဒီဇိုင်းရှိပြီးသားလား စစ်ဆေးခြင်း (Update or Insert)
+                var existingCard = context.CardDesigns.FirstOrDefault(c => c.Id == CurrentCard.Id);
+                if (existingCard != null)
+                {
+                    existingCard.DesignName = CurrentCard.DesignName;
+                    existingCard.CardDataJson = CurrentCard.CardDataJson;
+                    context.CardDesigns.Update(existingCard);
+                }
+                else
+                {
+                    context.CardDesigns.Add(CurrentCard);
+                }
+
+                context.SaveChanges();
+                MessageBox.Show("Card design saved successfully to database!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Error saving card design: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
