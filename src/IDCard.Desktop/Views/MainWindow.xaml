@@ -3,159 +3,139 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IDCard.Desktop.Views"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:vm="clr-namespace:IDCard.Desktop.ViewModels"
         mc:Ignorable="d"
-        Title="Desktop ID Card System - Enterprise Edition" Height="750" Width="1200" WindowStartupLocation="CenterScreen">
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Title="ENTRUST | Adaptive Issuance™ Instant ID" Height="750" Width="1200" WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
 
-    <Grid Background="#F5F5F5">
+    <Grid Background="#F9F9F9">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <!-- 1. Top Header Bar -->
+        <!-- 1. Top Enterprise Header Bar -->
         <Border Grid.Row="0" Background="#4A154B">
             <Grid Margin="15,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="ENTRUST" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,10,0"/>
                     <TextBlock Text="| Adaptive Issuance™ Instant ID" Foreground="White" FontSize="13" VerticalAlignment="Center"/>
                 </StackPanel>
-                
-                <!-- Right Side Menu -->
+
+                <!-- Header Actions & Menus -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <!-- Home (Default အနေဖြင့် ဝင်ရောက်လာမည့်နေရာ) -->
-                    <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
+                    <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="5,0"/>
                     
-                    <!-- Design Dropdown Menu -->
-                    <Grid Margin="10,0">
+                    <!-- Design Custom Popup Menu -->
+                    <Grid Margin="5,0">
                         <ToggleButton x:Name="DesignToggle" Content="Design ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
                         <Popup IsOpen="{Binding IsChecked, ElementName=DesignToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=DesignToggle}" PopupAnimation="Fade">
-                            <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="180">
-                                <StackPanel>
-                                    <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    <Border Height="1" Background="#E0E0E0"/>
-                                    <Button Content="Workflows" Command="{Binding NavigateWorkflowsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    <Border Height="1" Background="#E0E0E0"/>
-                                    <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    <Border Height="1" Background="#E0E0E0"/>
-                                    <Button Content="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                            <Border Background="#FFFFFF" BorderBrush="#E0E0E0" BorderThickness="1" Width="180" CornerRadius="4">
+                                <StackPanel Padding="4">
+                                    <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
+                                    <Button Content="Workflows" Command="{Binding NavigateWorkflowsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
+                                    <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
                                 </StackPanel>
                             </Border>
                         </Popup>
                     </Grid>
 
-                    <Button Content="Printer Queues" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
-                    
-                    <!-- Admin & Settings Dropdown Menus -->
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                        <Grid Margin="5,0">
-                            <ToggleButton x:Name="AdminToggle" Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
-                            <Popup IsOpen="{Binding IsChecked, ElementName=AdminToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=AdminToggle}" PopupAnimation="Fade">
-                                <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="200">
-                                    <StackPanel>
-                                        <Button Content="Preferences" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#E0E0E0"/>
-                                        <Button Content="Change Your Password" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#E0E0E0"/>
-                                        <Button Content="Sign Out" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    </StackPanel>
-                                </Border>
-                            </Popup>
-                        </Grid>
+                    <Button Content="Printer Queues" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="5,0"/>
 
-                        <Grid Margin="5,0">
-                            <ToggleButton x:Name="SettingsToggle" Content="⚙ ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
-                            <Popup IsOpen="{Binding IsChecked, ElementName=SettingsToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=SettingsToggle}" PopupAnimation="Fade">
-                                <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="180">
-                                    <StackPanel>
-                                        <Button Content="Settings" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#E0E0E0"/>
-                                        <Button Content="Tools" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#E0E0E0"/>
-                                        <Button Content="User Management" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                        <Border Height="1" Background="#E0E0E0"/>
-                                        <Button Content="System Dashboard" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
-                                    </StackPanel>
-                                </Border>
-                            </Popup>
-                        </Grid>
-                        
-                        <Grid Margin="8,0" VerticalAlignment="Center">
-                            <Button Content="🔔" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
-                            <Border Background="Red" CornerRadius="8" Width="16" Height="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,-6,0">
-                                <TextBlock Text="1" Foreground="White" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <!-- User Account / Admin Menu -->
+                    <Grid Margin="5,0">
+                        <ToggleButton x:Name="AdminToggle" Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
+                        <Popup IsOpen="{Binding IsChecked, ElementName=AdminToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=AdminToggle}" PopupAnimation="Fade">
+                            <Border Background="#FFFFFF" BorderBrush="#E0E0E0" BorderThickness="1" Width="180" CornerRadius="4">
+                                <StackPanel Padding="4">
+                                    <Button Content="Preferences" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
+                                    <Button Content="Change Password" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
+                                    <Button Content="Sign Out" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                </StackPanel>
                             </Border>
-                        </Grid>
-                        
-                        <Button Content="❓" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
-                        <Button Content="ℹ" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
-                    </StackPanel>
+                        </Popup>
+                    </Grid>
+
+                    <Button Content="⚙" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="5,0"/>
+                    <Button Content="🔔" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="5,0"/>
+                    <Button Content="❓" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="12" Margin="5,0"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <!-- 2. Sub-Header / Tab Navigation Bar (Credentials active ပုံစံဖြင့် စတင်သည်) -->
-        <Border Grid.Row="1" Background="#5C1D5E">
-            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Bottom">
-                <!-- Credentials Tab (Active) -->
-                <Button Command="{Binding NavigateCredentialsCommand}" Background="White" Width="100" Height="35" BorderBrush="Transparent" Margin="0,0,5,0">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="4,4,0,0">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <TextBlock Text="Credentials" Foreground="#4A154B" FontWeight="Bold" FontSize="13"/>
-                </Button>
+        <!-- 2. Main Content Area with Modern TabControl -->
+        <Grid Grid.Row="1">
+            <TabControl SelectedIndex="0" Background="Transparent" BorderThickness="0">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem" BasedOn="{StaticResource DefaultTabItemStyle}">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                    </Style>
+                </TabControl.Resources>
 
-                <!-- Reports Tab (Inactive) -->
-                <Button Command="{Binding NavigateReportsCommand}" Background="Transparent" Width="90" Height="35" BorderBrush="Transparent" Margin="0,0,5,0">
-                    <TextBlock Text="Reports" Foreground="White" FontWeight="SemiBold" FontSize="13"/>
-                </Button>
-            </StackPanel>
-        </Border>
+                <!-- Credentials Tab (Default Selected) -->
+                <TabItem Header="Credentials">
+                    <Grid Margin="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-        <!-- 3. Main Content Area (Default အနေဖြင့် Credentials Grid View ကို ပြသသည်) -->
-        <Border Grid.Row="2" Background="#FFFFFF" Margin="15" Padding="15" BorderBrush="#E0E0E0" BorderThickness="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                        <!-- View Toggle Bar (Grid vs List) -->
+                        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Button Width="38" Height="32" Content="🪟" ui:ControlHelper.CornerRadius="4,0,0,4" Margin="0,0,1,0"/>
+                                <Button Width="38" Height="32" Content="☰" ui:ControlHelper.CornerRadius="0,4,4,0"/>
+                            </StackPanel>
+                            <Border Height="1" Background="#E0E0E0"/>
+                        </StackPanel>
 
-                <!-- Credentials View ခလုတ်များနှင့် မျဉ်းကြောင်း -->
-                <StackPanel Grid.Row="0" Margin="0,0,0,15">
-                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <!-- Grid View Button (Active Highlight) -->
-                        <Button Width="35" Height="30" Background="#E2E8F0" BorderBrush="#CCCCCC" BorderThickness="1" Margin="0,0,2,0">
-                            <TextBlock Text="🪟" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Button>
-                        <!-- List View Button -->
-                        <Button Width="35" Height="30" Background="#FFFFFF" BorderBrush="#CCCCCC" BorderThickness="1">
-                            <TextBlock Text="☰" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Button>
-                    </StackPanel>
-                    
-                    <!-- Horizontal Line -->
-                    <Border Height="1" Background="#CCCCCC"/>
-                </StackPanel>
+                        <!-- Grid Data Area -->
+                        <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="15">
+                            <TextBlock Text="Credentials Management View (Grid Mode Active)" Foreground="#666666" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </TabItem>
 
-                <!-- Dynamic Content Area (ViewModel မှ CurrentView အလိုက် ပြောင်းလဲပေးမည်) -->
-                <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
-            </Grid>
-        </Border>
+                <!-- Reports Tab -->
+                <TabItem Header="Reports">
+                    <Grid Margin="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-        <!-- 4. Footer Status Bar -->
-        <Border Grid.Row="3" Background="#EFEFEF" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
-            <TextBlock Text="🖨 Printer Queue Status" VerticalAlignment="Center" Margin="15,0" FontSize="12" Foreground="#333333"/>
+                        <!-- View Toggle Bar -->
+                        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <Button Width="38" Height="32" Content="🪟" ui:ControlHelper.CornerRadius="4,0,0,4" Margin="0,0,1,0"/>
+                                <Button Width="38" Height="32" Content="☰" ui:ControlHelper.CornerRadius="0,4,4,0"/>
+                            </StackPanel>
+                            <Border Height="1" Background="#E0E0E0"/>
+                        </StackPanel>
+
+                        <!-- Reports Data Area -->
+                        <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="4" Padding="15">
+                            <TextBlock Text="System Reports View" Foreground="#666666" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <!-- 3. Footer Status Bar -->
+        <Border Grid.Row="2" Background="#EFEFEF" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
+            <TextBlock Text="🖨 Printer Queue Status: Ready" VerticalAlignment="Center" Margin="15,0" FontSize="12" Foreground="#333333"/>
         </Border>
     </Grid>
 </Window>
