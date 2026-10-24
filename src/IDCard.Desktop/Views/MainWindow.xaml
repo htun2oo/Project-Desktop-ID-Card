@@ -67,9 +67,9 @@
                     <!-- Home -->
                     <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
-                    <!-- Design Dropdown Menu -->
+                    <!-- Design Dropdown Menu (Design ▾ အဖြစ် ပြင်ဆင်ထားသည်) -->
                     <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
-                        <MenuItem Header="Design" Foreground="White" FontSize="14">
+                        <MenuItem Header="Design ▾" Foreground="White" FontSize="14">
                             <MenuItem Header="Credentials" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateCredentialsCommand}"/>
                             <MenuItem Header="Workflows" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateWorkflowsCommand}"/>
                             <MenuItem Header="Reports" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateReportsCommand}"/>
@@ -83,7 +83,7 @@
                     <!-- Admin နှင့် ညာဘက် Icon များ -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                         
-                        <!-- admin Dropdown Menu (Preferences, Change Your Password, Sign Out) -->
+                        <!-- admin Dropdown Menu -->
                         <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
                             <MenuItem Header="admin ▾" Foreground="White" FontSize="14">
                                 <MenuItem Header="Preferences" Style="{StaticResource CleanMenuItemStyle}"/>
@@ -94,7 +94,7 @@
                             </MenuItem>
                         </Menu>
 
-                        <!-- Settings ⚙ ▾ Dropdown Menu (Settings, Tools, User Management, System Dashboard) -->
+                        <!-- Settings ⚙ ▾ Dropdown Menu -->
                         <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
                             <MenuItem Header="⚙ ▾" Foreground="White" FontSize="14">
                                 <MenuItem Header="Settings" Style="{StaticResource CleanMenuItemStyle}"/>
