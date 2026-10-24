@@ -1,17 +1,25 @@
 <UserControl x:Class="IDCard.Desktop.Views.ReportsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:vm="clr-namespace:IDCard.Desktop.ViewModels"
-             Background="#F3F4F6">
+             Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
              
     <UserControl.DataContext>
         <vm:ReportsViewModel/>
     </UserControl.DataContext>
 
     <Grid Margin="30">
-        <StackPanel>
-            <TextBlock Text="{Binding ReportTitle}" FontSize="22" FontWeight="Bold" Foreground="#1E3A8A" Margin="0,0,0,15"/>
-            <TextBlock Text="View and generate ID card printing and system reports here." FontSize="14" Foreground="#4B5563"/>
-        </StackPanel>
+        <ui:CardControl Padding="25" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <StackPanel>
+                <TextBlock Text="{Binding ReportTitle}" 
+                           Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Margin="0,0,0,10"/>
+                
+                <TextBlock Text="View and generate ID card printing and system reports here." 
+                           FontSize="14" 
+                           Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            </StackPanel>
+        </ui:CardControl>
     </Grid>
 </UserControl>
