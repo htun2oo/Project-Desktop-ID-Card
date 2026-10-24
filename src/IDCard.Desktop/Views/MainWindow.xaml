@@ -37,12 +37,12 @@
                         <ToggleButton x:Name="DesignToggle" Content="Design ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
                         <Popup IsOpen="{Binding IsChecked, ElementName=DesignToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=DesignToggle}" PopupAnimation="Fade">
                             <Border Background="#FFFFFF" BorderBrush="#E0E0E0" BorderThickness="1" Width="180" CornerRadius="4">
-                                <StackPanel Padding="4">
-                                    <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                <StackPanel Margin="4">
+                                    <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Margin="0,2"/>
                                     <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
-                                    <Button Content="Workflows" Command="{Binding NavigateWorkflowsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Button Content="Workflows" Command="{Binding NavigateWorkflowsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Margin="0,2"/>
                                     <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
-                                    <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Margin="0,2"/>
                                 </StackPanel>
                             </Border>
                         </Popup>
@@ -55,12 +55,12 @@
                         <ToggleButton x:Name="AdminToggle" Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
                         <Popup IsOpen="{Binding IsChecked, ElementName=AdminToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=AdminToggle}" PopupAnimation="Fade">
                             <Border Background="#FFFFFF" BorderBrush="#E0E0E0" BorderThickness="1" Width="180" CornerRadius="4">
-                                <StackPanel Padding="4">
-                                    <Button Content="Preferences" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                <StackPanel Margin="4">
+                                    <Button Content="Preferences" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Margin="0,2"/>
                                     <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
-                                    <Button Content="Change Password" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Button Content="Change Password" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Margin="0,2"/>
                                     <Border Height="1" Background="#E0E0E0" Margin="0,2"/>
-                                    <Button Content="Sign Out" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="10,8"/>
+                                    <Button Content="Sign Out" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Margin="0,2"/>
                                 </StackPanel>
                             </Border>
                         </Popup>
