@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         Title="Login - Desktop ID Card System" 
-        Height="450" Width="400"
+        Height="500" Width="450"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -17,43 +17,36 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- 1. Desktop ID Card System ခေါင်းစဉ် (အဖြူရောင်ကွက်အပေါ်ဘက်တွင် ရှိမည်) -->
+            <!-- ညာဘက်အပေါ်ထောင့်တွင် Window ပိတ်ရန် Close ခလုတ် -->
+            <Button Content="✕" 
+                    HorizontalAlignment="Right" VerticalAlignment="Top" 
+                    Width="35" Height="35" 
+                    Background="Transparent" Foreground="White" 
+                    FontSize="16" FontWeight="Bold"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Click="CloseButton_Click"
+                    Panel.ZIndex="10"/>
+
+            <!-- Desktop ID Card System ခေါင်းစဉ် -->
             <TextBlock Text="Desktop ID Card System" 
                        Foreground="White" 
                        FontSize="20" 
                        FontWeight="Bold" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       Margin="0,5,0,5"/>
+                       Margin="0,15,0,20"/>
 
-            <!-- 2. အဖြူရောင် Login Form ကွက် -->
-            <Border Grid.Row="1" Background="White" CornerRadius="15" Padding="25" VerticalAlignment="Center">
-                <StackPanel>
-                    <TextBlock Text="User ID" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <!-- အဖြူရောင် Login Form ကွက် -->
+            <Border Grid.Row="1" Background="White" CornerRadius="15" Padding="30,25,30,25" VerticalAlignment="Center" HorizontalAlignment="Center" Width="360">
+                <StackPanel HorizontalAlignment="Stretch">
+                    
+                    <!-- User ID -->
+                    <TextBlock Text="User ID" Foreground="#4A148C" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="200" Height="35" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
+                             Height="35" HorizontalAlignment="Stretch" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
 
-                    <TextBlock Text="Password" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <!-- Password -->
+                    <TextBlock Text="Password" Foreground="#4A148C" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0,0,0,5"/>
                     <PasswordBox x:Name="PasswordBox" 
-                                 Width="200" Height="35" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
-                </StackPanel>
-            </Border>
-
-            <!-- 3. Forgot Password နှင့် အလယ်ခေါင်သို့ ရွှေ့ထားသော Sign In ခလုတ် -->
-            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,15,0,10">
-                <TextBlock Text="Forgot Password?" 
-                           Foreground="White" 
-                           HorizontalAlignment="Center" 
-                           Cursor="Hand" 
-                           Margin="0,0,0,15"/>
-
-                <Button Content="Sign In" 
-                        Command="{Binding LoginCommand}" 
-                        Width="160" Height="40" 
-                        Background="#2196F3" Foreground="White" 
-                        FontWeight="Bold"
-                        HorizontalAlignment="Center"/>
-            </StackPanel>
-        </Grid>
-    </Border>
-</Window>
+                                 Height="35" HorizontalAlignment="Stretch" Margin="0,0,
