@@ -13,39 +13,39 @@
     </Window.DataContext>
 
     <Window.Resources>
-    <!-- ဒေါင်လိုက်မျဉ်း လုံးဝမပါရှိစေရန် ပြင်ဆင်ထားသော CleanMenuItemStyle -->
-    <Style x:Key="CleanMenuItemStyle" TargetType="MenuItem">
-        <Setter Property="Foreground" Value="#1A365D"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="MenuItem">
-                    <Border x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
-                        <ContentPresenter ContentSource="Header" Margin="14,10" RecognizesAccessKey="True" VerticalAlignment="Center"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="templateRoot" Property="Background" Value="#E2E8F0"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+        <!-- ဒေါင်လိုက်မျဉ်းနှင့် နေရာလွတ်များ လုံးဝမပါရှိစေရန် ပြင်ဆင်ထားသော CleanMenuItemStyle -->
+        <Style x:Key="CleanMenuItemStyle" TargetType="MenuItem">
+            <Setter Property="Foreground" Value="#1A365D"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Border x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                            <ContentPresenter ContentSource="Header" Margin="14,10" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="templateRoot" Property="Background" Value="#E2E8F0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-    <!-- ContextMenu/Popup ၏ ဒေါင်လိုက်မျဉ်း (Gutter) ကို ဖယ်ရှားရန် Style -->
-    <Style TargetType="ContextMenu">
-        <Setter Property="Template">
+        <!-- ContextMenu/Popup ၏ ဒေါင်လိုက်မျဉ်း (Gutter) ကို အပြီးအပိုင် ဖယ်ရှားရန် Style -->
+        <Style TargetType="ContextMenu">
+            <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ContextMenu">
                         <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" ClipToBounds="True">
-                            <!-- Gutter မျဉ်းကို ဘောင်အပြင်ဘက်သို့ ရောက်စေရန် Negative Margin သုံးခြင်း -->
                             <ItemsPresenter Margin="-28,0,0,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-</Window.Resources>
+    </Window.Resources>
+
     <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -66,7 +66,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="10,0"/>
                     
-                    <!-- Design Dropdown Menu (No Separators, No Lines) -->
+                    <!-- Design Dropdown Menu -->
                     <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
                         <MenuItem Header="Design" Foreground="White" FontSize="14">
                             <MenuItem Header="Credentials" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateCredentialsCommand}"/>
@@ -77,7 +77,22 @@
                     </Menu>
 
                     <Button Content="Printer Queues" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="10,0"/>
-                    <Button Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="10,0"/>
+                    
+                    <!-- Admin နှင့် ညာဘက် Icon များ (⚙, 🔔, ❓, ⓘ) -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <Button Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0"/>
+                        <Button Content="⚙ ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
+                        
+                        <Grid Margin="8,0" VerticalAlignment="Center">
+                            <Button Content="🔔" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
+                            <Border Background="Red" CornerRadius="8" Width="16" Height="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-4,-6,0">
+                                <TextBlock Text="1" Foreground="White" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        
+                        <Button Content="❓" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
+                        <Button Content="ℹ" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Border>
