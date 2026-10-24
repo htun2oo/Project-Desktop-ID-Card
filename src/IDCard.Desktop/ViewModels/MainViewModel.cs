@@ -5,9 +5,9 @@ namespace IDCard.Desktop.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private object _currentView;
+        private object? _currentView; // object? သို့ ပြောင်းလဲခြင်း
 
-        public object CurrentView
+        public object? CurrentView
         {
             get => _currentView;
             set { _currentView = value; OnPropertyChanged(); }
@@ -18,10 +18,9 @@ namespace IDCard.Desktop.ViewModels
 
         public MainViewModel()
         {
-            // Default View အဖြစ် CredentialsViewModel ကို သတ်မှတ်ခြင်း
+            // Default View အဖြစ် CredentialsViewModel ကို စတင်သတ်မှတ်ခြင်း
             CurrentView = new CredentialsViewModel();
 
-            // RelayCommand ကို အသုံးပြု၍ Command များကို ချိတ်ဆက်ခြင်း
             NavigateCredentialsCommand = new RelayCommand(_ => CurrentView = new CredentialsViewModel());
             NavigateReportsCommand = new RelayCommand(_ => CurrentView = new ReportsViewModel());
         }
