@@ -35,18 +35,16 @@
     <!-- ContextMenu/Popup ၏ ဒေါင်လိုက်မျဉ်း (Gutter) ကို ဖယ်ရှားရန် Style -->
     <Style TargetType="ContextMenu">
         <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ContextMenu">
-                    <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1">
-                        <!-- ScrollViewer သို့မဟုတ် Margin ကို အသုံးပြု၍ Gutter နေရာကို ဖုံးကွယ်ခြင်း -->
-                        <ScrollViewer SnapsToDevicePixels="True" Content="{TemplateBinding ScrollViewer.Content}">
-                            <ItemsPresenter Margin="-28,0,0,0"/>
-                        </ScrollViewer>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" ClipToBounds="True">
+                            <!-- Gutter မျဉ်းကို ဘောင်အပြင်ဘက်သို့ ရောက်စေရန် Negative Margin သုံးခြင်း -->
+                            <ItemsPresenter Margin="-28,0,0,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 </Window.Resources>
     <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
