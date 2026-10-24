@@ -1,37 +1,41 @@
-using System;
-using System.IO;
 using System.Linq;
 using IDCard.Desktop.Models;
 
 namespace IDCard.Desktop.Services
 {
-    public static class DatabaseService
+    public class DatabaseService
     {
-        public static string DbPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "IDCardApp", "idcard.db");
-
-        public static void InitializeDatabase()
+        public DatabaseService()
         {
-            try
+            EnsureDatabaseCreated();
+        }
+
+        public void EnsureDatabaseCreated()
+        {
+            using (var context = new AppDbContext())
             {
-                using (var context = new AppDbContext())
+                context.Database.EnsureCreated();
+
+                // Default Admin Account ကို အလိုအလျောက် ထည့်သွင်းပေးခြင်း (Seeding)
+                if (!context.Users.Any(u => u.Username == "admin"))
                 {
-                    context.Database.EnsureCreated();
-    
-                    // Default Admin များကို စစ်ဆေးပြီး မရှိသေးပါက ထည့်သွင်းရန်
-                    if (!context.Users.Any(u => u.Username == "admin"))
+                    context.Users.Add(new User
                     {
-                        context.Users.Add(new User 
-                        { 
-                            Username = "admin", 
-                            Password = "admin123" // (Production တွင် Hash ပြုလုပ်ရန် လိုအပ်သည်)
-                        });
-                        context.SaveChanges();
-                    }
+                        Username = "admin",
+                        Password = "admin123",
+                        Role = "Administrator"
+                    });
+                    context.SaveChanges();
                 }
             }
-            catch (Exception ex)
+        }
+
+        public bool ValidateUser(string username, string password)
+        {
+            using (var context = new AppDbContext())
             {
-                System.Diagnostics.Debug.WriteLine($"DB Init Error: {ex.Message}");
+                // Username နှင့် Password တိုက်ဆိုင်မှု ရှိမရှိ စစ်ဆေးခြင်း
+                return context.Users.Any(u => u.Username == username && u.Password == password);
             }
         }
     }
