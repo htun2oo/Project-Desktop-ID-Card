@@ -64,9 +64,10 @@
                 
                 <!-- Right Side Menu -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="10,0"/>
+                    <!-- Home (FontSize="14" ထည့်သွင်းထားသည်) -->
+                    <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
-                    <!-- Design Dropdown Menu -->
+                    <!-- Design Dropdown Menu (FontSize="14") -->
                     <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
                         <MenuItem Header="Design" Foreground="White" FontSize="14">
                             <MenuItem Header="Credentials" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateCredentialsCommand}"/>
@@ -76,11 +77,13 @@
                         </MenuItem>
                     </Menu>
 
-                    <Button Content="Printer Queues" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="10,0"/>
+                    <!-- Printer Queues (FontSize="14" ထည့်သွင်းထားသည်) -->
+                    <Button Content="Printer Queues" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
-                    <!-- Admin နှင့် ညာဘက် Icon များ (⚙, 🔔, ❓, ⓘ) -->
+                    <!-- Admin နှင့် ညာဘက် Icon များ -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                        <Button Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0"/>
+                        <!-- admin (FontSize="14" ထည့်သွင်းထားသည်) -->
+                        <Button Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="5,0"/>
                         <Button Content="⚙ ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="5,0" FontSize="12"/>
                         
                         <Grid Margin="8,0" VerticalAlignment="Center">
