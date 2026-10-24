@@ -31,11 +31,11 @@
                 <StackPanel>
                     <TextBlock Text="User ID" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="200" Height="35" Margin="0,0,0,20" VerticalContentAlignment="Left"/>
+                             Width="200" Height="35" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
 
                     <TextBlock Text="Password" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
                     <PasswordBox x:Name="PasswordBox" 
-                                 Width="200" Height="35" Margin="0,0,0,10" VerticalContentAlignment="Left"/>
+                                 Width="200" Height="35" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
                 </StackPanel>
             </Border>
 
