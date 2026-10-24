@@ -24,18 +24,18 @@
                        FontWeight="Bold" 
                        HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       Margin="0,15,0,20"/>
+                       Margin="0,15,0,10"/>
 
             <!-- 2. အဖြူရောင် Login Form ကွက် -->
             <Border Grid.Row="1" Background="White" CornerRadius="15" Padding="25" VerticalAlignment="Center">
                 <StackPanel>
                     <TextBlock Text="User ID" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                             Height="35" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
+                             Width="250" Height="35" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
 
                     <TextBlock Text="Password" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
                     <PasswordBox x:Name="PasswordBox" 
-                                 Height="35" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
+                                 Width="250" Height="35" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
                 </StackPanel>
             </Border>
 
