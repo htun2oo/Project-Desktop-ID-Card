@@ -21,39 +21,52 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Grid Background="#F9F9F9">
+    <Grid Background="#F3F3F3">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <!-- Top Header Bar -->
+        <!-- 1. Top Enterprise Header Bar -->
         <Border Grid.Row="0" Background="#4A154B">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0">
-                <TextBlock Text="ENTRUST" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,10,0"/>
-                <TextBlock Text="| Adaptive Issuance™ Instant ID" Foreground="White" FontSize="13" VerticalAlignment="Center"/>
-            </StackPanel>
+            <Grid Margin="15,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="ENTRUST" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,10,0"/>
+                    <TextBlock Text="| Adaptive Issuance™ Instant ID" Foreground="White" FontSize="13" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
-        <!-- Navigation Tabs / Content Area -->
-        <Grid Grid.Row="1" Margin="15">
+        <!-- 2. Navigation & Dynamic Content Area -->
+        <Grid Grid.Row="1" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Navigation Buttons (Credentials & Reports Toggle) -->
+            <!-- Navigation Buttons (Modern Accent Style) -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-                    <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Width="110" Height="35" Margin="0,0,10,0" FontWeight="SemiBold"/>
-                    <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Width="110" Height="35" FontWeight="SemiBold"/>
+                <Button Content="Credentials" 
+                        Command="{Binding NavigateCredentialsCommand}" 
+                        Width="120" Height="36" 
+                        Margin="0,0,10,0" 
+                        FontWeight="SemiBold"
+                        Style="{StaticResource AccentButtonStyle}"/>
+                
+                <Button Content="Reports" 
+                        Command="{Binding NavigateReportsCommand}" 
+                        Width="120" Height="36" 
+                        FontWeight="SemiBold"/>
             </StackPanel>
 
-            <!-- Dynamic Content Area (CurrentView ကို အလိုအလျောက် ပြောင်းလဲပေးမည်) -->
-            <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
+            <!-- Dynamic Content Area (CurrentView ကို 100% ဖြည့်သွင်းပြသမည်) -->
+            <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="5">
+                <ContentControl Content="{Binding CurrentView}"/>
+            </Border>
         </Grid>
 
-        <!-- Footer Status Bar -->
+        <!-- 3. Footer Status Bar -->
         <Border Grid.Row="2" Background="#EFEFEF" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
             <TextBlock Text="🖨 Printer Queue Status: Ready" VerticalAlignment="Center" Margin="15,0" FontSize="12" Foreground="#333333"/>
         </Border>
