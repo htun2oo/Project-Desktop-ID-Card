@@ -13,39 +13,41 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!-- ဒေါင်လိုက်မျဉ်းနှင့် အလျားလိုက်မျဉ်းများ လုံးဝမပါရှိစေရန် ပြင်ဆင်ထားသော Style -->
-        <Style x:Key="CleanMenuItemStyle" TargetType="MenuItem">
-            <Setter Property="Foreground" Value="#1A365D"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="MenuItem">
-                        <Border x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
-                            <ContentPresenter ContentSource="Header" Margin="14,10" RecognizesAccessKey="True" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="templateRoot" Property="Background" Value="#E2E8F0"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+    <!-- ဒေါင်လိုက်မျဉ်း လုံးဝမပါရှိစေရန် ပြင်ဆင်ထားသော CleanMenuItemStyle -->
+    <Style x:Key="CleanMenuItemStyle" TargetType="MenuItem">
+        <Setter Property="Foreground" Value="#1A365D"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Border x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                        <ContentPresenter ContentSource="Header" Margin="14,10" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="templateRoot" Property="Background" Value="#E2E8F0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-        <!-- Menu Popup ၏ ဘယ်ဘက် Gutter (ဒေါင်လိုက်မျဉ်းနောက်ခံ) ကို ဖျောက်ရန် Style -->
-        <Style TargetType="ContextMenu">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ContextMenu">
-                        <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1">
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-
+    <!-- ContextMenu/Popup ၏ ဒေါင်လိုက်မျဉ်း (Gutter) ကို ဖယ်ရှားရန် Style -->
+    <Style TargetType="ContextMenu">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1">
+                        <!-- ScrollViewer သို့မဟုတ် Margin ကို အသုံးပြု၍ Gutter နေရာကို ဖုံးကွယ်ခြင်း -->
+                        <ScrollViewer SnapsToDevicePixels="True" Content="{TemplateBinding ScrollViewer.Content}">
+                            <ItemsPresenter Margin="-28,0,0,0"/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</Window.Resources>
     <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
