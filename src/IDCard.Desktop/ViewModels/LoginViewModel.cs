@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Input;
 using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Services;
-using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop.ViewModels
 {
@@ -42,34 +41,20 @@ namespace IDCard.Desktop.ViewModels
 
                 MessageBox.Show($"Login Successful! Welcome {user.Username} ({user.Role})", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                var mainWindow = new MainWindow();
-                Application.Current.MainWindow = mainWindow;
-
-                // Login Window ကို ချက်ချင်း ဖုံးကွယ်လိုက်ခြင်းဖြင့် တစ်ချက်မြင်ရခြင်းကို လုံးဝ တားဆီးနိုင်သည်
+                // ဖွင့်ထားသော LoginWindow ကို ရှာဖွေ၍ DialogResult ကို true သတ်မှတ်ပြီး ပိတ်ခြင်း
                 foreach (Window window in Application.Current.Windows)
                 {
-                    if (window is LoginWindow loginWin)
+                    if (window is Views.LoginWindow loginWindow)
                     {
-                        loginWin.Hide();
-                        break;
-                    }
-                }
-
-                mainWindow.Show();
-
-                // ထို့နောက်မှ အပြီးပိတ်ရန်
-                foreach (Window window in Application.Current.Windows)
-                {
-                    if (window is LoginWindow loginWinToClose)
-                    {
-                        loginWinToClose.Close();
+                        loginWindow.DialogResult = true;
+                        loginWindow.Close();
                         break;
                     }
                 }
             }
             else
             {
-                 MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
