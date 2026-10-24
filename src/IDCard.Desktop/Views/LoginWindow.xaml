@@ -1,39 +1,59 @@
 <Window x:Class="IDCard.Desktop.Views.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:IDCard.Desktop.ViewModels"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
         Title="Login - Desktop ID Card System" 
-        Height="480" Width="480" 
-        WindowStartupLocation="CenterScreen" 
-        ResizeMode="NoResize">
-    
-    <Window.DataContext>
-        <vm:LoginViewModel/>
-    </Window.DataContext>
+        Height="500" Width="450"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
 
-    <!-- Background - Entrust Purple Theme -->
-    <Grid Background="#6B21A8">
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="380">
-            
-            <!-- White Card Container -->
-            <Border Background="White" CornerRadius="12" Padding="30,35" BorderBrush="#E5E7EB" BorderThickness="1">
+    <Border Background="#6A1B9A" CornerRadius="10" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 1. Desktop ID Card System ခေါင်းစဉ် (အဖြူရောင်ကွက်အပေါ်ဘက်တွင် ရှိမည်) -->
+            <TextBlock Text="Desktop ID Card System" 
+                       Foreground="White" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Margin="0,15,0,20"/>
+
+            <!-- 2. အဖြူရောင် Login Form ကွက် -->
+            <Border Grid.Row="1" Background="White" CornerRadius="15" Padding="25" VerticalAlignment="Center">
                 <StackPanel>
-                    <!-- User ID Field -->
-                    <TextBlock Text="User ID" FontSize="14" FontWeight="SemiBold" Foreground="#6B21A8" Margin="0,0,0,6"/>
-                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Height="36" Padding="8,6" FontSize="14" BorderBrush="#D1D5DB" BorderThickness="1" Margin="0,0,0,20"/>
+                    <TextBlock Text="User ID" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                             Height="35" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
 
-                    <!-- Password Field -->
-                    <TextBlock Text="Password" FontSize="14" FontWeight="SemiBold" Foreground="#6B21A8" Margin="0,0,0,6"/>
-                    <PasswordBox x:Name="PasswordBoxControl" PasswordChanged="PasswordBox_PasswordChanged" Height="36" Padding="8,6" FontSize="14" BorderBrush="#D1D5DB" BorderThickness="1"/>
+                    <TextBlock Text="Password" Foreground="#4A148C" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <PasswordBox x:Name="PasswordBox" 
+                                 Height="35" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
                 </StackPanel>
             </Border>
 
-            <!-- Forgot Password Link -->
-            <TextBlock Text="Forgot Password?" MouseDown="ForgotPassword_Click" Foreground="White" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,20,0,15" Cursor="Hand"/>
+            <!-- 3. Forgot Password နှင့် အလယ်ခေါင်သို့ ရွှေ့ထားသော Sign In ခလုတ် -->
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,15,0,10">
+                <TextBlock Text="Forgot Password?" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center" 
+                           Cursor="Hand" 
+                           Margin="0,0,0,15"/>
 
-            <!-- Sign In Button -->
-            <Button Content="Sign In" Command="{Binding LoginCommand}" Width="180" Height="40" Background="#2563EB" Foreground="White" FontSize="14" FontWeight="Bold" BorderThickness="0" Cursor="Hand"/>
-            
-        </StackPanel>
-    </Grid>
+                <Button Content="Sign In" 
+                        Command="{Binding LoginCommand}" 
+                        Width="160" Height="40" 
+                        Background="#2196F3" Foreground="White" 
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
