@@ -12,8 +12,9 @@ namespace IDCard.Desktop
             var dbService = new DatabaseService();
             dbService.EnsureDatabaseCreated();
 
-            // Login Window ကို စတင်ပေါ်လာစေရန် ဖန်တီးပြီး ပြသခြင်း
+            // Login Window ကို ဖန်တီးပြီး Main Window အဖြစ် သတ်မှတ်ပြသခြင်း
             var loginWindow = new LoginWindow();
+            this.MainWindow = loginWindow;
             loginWindow.Show();
         }
     }
