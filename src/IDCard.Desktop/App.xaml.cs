@@ -6,13 +6,15 @@ namespace IDCard.Desktop
 {
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             // Database နှင့် Default Admin ကို အလိုအလျောက် ဖန်တီးခြင်း
             var dbService = new DatabaseService();
             dbService.EnsureDatabaseCreated();
 
-            // ပထမဦးဆုံး Login Window ကို ပေါ်လာစေရန် ဖွင့်လှစ်ခြင်း
+            // Login Window ကို စတင်ပေါ်လာစေရန် ဖန်တီးပြီး ပြသခြင်း
             var loginWindow = new LoginWindow();
             loginWindow.Show();
         }
