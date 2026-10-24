@@ -6,6 +6,8 @@ namespace IDCard.Desktop.Services
     public class AppDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Employee> Employees { get; set; }           // ဝန်ထမ်းစာရင်းများအတွက်
+        public DbSet<CardDesignModel> CardDesigns { get; set; } // ID Card ဒီဇိုင်းများအတွက်
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,7 +25,7 @@ namespace IDCard.Desktop.Services
 
         public AppDbContext()
         {
-            // Database နှင့် Users Table မရှိပါက EF Core က ချက်ချင်း အလိုအလျောက် ဆောက်ပေးမည်
+            // Database နှင့် Table များ မရှိပါက EF Core က ချက်ချင်း အလိုအလျောက် ဆောက်ပေးမည်[cite: 1]
             Database.EnsureCreated();
         }
     }
