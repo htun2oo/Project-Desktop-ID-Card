@@ -45,8 +45,8 @@
 
             <!-- Navigation Buttons (Credentials & Reports Toggle) -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-                <Button Content="Credentials" Command="{NavigateCredentialsCommand}" Width="110" Height="35" Margin="0,0,10,0" FontWeight="SemiBold"/>
-                <Button Content="Reports" Command="{NavigateReportsCommand}" Width="110" Height="35" FontWeight="SemiBold"/>
+                    <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Width="110" Height="35" Margin="0,0,10,0" FontWeight="SemiBold"/>
+                    <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Width="110" Height="35" FontWeight="SemiBold"/>
             </StackPanel>
 
             <!-- Dynamic Content Area (CurrentView ကို အလိုအလျောက် ပြောင်းလဲပေးမည်) -->
