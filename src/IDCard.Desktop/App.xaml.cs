@@ -1,17 +1,20 @@
 using System.Windows;
 using IDCard.Desktop.Services;
+using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop
 {
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
-            base.OnStartup(e);
-
             // Database နှင့် Default Admin ကို အလိုအလျောက် ဖန်တီးခြင်း
             var dbService = new DatabaseService();
             dbService.EnsureDatabaseCreated();
+
+            // ပထမဦးဆုံး Login Window ကို ပေါ်လာစေရန် ဖွင့်လှစ်ခြင်း
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
         }
     }
 }
