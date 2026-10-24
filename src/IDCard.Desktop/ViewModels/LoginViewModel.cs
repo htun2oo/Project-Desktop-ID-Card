@@ -45,9 +45,11 @@ namespace IDCard.Desktop.ViewModels
 
             if (isAuthenticated)
             {
+                // 1. Main Window ကို အရင်ဖွင့်ပါ
                 var mainWindow = new MainWindow();
                 mainWindow.Show();
 
+                // 2. လက်ရှိ ပွင့်နေသော Login Window ကို ရှာပြီး အသေအချာ ပိတ်ပါ
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window is LoginWindow)
@@ -62,7 +64,6 @@ namespace IDCard.Desktop.ViewModels
                 MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
