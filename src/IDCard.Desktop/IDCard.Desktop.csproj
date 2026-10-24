@@ -8,9 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <!-- NuGet Package Dependencies များကို ဤနေရာတွင် ထည့်သွင်းရပါမည် -->
+  <!-- .NET 10 နှင့် ကိုက်ညီသော ModernWpfUI နောက်ဆုံးဗားရှင်း -->
   <ItemGroup>
-    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
   </ItemGroup>
 
 </Project>
