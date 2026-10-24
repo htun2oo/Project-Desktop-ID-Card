@@ -13,27 +13,33 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!-- MenuItem ဘယ်ဘက် နေရာလွတ် (Icon နေရာ) ကို လုံးဝ ဖယ်ရှားပေးမည့် Style -->
+        <!-- ဒေါင်လိုက်မျဉ်းနှင့် အလျားလိုက်မျဉ်းများ လုံးဝမပါရှိစေရန် ပြင်ဆင်ထားသော Style -->
         <Style x:Key="CleanMenuItemStyle" TargetType="MenuItem">
             <Setter Property="Foreground" Value="#1A365D"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="MenuItem">
                         <Border x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
-                            <Grid VerticalAlignment="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <!-- Menu Text -->
-                                <ContentPresenter Grid.Column="1" ContentSource="Header" Margin="12,8" RecognizesAccessKey="True"/>
-                            </Grid>
+                            <ContentPresenter ContentSource="Header" Margin="14,10" RecognizesAccessKey="True" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="templateRoot" Property="Background" Value="#E2E8F0"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Menu Popup ၏ ဘယ်ဘက် Gutter (ဒေါင်လိုက်မျဉ်းနောက်ခံ) ကို ဖျောက်ရန် Style -->
+        <Style TargetType="ContextMenu">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -60,15 +66,12 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" Margin="10,0"/>
                     
-                    <!-- Design Dropdown Menu with CleanMenuItemStyle -->
+                    <!-- Design Dropdown Menu (No Separators, No Lines) -->
                     <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
                         <MenuItem Header="Design" Foreground="White" FontSize="14">
                             <MenuItem Header="Credentials" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateCredentialsCommand}"/>
-                            <Separator/>
                             <MenuItem Header="Workflows" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateWorkflowsCommand}"/>
-                            <Separator/>
                             <MenuItem Header="Reports" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateReportsCommand}"/>
-                            <Separator/>
                             <MenuItem Header="Field Connections" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateFieldConnectionsCommand}"/>
                         </MenuItem>
                     </Menu>
