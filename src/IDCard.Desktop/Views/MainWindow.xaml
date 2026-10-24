@@ -30,7 +30,6 @@
                 
                 <!-- Right Side Menu -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <!-- Home (Login ဝင်ပြီးနောက် Home တွင် ရှိနေသည်) -->
                     <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
                     <!-- Design Dropdown Menu -->
@@ -104,18 +103,18 @@
         <!-- 2. Sub-Header / Tab Navigation Bar (Credentials နှင့် Reports Tabs) -->
         <Border Grid.Row="1" Background="#5C1D5E">
             <StackPanel Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Bottom">
-                <!-- Credentials Tab -->
-                <Border Background="White" Width="100" Height="35" CornerRadius="4,4,0,0" Margin="0,0,5,0">
-                    <TextBlock Text="Credentials" Foreground="#4A154B" FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <!-- Credentials Tab (Inactive ပုံစံ) -->
+                <Border Background="Transparent" Width="100" Height="35" Margin="0,0,5,0">
+                    <TextBlock Text="Credentials" Foreground="White" FontWeight="SemiBold" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <!-- Reports Tab -->
-                <Border Background="Transparent" Width="90" Height="35" Margin="0,0,5,0">
-                    <TextBlock Text="Reports" Foreground="White" FontWeight="SemiBold" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <!-- Reports Tab (Active ပုံစံ) -->
+                <Border Background="White" Width="90" Height="35" CornerRadius="4,4,0,0" Margin="0,0,5,0">
+                    <TextBlock Text="Reports" Foreground="#4A154B" FontWeight="Bold" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
             </StackPanel>
         </Border>
 
-        <!-- 3. Main Content Area -->
+        <!-- 3. Main Content Area (Reports View Layout) -->
         <Border Grid.Row="2" Background="#FFFFFF" Margin="15" Padding="15" BorderBrush="#E0E0E0" BorderThickness="1">
             <Grid>
                 <Grid.RowDefinitions>
@@ -123,7 +122,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Grid View & List View Buttons နှင့် အောက်ခြေ Horizontal Line -->
+                <!-- Report View ခလုတ်များနှင့် အောက်ခြေ Horizontal Line -->
                 <StackPanel Grid.Row="0" Margin="0,0,0,15">
                     <!-- View Buttons (Grid & List) -->
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
@@ -139,7 +138,7 @@
                     <Border Height="1" Background="#CCCCCC"/>
                 </StackPanel>
 
-                <!-- Content Area Placeholder -->
+                <!-- Reports Content Area Placeholder -->
                 <ContentControl Grid.Row="1" Content="{Binding CurrentView}"/>
             </Grid>
         </Border>
