@@ -9,28 +9,29 @@ namespace IDCard.Desktop
         {
             base.OnStartup(e);
 
-            // Login Window ပိတ်သွားသော်လည်း App တစ်ခုလုံး မပိတ်သွားစေရန် ShutdownMode ကို ပြောင်းခြင်း
+            // App တစ်ခုလုံး ပုံမှန် အလုပ်လုပ်နေစေရန် Explicit Shutdown သို့ သတ်မှတ်ခြင်း
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
             // Login Window ကို စတင်ဖော်ပြခြင်း
             LoginWindow loginWindow = new LoginWindow();
             
-            // Login အောင်မြင်ပါက (DialogResult = true ဖြစ်ပါက) MainWindow ကို ဖွင့်မည်
-            if (loginWindow.ShowDialog() == true)
+            // ShowDialog() အစား Show() ကို သုံး၍ DialogResult အပေါ် မူမတည်ဘဲ ထိန်းချုပ်ခြင်း
+            bool? result = loginWindow.ShowDialog();
+
+            if (result == true)
             {
+                // Login အောင်မြင်ပါက MainWindow ကို အဓိက Window အဖြစ် သတ်မှတ်ဖွင့်လှစ်မည်
                 MainWindow mainWindow = new MainWindow();
-                
-                // MainWindow သည် ပင်မ Window ဖြစ်လာစေရန် သတ်မှတ်ခြင်း
                 this.MainWindow = mainWindow;
                 
-                // နောက်ဆုံး ပိတ်မည့် Window ကို MainWindow ဟု သတ်မှတ်ပေးခြင်းဖြင့် အလိုအလျောက် ပိတ်ခြင်းမှ ကာကွယ်မည်
+                // နောက်ဆုံး Window ပိတ်လျှင် App ပိတ်စေရန် သတ်မှတ်ခြင်း
                 this.ShutdownMode = ShutdownMode.OnLastWindowClose;
 
                 mainWindow.Show();
             }
             else
             {
-                // Login မအောင်မြင်ပါက App ကို ရပ်တန့်မည်
+                // Login မအောင်မြင်ပါက သို့မဟုတ် ပိတ်လိုက်ပါက App ကို ရပ်တန့်မည်
                 Shutdown();
             }
         }
