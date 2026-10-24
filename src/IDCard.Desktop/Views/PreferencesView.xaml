@@ -33,7 +33,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Left Sidebar Navigation -->
-            <ui:CardControl Grid.Column="0" Padding="10,15" VerticalAlignment="Top" Background="{DynamicResource SystemControlBackgroundListLowBrush}">
+            <Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundListLowBrush}" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1" CornerRadius="4" Padding="10,15" VerticalAlignment="Top">
                 <StackPanel>
                     <Button x:Name="PreferencesNavBtn" Content="Preferences" Click="PreferencesTab_Click" 
                             Style="{StaticResource AccentButtonStyle}"
@@ -42,10 +42,10 @@
                             Background="Transparent" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}" 
                             FontWeight="SemiBold" HorizontalContentAlignment="Left" Padding="12,8" BorderThickness="0"/>
                 </StackPanel>
-            </ui:CardControl>
+            </Border>
 
             <!-- Right Main Container with ScrollViewer -->
-            <ui:CardControl Grid.Column="1" Margin="15,0,0,0" Padding="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Border Grid.Column="1" Margin="15,0,0,0" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                     <Grid>
                         <!-- Preferences Form Panel -->
@@ -110,7 +110,7 @@
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
-            </ui:CardControl>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>
