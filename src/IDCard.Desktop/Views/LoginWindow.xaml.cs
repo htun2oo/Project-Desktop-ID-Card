@@ -1,6 +1,5 @@
 using System.Windows;
 using System.Windows.Input;
-using IDCard.Desktop.ViewModels;
 
 namespace IDCard.Desktop.Views
 {
@@ -11,17 +10,12 @@ namespace IDCard.Desktop.Views
             InitializeComponent();
         }
 
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (DataContext is LoginViewModel viewModel && sender is System.Windows.Controls.PasswordBox passwordBox)
+            if (e.ButtonState == MouseButtonState.Pressed)
             {
-                viewModel.Password = passwordBox.Password;
+                this.DragMove();
             }
-        }
-
-        private void ForgotPassword_Click(object sender, MouseButtonEventArgs e)
-        {
-            MessageBox.Show("Please contact your system administrator to reset your password.", "Forgot Password", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
