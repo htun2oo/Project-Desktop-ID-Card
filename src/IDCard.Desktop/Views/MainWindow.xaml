@@ -35,23 +35,13 @@
                     <!-- Design Dropdown Menu -->
                     <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
                         <MenuItem Header="Design" Foreground="White" FontSize="14">
-                            <!-- Credentials -->
-                            <MenuItem Header="Credentials" Foreground="#1A365D" Command="{Binding NavigateCredentialsCommand}"/>
-        
-                            <Separator/>
-        
-                            <!-- Workflows -->
-                            <MenuItem Header="Workflows" Foreground="#1A365D" Command="{Binding NavigateWorkflowsCommand}"/>
-        
-                            <Separator/>
-        
-                            <!-- Reports -->
-                            <MenuItem Header="Reports" Foreground="#1A365D" Command="{Binding NavigateReportsCommand}"/>
-        
-                            <Separator/>
-        
-                            <!-- Field Connections -->
-                            <MenuItem Header="Field Connections" Foreground="#1A365D" Command="{Binding NavigateFieldConnectionsCommand}"/>
+                                <MenuItem Header="Credentials" Foreground="#1A365D" Icon="{x:Null}" Command="{Binding NavigateCredentialsCommand}"/>
+                                <Separator/>
+                                <MenuItem Header="Workflows" Foreground="#1A365D" Icon="{x:Null}" Command="{Binding NavigateWorkflowsCommand}"/>
+                                <Separator/>
+                                <MenuItem Header="Reports" Foreground="#1A365D" Icon="{x:Null}" Command="{Binding NavigateReportsCommand}"/>
+                                <Separator/>
+                                <MenuItem Header="Field Connections" Foreground="#1A365D" Icon="{x:Null}" Command="{Binding NavigateFieldConnectionsCommand}"/>
                         </MenuItem>
                     </Menu>
 
