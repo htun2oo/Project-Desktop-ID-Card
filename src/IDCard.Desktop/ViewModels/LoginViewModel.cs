@@ -1,23 +1,22 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Services;
+using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
-        private string _username = string.Empty;
-        private string _password = string.Empty;
+        private readonly DatabaseService _databaseService;
 
+        private string _username;
         public string Username
         {
             get => _username;
             set { _username = value; OnPropertyChanged(); }
         }
 
+        private string _password;
         public string Password
         {
             get => _password;
@@ -28,26 +27,33 @@ namespace IDCard.Desktop.ViewModels
 
         public LoginViewModel()
         {
+            _databaseService = new DatabaseService();
             LoginCommand = new RelayCommand(ExecuteLogin);
         }
 
-        private void ExecuteLogin(object? parameter)
+        private void ExecuteLogin(object parameter)
         {
-            var user = UserService.Authenticate(Username, Password);
-
-            if (user != null)
+            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
-                UserSession.CurrentUser = user;
+                MessageBox.Show("Please enter both Username and Password.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-                MessageBox.Show($"Login Successful! Welcome {user.Username} ({user.Role})", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            // Database မှတဆင့် အချက်အလက် စစ်ဆေးခြင်း
+            bool isAuthenticated = _databaseService.ValidateUser(Username, Password);
 
-                // ဖွင့်ထားသော LoginWindow ကို ရှာဖွေ၍ DialogResult ကို true သတ်မှတ်ပြီး ပိတ်ခြင်း
+            if (isAuthenticated)
+            {
+                // Main Window သို့ ကူးပြောင်းခြင်း
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                // လက်ရှိ Login Window ကို ပိတ်ခြင်း
                 foreach (Window window in Application.Current.Windows)
                 {
-                    if (window is Views.LoginWindow loginWindow)
+                    if (window is LoginWindow)
                     {
-                        loginWindow.DialogResult = true;
-                        loginWindow.Close();
+                        window.Close();
                         break;
                     }
                 }
@@ -56,12 +62,6 @@ namespace IDCard.Desktop.ViewModels
             {
                 MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
