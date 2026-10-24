@@ -12,40 +12,6 @@
         <vm:MainViewModel/>
     </Window.DataContext>
 
-    <Window.Resources>
-        <!-- ဒေါင်လိုက်မျဉ်းနှင့် နေရာလွတ်များ လုံးဝမပါရှိစေရန် ပြင်ဆင်ထားသော CleanMenuItemStyle -->
-        <Style x:Key="CleanMenuItemStyle" TargetType="MenuItem">
-            <Setter Property="Foreground" Value="#1A365D"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="MenuItem">
-                        <Border x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
-                            <ContentPresenter ContentSource="Header" Margin="14,10" RecognizesAccessKey="True" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="templateRoot" Property="Background" Value="#E2E8F0"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!-- ContextMenu/Popup ၏ ဒေါင်လိုက်မျဉ်း (Gutter) ကို အပြီးအပိုင် ဖယ်ရှားရန် Style -->
-        <Style TargetType="ContextMenu">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ContextMenu">
-                        <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" ClipToBounds="True">
-                            <ItemsPresenter Margin="-28,0,0,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Resources>
-
     <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -64,48 +30,55 @@
                 
                 <!-- Right Side Menu -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <!-- Home -->
                     <Button Content="Home" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
-                    <!-- Design Dropdown Menu (Design ▾ အဖြစ် ပြင်ဆင်ထားသည်) -->
-                    <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
-                        <MenuItem Header="Design ▾" Foreground="White" FontSize="14">
-                            <MenuItem Header="Credentials" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateCredentialsCommand}"/>
-                            <MenuItem Header="Workflows" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateWorkflowsCommand}"/>
-                            <MenuItem Header="Reports" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateReportsCommand}"/>
-                            <MenuItem Header="Field Connections" Style="{StaticResource CleanMenuItemStyle}" Command="{Binding NavigateFieldConnectionsCommand}"/>
-                        </MenuItem>
-                    </Menu>
+                    <!-- Design Dropdown Menu (Popup) -->
+                    <Grid Margin="10,0">
+                        <ToggleButton x:Name="DesignToggle" Content="Design ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
+                        <Popup IsOpen="{Binding IsChecked, ElementName=DesignToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=DesignToggle}" PopupAnimation="Fade">
+                            <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="180">
+                                <StackPanel>
+                                    <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                    <Button Content="Workflows" Command="{Binding NavigateWorkflowsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                    <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                    <Button Content="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                </StackPanel>
+                            </Border>
+                        </Popup>
+                    </Grid>
 
-                    <!-- Printer Queues -->
                     <Button Content="Printer Queues" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14" Margin="10,0"/>
                     
-                    <!-- Admin နှင့် ညာဘက် Icon များ -->
+                    <!-- Admin နှင့် Settings Dropdown Menus (Popup) -->
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                        
-                        <!-- admin Dropdown Menu -->
-                        <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
-                            <MenuItem Header="admin ▾" Foreground="White" FontSize="14">
-                                <MenuItem Header="Preferences" Style="{StaticResource CleanMenuItemStyle}"/>
-                                <Separator/>
-                                <MenuItem Header="Change Your Password" Style="{StaticResource CleanMenuItemStyle}"/>
-                                <Separator/>
-                                <MenuItem Header="Sign Out" Style="{StaticResource CleanMenuItemStyle}"/>
-                            </MenuItem>
-                        </Menu>
+                        <!-- Admin Dropdown -->
+                        <Grid Margin="5,0">
+                            <ToggleButton x:Name="AdminToggle" Content="admin ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
+                            <Popup IsOpen="{Binding IsChecked, ElementName=AdminToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=AdminToggle}" PopupAnimation="Fade">
+                                <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="200">
+                                    <StackPanel>
+                                        <Button Content="Preferences" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                        <Button Content="Change Your Password" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                        <Button Content="Sign Out" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                    </StackPanel>
+                                </Border>
+                            </Popup>
+                        </Grid>
 
-                        <!-- Settings ⚙ ▾ Dropdown Menu -->
-                        <Menu Background="Transparent" Foreground="White" VerticalAlignment="Center">
-                            <MenuItem Header="⚙ ▾" Foreground="White" FontSize="14">
-                                <MenuItem Header="Settings" Style="{StaticResource CleanMenuItemStyle}"/>
-                                <Separator/>
-                                <MenuItem Header="Tools" Style="{StaticResource CleanMenuItemStyle}"/>
-                                <Separator/>
-                                <MenuItem Header="User Management" Style="{StaticResource CleanMenuItemStyle}"/>
-                                <Separator/>
-                                <MenuItem Header="System Dashboard" Style="{StaticResource CleanMenuItemStyle}"/>
-                            </MenuItem>
-                        </Menu>
+                        <!-- Settings Dropdown -->
+                        <Grid Margin="5,0">
+                            <ToggleButton x:Name="SettingsToggle" Content="⚙ ▾" Foreground="White" Background="Transparent" BorderBrush="Transparent" FontSize="14"/>
+                            <Popup IsOpen="{Binding IsChecked, ElementName=SettingsToggle}" StaysOpen="False" PlacementTarget="{Binding ElementName=SettingsToggle}" PopupAnimation="Fade">
+                                <Border Background="#F1F1F1" BorderBrush="#CCCCCC" BorderThickness="1" Width="180">
+                                    <StackPanel>
+                                        <Button Content="Settings" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                        <Button Content="Tools" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                        <Button Content="User Management" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                        <Button Content="System Dashboard" Background="Transparent" BorderBrush="Transparent" HorizontalContentAlignment="Left" Padding="15,10" Foreground="#1A365D" FontSize="14"/>
+                                    </StackPanel>
+                                </Border>
+                            </Popup>
+                        </Grid>
                         
                         <!-- Notification Bell with Badge (🔔 1) -->
                         <Grid Margin="8,0" VerticalAlignment="Center">
