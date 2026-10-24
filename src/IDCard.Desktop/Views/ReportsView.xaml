@@ -10,7 +10,7 @@
     </UserControl.DataContext>
 
     <Grid Margin="30">
-        <ui:CardControl Padding="25" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+        <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8" Padding="25" VerticalAlignment="Top" HorizontalAlignment="Stretch">
             <StackPanel>
                 <TextBlock Text="{Binding ReportTitle}" 
                            Style="{StaticResource SubheaderTextBlockStyle}" 
@@ -20,6 +20,6 @@
                            FontSize="14" 
                            Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
             </StackPanel>
-        </ui:CardControl>
+        </Border>
     </Grid>
 </UserControl>
