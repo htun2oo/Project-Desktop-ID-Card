@@ -34,36 +34,42 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
-            // JSON File မှတဆင့် Username နှင့် Password စစ်ဆေးခြင်း
             var user = UserService.Authenticate(Username, Password);
 
             if (user != null)
             {
-                // Active User Session သတ်မှတ်ခြင်း
                 UserSession.CurrentUser = user;
 
                 MessageBox.Show($"Login Successful! Welcome {user.Username} ({user.Role})", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 var mainWindow = new MainWindow();
-
-                // အရေးကြီးသည် - MainWindow အသစ်ကို Application ၏ Main Window အဖြစ် ဦးစွာသတ်မှတ်ပါ
                 Application.Current.MainWindow = mainWindow;
+
+                // Login Window ကို ချက်ချင်း ဖုံးကွယ်လိုက်ခြင်းဖြင့် တစ်ချက်မြင်ရခြင်းကို လုံးဝ တားဆီးနိုင်သည်
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window is LoginWindow loginWin)
+                    {
+                        loginWin.Hide();
+                        break;
+                    }
+                }
 
                 mainWindow.Show();
 
-                // ထို့နောက်မှ Login Window ကို ပိတ်ပါ
+                // ထို့နောက်မှ အပြီးပိတ်ရန်
                 foreach (Window window in Application.Current.Windows)
                 {
-                    if (window is LoginWindow)
+                    if (window is LoginWindow loginWinToClose)
                     {
-                        window.Close();
+                        loginWinToClose.Close();
                         break;
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                 MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
