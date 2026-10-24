@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Models;
 using IDCard.Desktop.Services;
 
@@ -82,11 +84,40 @@ namespace IDCard.Desktop.ViewModels
                 return;
             }
 
-            MessageBox.Show("Password updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            
-            CurrentPassword = string.Empty;
-            NewPassword = string.Empty;
-            ConfirmPassword = string.Empty;
+            if (UserSession.CurrentUser == null)
+            {
+                MessageBox.Show("No user session active!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                using var context = new AppDbContext();
+                var user = context.Users.FirstOrDefault(u => u.Username == UserSession.CurrentUser.Username);
+
+                if (user == null || user.Password != CurrentPassword)
+                {
+                    MessageBox.Show("Current password is incorrect!", "Authentication Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                user.Password = NewPassword;
+                context.Users.Update(user);
+                context.SaveChanges();
+
+                // Update session as well
+                UserSession.CurrentUser.Password = NewPassword;
+
+                MessageBox.Show("Password updated successfully in database!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+                CurrentPassword = string.Empty;
+                NewPassword = string.Empty;
+                ConfirmPassword = string.Empty;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show($"Error updating password: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
