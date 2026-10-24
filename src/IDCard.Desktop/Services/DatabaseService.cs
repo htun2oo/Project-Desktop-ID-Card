@@ -13,22 +13,20 @@ namespace IDCard.Desktop.Services
         {
             try
             {
-                using var context = new AppDbContext();
-                
-                // EF Core ဖြင့် Database နှင့် Table များ ဖန်တီးခြင်း
-                context.Database.EnsureCreated();
-
-                // Admin Account မရှိသေးပါက အလိုအလျောက် ထည့်သွင်းခြင်း
-                var adminUser = context.Users.FirstOrDefault(u => u.Username == "admin");
-                if (adminUser == null)
+                using (var context = new AppDbContext())
                 {
-                    context.Users.Add(new User
+                    context.Database.EnsureCreated();
+    
+                    // Default Admin များကို စစ်ဆေးပြီး မရှိသေးပါက ထည့်သွင်းရန်
+                    if (!context.Users.Any(u => u.Username == "admin"))
                     {
-                        Username = "admin",
-                        Password = "admin123",
-                        Role = "Admin"
-                    });
-                    context.SaveChanges();
+                        context.Users.Add(new User 
+                        { 
+                            Username = "admin", 
+                            Password = "admin123" // (Production တွင် Hash ပြုလုပ်ရန် လိုအပ်သည်)
+                        });
+                        context.SaveChanges();
+                    }
                 }
             }
             catch (Exception ex)
