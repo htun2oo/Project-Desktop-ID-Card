@@ -9,8 +9,6 @@ namespace IDCard.Desktop.Views
         public LoginWindow()
         {
             InitializeComponent();
-
-            // ⭐️ ဤနေရာတွင် ViewModel ကို DataContext အဖြစ် အစကတည်းက ချိတ်ဆက်ပေးရန် လိုအပ်ပါသည်
             this.DataContext = new LoginViewModel();
         }
 
@@ -34,20 +32,12 @@ namespace IDCard.Desktop.Views
         {
             if (this.DataContext is LoginViewModel viewModel)
             {
-                // PasswordBox ထဲက password ကို ယူသည်
                 viewModel.Password = PasswordBox.Password;
-
-                // ယာယီစစ်ဆေးရန် Debug MessageBox (Password တန်ဖိုး ဝင်/မဝင် ကြည့်ရန်)
-                MessageBox.Show($"PasswordBox Value: '{PasswordBox.Password}'\nViewModel Password: '{viewModel.Password}'", "Debug Check");
 
                 if (viewModel.LoginCommand.CanExecute(null))
                 {
                     viewModel.LoginCommand.Execute(null);
                 }
-            }
-            else
-            {
-                MessageBox.Show("DataContext is not assigned to LoginViewModel!", "Error");
             }
         }
     }
