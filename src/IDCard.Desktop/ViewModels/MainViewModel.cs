@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop.ViewModels
@@ -44,7 +45,7 @@ namespace IDCard.Desktop.ViewModels
 
         public MainViewModel()
         {
-            // Default Start View
+            // Default Start View နှင့် DataContext များ ချိတ်ဆက်ခြင်း
             _credentialsView.DataContext = new CredentialsViewModel();
             _reportsView.DataContext = new ReportsViewModel();
 
