@@ -31,7 +31,11 @@ namespace IDCard.Desktop.Views
         {
             if (this.DataContext is LoginViewModel viewModel)
             {
+                // PasswordBox ထဲက password ကို ယူသည်
                 viewModel.Password = PasswordBox.Password;
+
+                // ယာယီစစ်ဆေးရန် Debug MessageBox (Password တန်ဖိုး ဝင်/မဝင် ကြည့်ရန်)
+                MessageBox.Show($"PasswordBox Value: '{PasswordBox.Password}'\nViewModel Password: '{viewModel.Password}'", "Debug Check");
 
                 if (viewModel.LoginCommand.CanExecute(null))
                 {
