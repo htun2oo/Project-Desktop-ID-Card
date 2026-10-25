@@ -70,7 +70,7 @@
                         <MenuItem Header="Design ▾" FontWeight="SemiBold" Foreground="#333333" Background="Transparent">
                             <MenuItem Header="Quick Start" Command="{Binding NavigateHomeCommand}"/>
                             <MenuItem Header="Credentials" Command="{Binding NavigateCredentialsCommand}"/>
-                            <MenuItem Header="Workflows"/>
+                            <MenuItem Header="Workflows" Command="{Binding NavigateWorkflowsCommand}"/>
                             <MenuItem Header="Reports" Command="{Binding NavigateReportsCommand}"/>
                             <MenuItem Header="Smart Card Workflows"/>
                             <MenuItem Header="Field Connections"/>
@@ -160,6 +160,20 @@
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
                                                 <TextBlock Text="Manage Your Credential Designs" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <!-- အကယ်၍ Design -> Workflows ကို နှိပ်ပါက -->
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="Manage Your Workflows" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </Setter.Value>
