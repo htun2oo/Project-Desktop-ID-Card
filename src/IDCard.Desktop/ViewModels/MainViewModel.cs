@@ -1,7 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using IDCard.Desktop.ViewModels;
 
 namespace IDCard.Desktop.ViewModels
 {
@@ -29,24 +28,21 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        // Commands for Top Navigation & Sub-Header Tabs
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
 
         public MainViewModel()
         {
-            // Default အနေဖြင့် Credentials ကို စတင်ပြသမည်
+            // Default View
             CurrentView = new CredentialsViewModel();
             CurrentPage = "Credentials";
 
-            // Home သို့မဟုတ် Credentials ကို နှိပ်သည့်အခါ
             NavigateCredentialsCommand = new RelayCommand(_ => 
             {
                 CurrentView = new CredentialsViewModel();
                 CurrentPage = "Credentials";
             });
 
-            // Printer Queues သို့မဟုတ် Reports ကို နှိပ်သည့်အခါ
             NavigateReportsCommand = new RelayCommand(_ => 
             {
                 CurrentView = new ReportsViewModel();
