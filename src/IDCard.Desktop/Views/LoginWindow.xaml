@@ -17,16 +17,16 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- ညာဘက်အပေါ်ထောင့်တွင် Window ပိတ်ရန် Close ခလုတ် -->
+            <!-- Window ပိတ်ရန် Close ခလုတ် (ညာဘက်အပေါ်ထောင့်) -->
             <Button Content="✕" 
                     HorizontalAlignment="Right" VerticalAlignment="Top" 
-                    Width="35" Height="35" 
+                    Width="30" Height="30" 
                     Background="Transparent" Foreground="White" 
                     FontSize="16" FontWeight="Bold"
                     BorderBrush="Transparent"
                     Cursor="Hand"
                     Click="CloseButton_Click"
-                    Panel.ZIndex="10"/>
+                    Panel.ZIndex="1"/>
 
             <!-- Desktop ID Card System ခေါင်းစဉ် -->
             <TextBlock Text="Desktop ID Card System" 
@@ -38,15 +38,33 @@
                        Margin="0,15,0,20"/>
 
             <!-- အဖြူရောင် Login Form ကွက် -->
-            <Border Grid.Row="1" Background="White" CornerRadius="15" Padding="30,25,30,25" VerticalAlignment="Center" HorizontalAlignment="Center" Width="360">
-                <StackPanel HorizontalAlignment="Stretch">
-                    
-                    <!-- User ID -->
+            <Border Grid.Row="1" Background="White" CornerRadius="15" Padding="25" VerticalAlignment="Center">
+                <StackPanel>
                     <TextBlock Text="User ID" Foreground="#4A148C" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                             Height="35" HorizontalAlignment="Stretch" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
+                             Height="35" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
 
-                    <!-- Password -->
                     <TextBlock Text="Password" Foreground="#4A148C" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0,0,0,5"/>
                     <PasswordBox x:Name="PasswordBox" 
-                                 Height="35" HorizontalAlignment="Stretch" Margin="0,0,
+                                 Height="35" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Forgot Password နှင့် Sign In ခလုတ် -->
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="0,15,0,10">
+                <TextBlock Text="Forgot Password?" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center" 
+                           Cursor="Hand" 
+                           Margin="0,0,0,15"/>
+
+                <Button Content="Sign In" 
+                        Command="{Binding LoginCommand}" 
+                        Width="160" Height="40" 
+                        Background="#2196F3" Foreground="White" 
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
