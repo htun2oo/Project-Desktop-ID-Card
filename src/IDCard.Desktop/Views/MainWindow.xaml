@@ -72,8 +72,8 @@
                             <MenuItem Header="Credentials" Command="{Binding NavigateCredentialsCommand}"/>
                             <MenuItem Header="Workflows" Command="{Binding NavigateWorkflowsCommand}"/>
                             <MenuItem Header="Reports" Command="{Binding NavigateDesignReportsCommand}"/>
-                            <MenuItem Header="Smart Card Workflows"/>
-                            <MenuItem Header="Field Connections"/>
+                            <MenuItem Header="Smart Card Workflows" Command="{Binding NavigateSmartCardWorkflowsCommand}"/>
+                            <MenuItem Header="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}"/>
                         </MenuItem>
                     </Menu>
 
@@ -188,6 +188,34 @@
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
                                                 <TextBlock Text="Manage Your Reports" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <!-- အကယ်၍ Design -> Smart Card Workflows ကို နှိပ်ပါက -->
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="SmartCardWorkflows">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="Manage Your Smart Card Workflows" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <!-- အကယ်၍ Design -> Field Connections ကို နှိပ်ပါက -->
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="Field Connections" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </Setter.Value>
