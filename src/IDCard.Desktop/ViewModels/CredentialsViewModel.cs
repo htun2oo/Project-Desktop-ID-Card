@@ -28,10 +28,8 @@ namespace IDCard.Desktop.ViewModels
 
         public CredentialsViewModel()
         {
-            // Database မှ Card Design များကို Load လုပ်ခြင်း
             LoadCardDesignsFromDatabase();
 
-            // Command များ ချိတ်ဆက်ခြင်း
             SwitchToGridViewCommand = new RelayCommand(o => SetViewMode("Grid"));
             SwitchToListViewCommand = new RelayCommand(o => SetViewMode("List"));
             LoadDataCommand = new RelayCommand(o => LoadCardDesignsFromDatabase());
@@ -56,7 +54,6 @@ namespace IDCard.Desktop.ViewModels
                     CardDesigns.Add(design);
                 }
 
-                // အကယ်၍ Database ထဲတွင် Data လုံးဝမရှိသေးပါက Default များကို ထည့်ပေးနိုင်သည်
                 if (CardDesigns.Count == 0)
                 {
                     CardDesigns.Add(new CardDesignModel { DesignName = "Staff ID Card", OwnerUsername = "admin" });
@@ -71,9 +68,20 @@ namespace IDCard.Desktop.ViewModels
 
         private void SetViewMode(string mode)
         {
-            if (Application.Current.MainWindow != null && Application.Current.MainWindow.Resources.Contains(mode + "Template"))
+            // MainWindow သို့မဟုတ် Application Resources ထဲမှ Template ကို လုံခြုံစွာ ရှာဖွေခြင်း
+            var templateKey = mode + "Template";
+            
+            // 1. MainWindow Resources ကို စစ်ဆေးခြင်း
+            if (Application.Current.MainWindow != null && Application.Current.MainWindow.Resources.Contains(templateKey))
             {
-                CurrentTemplate = Application.Current.MainWindow.Resources[mode + "Template"] as DataTemplate;
+                CurrentTemplate = Application.Current.MainWindow.Resources[templateKey] as DataTemplate;
+                return;
+            }
+
+            // 2. Fallback အနေဖြင့် Application Resources ကို စစ်ဆေးခြင်း
+            if (Application.Current.Resources.Contains(templateKey))
+            {
+                CurrentTemplate = Application.Current.Resources[templateKey] as DataTemplate;
             }
         }
 
