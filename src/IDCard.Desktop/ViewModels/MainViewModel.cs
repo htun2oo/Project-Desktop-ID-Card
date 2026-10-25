@@ -44,6 +44,8 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateWorkflowsCommand { get; }
         public ICommand NavigateDesignReportsCommand { get; }
+        public ICommand NavigateSmartCardWorkflowsCommand { get; }
+        public ICommand NavigateFieldConnectionsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
 
         public MainViewModel()
@@ -77,6 +79,18 @@ namespace IDCard.Desktop.ViewModels
             {
                 CurrentView = _reportsView;
                 CurrentPage = "DesignReports";
+            });
+
+            NavigateSmartCardWorkflowsCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _credentialsView;
+                CurrentPage = "SmartCardWorkflows";
+            });
+
+            NavigateFieldConnectionsCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _credentialsView;
+                CurrentPage = "FieldConnections";
             });
 
             NavigateReportsCommand = new RelayCommand(_ => 
