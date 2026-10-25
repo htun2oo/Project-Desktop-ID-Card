@@ -22,7 +22,7 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        private string _currentPage = "CredentialDesigns";
+        private string _currentPage = "Home";
         public string CurrentPage
         {
             get => _currentPage;
@@ -36,21 +36,28 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        // Cached Views များ (Instance တစ်ခုတည်းကိုသာ အသုံးပြုရန်)
+        // Cached Views များ
         private readonly CredentialsView _credentialsView = new CredentialsView();
         private readonly ReportsView _reportsView = new ReportsView();
 
+        public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
 
         public MainViewModel()
         {
-            // Default Start View နှင့် DataContext များ ချိတ်ဆက်ခြင်း
+            // Default Start View (Home / Credentials View)
             _credentialsView.DataContext = new CredentialsViewModel();
             _reportsView.DataContext = new ReportsViewModel();
 
             CurrentView = _credentialsView;
-            CurrentPage = "CredentialDesigns";
+            CurrentPage = "Home";
+
+            NavigateHomeCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _credentialsView;
+                CurrentPage = "Home";
+            });
 
             NavigateCredentialsCommand = new RelayCommand(_ => 
             {
