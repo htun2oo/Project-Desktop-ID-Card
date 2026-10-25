@@ -68,7 +68,6 @@ namespace IDCard.Desktop.ViewModels
 
         private void SetViewMode(string mode)
         {
-            // MainWindow သို့မဟုတ် Application Resources ထဲမှ Template ကို လုံခြုံစွာ ရှာဖွေခြင်း
             var templateKey = mode + "Template";
             
             // 1. MainWindow Resources ကို စစ်ဆေးခြင်း
@@ -81,7 +80,7 @@ namespace IDCard.Desktop.ViewModels
             // 2. Fallback အနေဖြင့် Application Resources ကို စစ်ဆေးခြင်း
             if (Application.Current.Resources.Contains(templateKey))
             {
-                CurrentTemplate = Application.Current.Resources[templateKey] as DataTemplate;
+                CurrentTemplate = Application.Current.Resources.Contains(templateKey) as DataTemplate;
             }
         }
 
