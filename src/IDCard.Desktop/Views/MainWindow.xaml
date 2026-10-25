@@ -55,4 +55,149 @@
 
         <!-- 1. Enterprise Top Navigation & Header Bar -->
         <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
-            <Grid Margin="15,
+            <Grid Margin="15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ဘယ်ဘက်ခြမ်း: Logo နှင့် System Name -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/Assets/app.ico" Width="32" Height="32" Margin="0,0,10,0"/>
+                    <TextBlock Text="ENTRUST" FontWeight="Bold" FontSize="16" Foreground="#333333" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <Rectangle Width="1" Height="24" Fill="#CCCCCC" Margin="0,0,12,0"/>
+                    <TextBlock Text="Adaptive Issuance&#x0a;Instant ID" FontSize="11" FontWeight="SemiBold" Foreground="#4A3B5C" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- အလယ်ပိုင်း: Navigation Menu (Home, Design Dropdown, Printer Queues) -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,0,0">
+                    <Button Content="Home" Command="{Binding NavigateCredentialsCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold" Margin="0,0,15,0"/>
+                    
+                    <!-- Design Dropdown Menu -->
+                    <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,15,0">
+                        <MenuItem Header="Design ▾" FontWeight="SemiBold" Foreground="#333333" Background="Transparent">
+                            <MenuItem Header="Quick Start" Command="{Binding NavigateCredentialsCommand}"/>
+                            <MenuItem Header="Credentials" Command="{Binding NavigateCredentialsCommand}"/>
+                            <MenuItem Header="Workflows"/>
+                            <MenuItem Header="Reports" Command="{Binding NavigateReportsCommand}"/>
+                            <MenuItem Header="Smart Card Workflows"/>
+                            <MenuItem Header="Field Connections"/>
+                        </MenuItem>
+                    </Menu>
+
+                    <Button Content="Printer Queues" Command="{Binding NavigateReportsCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold"/>
+                </StackPanel>
+
+                <!-- ညာဘက်ခြမ်း: Login Info, Admin Menu နှင့် အိုင်ကွန်များ -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Last Login at Sat Oct 24 13:04:54 MMT 2026 from IP 192.168.56.1" FontSize="11" Foreground="#666666" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                    
+                    <!-- Admin Dropdown Menu -->
+                    <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,5,0">
+                        <MenuItem Header="admin ▾" FontWeight="SemiBold" FontSize="12" Foreground="#333333" Background="Transparent">
+                            <MenuItem Header="Preferences"/>
+                            <MenuItem Header="Change Your Password"/>
+                            <Separator/>
+                            <MenuItem Header="Sign Out"/>
+                        </MenuItem>
+                    </Menu>
+
+                    <!-- ဆက်တင်နှင့် အခြား အိုင်ကွန်များ (Settings, Notification, Help, Info) -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <!-- Settings Dropdown Button -->
+                        <Menu Background="Transparent" VerticalAlignment="Center" Margin="2,0">
+                            <MenuItem Header="⚙ ▾" FontSize="14" Foreground="#333333" Background="Transparent">
+                                <MenuItem Header="System Settings"/>
+                                <MenuItem Header="Printer Configurations"/>
+                            </MenuItem>
+                        </Menu>
+
+                        <!-- Notification Icon Button -->
+                        <Button Content="🔔" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="14" Margin="2,0" ToolTip="Notifications"/>
+
+                        <!-- Help Icon Button -->
+                        <Button Content="❓" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="14" Margin="2,0" ToolTip="Help"/>
+
+                        <!-- Info Icon Button -->
+                        <Button Content="ℹ" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="14" Margin="2,0" ToolTip="About"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- 2. Purple Sub-Header Bar (Dynamic Content based on CurrentPage string) -->
+        <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0">
+            <ContentControl VerticalAlignment="Center">
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <!-- Default: Credentials နှင့် Reports Tab များကို ပြသမည် -->
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <!-- Credentials Button -->
+                                        <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}">
+                                            <Button.Style>
+                                                <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding CurrentPage}" Value="Credentials">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        
+                                        <!-- Reports Button -->
+                                        <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Margin="2,0,0,0">
+                                            <Button.Style>
+                                                <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        
+                        <Style.Triggers>
+                            <!-- Printer Queues ကို နှိပ်လိုက်ပါက "Manage Your Printer Queues" စာသားသို့ ပြောင်းလဲမည် -->
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="Manage Your Printer Queues" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+        </Border>
+
+        <!-- 3. Dynamic Content Area -->
+        <Grid Grid.Row="2" Margin="20">
+            <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="5">
+                <ContentControl Content="{Binding CurrentView}"/>
+            </Border>
+        </Grid>
+
+        <!-- 4. Footer Status Bar -->
+        <Border Grid.Row="3" Background="#EFEFEF" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0">
+            <TextBlock Text="🖨 Printer Queue Status: Ready" VerticalAlignment="Center" Margin="15,0" FontSize="12" Foreground="#333333"/>
+        </Border>
+    </Grid>
+</Window>
