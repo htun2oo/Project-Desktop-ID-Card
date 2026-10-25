@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using IDCard.Desktop.Helpers;
 using IDCard.Desktop.Models;
@@ -12,33 +11,14 @@ namespace IDCard.Desktop.ViewModels
 {
     public class CredentialsViewModel : INotifyPropertyChanged
     {
-        private DataTemplate? _currentTemplate;
-
         public ObservableCollection<CardDesignModel> CardDesigns { get; set; } = new ObservableCollection<CardDesignModel>();
 
-        public DataTemplate? CurrentTemplate
-        {
-            get => _currentTemplate;
-            set { _currentTemplate = value; OnPropertyChanged(); }
-        }
-
-        public ICommand SwitchToGridViewCommand { get; }
-        public ICommand SwitchToListViewCommand { get; }
         public ICommand LoadDataCommand { get; }
 
         public CredentialsViewModel()
         {
             LoadCardDesignsFromDatabase();
-
-            SwitchToGridViewCommand = new RelayCommand(o => SetViewMode("Grid"));
-            SwitchToListViewCommand = new RelayCommand(o => SetViewMode("List"));
             LoadDataCommand = new RelayCommand(o => LoadCardDesignsFromDatabase());
-
-            // Default အနေဖြင့် Grid View ဖြင့် စတင်ပြသရန်
-            Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-                SetViewMode("Grid");
-            });
         }
 
         private void LoadCardDesignsFromDatabase()
@@ -63,24 +43,6 @@ namespace IDCard.Desktop.ViewModels
             catch (System.Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error loading card designs: {ex.Message}");
-            }
-        }
-
-        private void SetViewMode(string mode)
-        {
-            var templateKey = mode + "Template";
-            
-            // 1. MainWindow Resources ကို စစ်ဆေးခြင်း
-            if (Application.Current.MainWindow != null && Application.Current.MainWindow.Resources[templateKey] is DataTemplate mainWindowTemplate)
-            {
-                CurrentTemplate = mainWindowTemplate;
-                return;
-            }
-
-            // 2. Fallback အနေဖြင့် Application Resources ကို စစ်ဆေးခြင်း
-            if (Application.Current.Resources[templateKey] is DataTemplate appTemplate)
-            {
-                CurrentTemplate = appTemplate;
             }
         }
 
