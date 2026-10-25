@@ -169,19 +169,10 @@
             </ContentControl>
         </Border>
 
-        <!-- 3. Dynamic Content Area -->
+        <!-- 3. Dynamic Content Area (DataTemplate များကို ဖယ်ရှားပြီး UserControl ကို တိုက်ရိုက်ပြသခြင်း) -->
         <Grid Grid.Row="2" Margin="20">
             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="5">
-                <ContentControl Content="{Binding CurrentView}">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
-                            <views:CredentialsView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
-                            <views:ReportsView/>
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
+                <ContentControl Content="{Binding CurrentView}"/>
             </Border>
         </Grid>
 
