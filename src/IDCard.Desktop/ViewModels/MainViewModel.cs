@@ -1,28 +1,25 @@
 using System.Windows.Input;
-using IDCard.Desktop.Helpers;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace IDCard.Desktop.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public partial class MainViewModel : ObservableObject
     {
-        private object? _currentView; // object? သို့ ပြောင်းလဲခြင်း
-
-        public object? CurrentView
-        {
-            get => _currentView;
-            set { _currentView = value; OnPropertyChanged(); }
-        }
+        [ObservableProperty]
+        private object _currentView;
 
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
 
         public MainViewModel()
         {
-            // Default View အဖြစ် CredentialsViewModel ကို စတင်သတ်မှတ်ခြင်း
+            // အပလီကေးရှင်း စတင်ပွင့်လာချိန်တွင် Credentials View ကို ပထမဆုံးပြသရန်
             CurrentView = new CredentialsViewModel();
 
-            NavigateCredentialsCommand = new RelayCommand(_ => CurrentView = new CredentialsViewModel());
-            NavigateReportsCommand = new RelayCommand(_ => CurrentView = new ReportsViewModel());
+            // ခလုတ်များနှိပ်သည့်အခါ View ပြောင်းလဲရန် Command များကို ချိတ်ဆက်ခြင်း
+            NavigateCredentialsCommand = new RelayCommand(() => CurrentView = new CredentialsViewModel());
+            NavigateReportsCommand = new RelayCommand(() => CurrentView = new ReportsViewModel());
         }
     }
 }
