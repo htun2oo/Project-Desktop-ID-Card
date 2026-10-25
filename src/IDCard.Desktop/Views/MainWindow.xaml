@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:IDCard.Desktop.ViewModels"
         xmlns:views="clr-namespace:IDCard.Desktop.Views"
-        Title="Desktop ID Card System" 
-        Height="750" Width="1200" 
+        Title="Desktop ID Card System"  
+        Height="750" Width="1200"  
         WindowStartupLocation="CenterScreen"
-        Icon="pack://application:,,,/IDCard.Desktop;component/Assets/app.ico">
+        Icon="/Assets/app.ico">
 
     <Window.DataContext>
         <vm:MainViewModel/>
@@ -29,12 +29,13 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <!-- 1. Top Enterprise Header Bar -->
+        <!-- 1. Top Enterprise Header Bar (Custom Logo & Title) -->
         <Border Grid.Row="0" Background="#4A154B">
             <Grid Margin="15,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="ENTRUST" Foreground="White" FontSize="18" FontWeight="Bold" Margin="0,0,10,0"/>
-                    <TextBlock Text="| Adaptive Issuance™ Instant ID" Foreground="White" FontSize="13" VerticalAlignment="Center"/>
+                    <!-- အိုင်ကွန်အရွယ်အစားကို ဤနေရာတွင် စိတ်ကြိုက် ကြီးနိုင်/ငယ်နိုင်ပါသည် -->
+                    <Image Source="/Assets/app.ico" Width="28" Height="28" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Desktop ID Card System" Foreground="White" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -48,15 +49,15 @@
 
             <!-- Navigation Buttons -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-                <Button Content="Credentials" 
-                        Command="{Binding NavigateCredentialsCommand}" 
-                        Width="120" Height="36" 
-                        Margin="0,0,10,0" 
+                <Button Content="Credentials"  
+                        Command="{Binding NavigateCredentialsCommand}"  
+                        Width="120" Height="36"  
+                        Margin="0,0,10,0"  
                         FontWeight="SemiBold"/>
                 
-                <Button Content="Reports" 
-                        Command="{Binding NavigateReportsCommand}" 
-                        Width="120" Height="36" 
+                <Button Content="Reports"  
+                        Command="{Binding NavigateReportsCommand}"  
+                        Width="120" Height="36"  
                         FontWeight="SemiBold"/>
             </StackPanel>
 
