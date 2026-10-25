@@ -103,14 +103,13 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TabPanel IsItemsHost="True" Grid.Row="0"/>
-                            <ContentPresenter ContentPresenter.Source="SelectedContent" Grid.Row="1"/>
+                            <ContentPresenter ContentSource="SelectedContent" Grid.Row="1"/>
                         </Grid>
                     </ControlTemplate>
                 </TabControl.Template>
 
                 <!-- Credentials Tab -->
-                <TabItem Header="Credentials" Style="{StaticResource EnterpriseTabStyle}" 
-                         IsSelected="{Binding CurrentView, Converter={StaticResource TypeToBoolConverter}, ConverterParameter={x:Type vm:CredentialsViewModel}}">
+                <TabItem Header="Credentials" Style="{StaticResource EnterpriseTabStyle}">
                     <TabItem.Command>
                         <Binding Path="NavigateCredentialsCommand"/>
                     </TabItem.Command>
