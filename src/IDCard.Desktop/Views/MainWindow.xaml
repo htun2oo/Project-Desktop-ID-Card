@@ -13,6 +13,14 @@
     </Window.DataContext>
 
     <Window.Resources>
+        <!-- DataTemplate များဖြင့် View များကို ချိတ်ဆက်ခြင်း -->
+        <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
+            <views:CredentialsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
+            <views:ReportsView/>
+        </DataTemplate>
+
         <!-- Modern Enterprise Tab Button Style -->
         <Style x:Key="EnterpriseTabButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -111,17 +119,15 @@
             </Grid>
         </Border>
 
-        <!-- 2. Purple Sub-Header Bar (DataContext ကို Window သို့ တိုက်ရိုက်ချိတ်ဆက်ခြင်း) -->
+        <!-- 2. Purple Sub-Header Bar -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0">
             <ContentControl VerticalAlignment="Center" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
-                        <!-- Default: Credentials နှင့် Reports Tab များကို ပြသမည် -->
                         <Setter Property="ContentTemplate">
                             <Setter.Value>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <!-- Credentials Button -->
                                         <Button Content="Credentials" Command="{Binding NavigateCredentialsCommand}">
                                             <Button.Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -135,7 +141,6 @@
                                             </Button.Style>
                                         </Button>
                                         
-                                        <!-- Reports Button -->
                                         <Button Content="Reports" Command="{Binding NavigateReportsCommand}" Margin="2,0,0,0">
                                             <Button.Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -154,7 +159,6 @@
                         </Setter>
                         
                         <Style.Triggers>
-                            <!-- Printer Queues / Reports ကို နှိပ်လိုက်ပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -176,16 +180,7 @@
         <!-- 3. Dynamic Content Area -->
         <Grid Grid.Row="2" Margin="20">
             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="5">
-                <ContentControl Content="{Binding CurrentView}">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
-                            <views:CredentialsView/>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
-                            <views:ReportsView/>
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
+                <ContentControl Content="{Binding CurrentView}"/>
             </Border>
         </Grid>
 
