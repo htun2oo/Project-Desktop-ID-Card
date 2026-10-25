@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         Title="Login - Desktop ID Card System" 
-        Height="400" Width="500"
+        Height="450" Width="380"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -59,7 +59,7 @@
                            Margin="0,0,0,15"/>
 
                 <Button Content="Sign In" 
-                        Command="{Binding LoginCommand}" 
+                        Click="SignInButton_Click"
                         Width="160" Height="40" 
                         Background="#2196F3" Foreground="White" 
                         FontWeight="Bold"
