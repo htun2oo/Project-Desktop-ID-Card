@@ -21,6 +21,7 @@
             <views:ReportsView/>
         </DataTemplate>
 
+        <!-- Active ဖြစ်နေသော Tab အတွက် Style (အဖြူရောင်နောက်ခံ) -->
         <Style x:Key="EnterpriseTabButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -30,8 +31,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="20,8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="22,8">
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -69,7 +70,7 @@
                     <TextBlock Text="Adaptive Issuance&#x0a;Instant ID" FontSize="11" FontWeight="SemiBold" Foreground="#4A3B5C" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <!-- အလယ်ပိုင်း: Navigation Menu -->
+                <!-- အလယ်ပိုင်း: Navigation Menu (Home, Design, Printer Queues) -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,0,0">
                     <Button Content="Home" Command="{Binding NavigateCredentialsCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold" Margin="0,0,15,0"/>
                     <Button Content="Design ▾" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold" Margin="0,0,15,0"/>
@@ -84,19 +85,43 @@
             </Grid>
         </Border>
 
-        <!-- 2. Purple Sub-Header Bar with Navigation Buttons -->
+        <!-- 2. Purple Sub-Header Bar (Home / Credentials & Reports Tabs) -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="15,0,0,0">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                <!-- Credentials Button -->
+                <!-- Credentials Button (Home ၏ အောက်တွင် ရှိမည့် Tab) -->
                 <Button Content="Credentials"  
                         Command="{Binding NavigateCredentialsCommand}"  
-                        Style="{StaticResource EnterpriseTabButtonStyle}"/>
-        
+                        Style="{StaticResource EnterpriseTabButtonStyle}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                            <Style.Triggers>
+                                <!-- အကယ်၍ လက်ရှိ CurrentView သည် CredentialsViewModel ဖြစ်နေပါက အဖြူရောင်ပြမည် -->
+                                <DataTrigger Binding="{Binding CurrentView.GetType()}" Value="{x:Type vm:CredentialsViewModel}">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="#6A1B9A"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                
                 <!-- Reports Button -->
                 <Button Content="Reports"  
                         Command="{Binding NavigateReportsCommand}"  
                         Style="{StaticResource EnterpriseTabButtonStyle}"
-                        Margin="2,0,0,0"/>
+                        Margin="2,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                            <Style.Triggers>
+                                <!-- အကယ်၍ လက်ရှိ CurrentView သည် ReportsViewModel ဖြစ်နေပါက အဖြူရောင်ပြမည် -->
+                                <DataTrigger Binding="{Binding CurrentView.GetType()}" Value="{x:Type vm:ReportsViewModel}">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="#6A1B9A"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
         </Border>
 
