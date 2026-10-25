@@ -25,5 +25,19 @@ namespace IDCard.Desktop.Views
         {
             this.Close();
         }
+
+        // Sign In ခလုတ်နှိပ်သည့်အခါ PasswordBox မှ Password ကို ယူ၍ ViewModel သို့ ပေးပို့ရန်
+        private void SignInButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext is LoginViewModel viewModel)
+            {
+                viewModel.Password = PasswordBox.Password;
+
+                if (viewModel.LoginCommand.CanExecute(null))
+                {
+                    viewModel.LoginCommand.Execute(null);
+                }
+            }
+        }
     }
 }
