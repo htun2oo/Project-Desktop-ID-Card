@@ -9,6 +9,9 @@ namespace IDCard.Desktop.Views
         public LoginWindow()
         {
             InitializeComponent();
+
+            // ⭐️ ဤနေရာတွင် ViewModel ကို DataContext အဖြစ် အစကတည်းက ချိတ်ဆက်ပေးရန် လိုအပ်ပါသည်
+            this.DataContext = new LoginViewModel();
         }
 
         // Window ကို Mouse ဖြင့် ဖိ၍ရွှေ့ရန်
@@ -41,6 +44,10 @@ namespace IDCard.Desktop.Views
                 {
                     viewModel.LoginCommand.Execute(null);
                 }
+            }
+            else
+            {
+                MessageBox.Show("DataContext is not assigned to LoginViewModel!", "Error");
             }
         }
     }
