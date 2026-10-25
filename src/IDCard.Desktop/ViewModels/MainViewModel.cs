@@ -22,7 +22,7 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        private string _currentPage = "Credentials";
+        private string _currentPage = "CredentialDesigns";
         public string CurrentPage
         {
             get => _currentPage;
@@ -50,12 +50,12 @@ namespace IDCard.Desktop.ViewModels
             _reportsView.DataContext = new ReportsViewModel();
 
             CurrentView = _credentialsView;
-            CurrentPage = "Credentials";
+            CurrentPage = "CredentialDesigns";
 
             NavigateCredentialsCommand = new RelayCommand(_ => 
             {
                 CurrentView = _credentialsView;
-                CurrentPage = "Credentials";
+                CurrentPage = "CredentialDesigns";
             });
 
             NavigateReportsCommand = new RelayCommand(_ => 
