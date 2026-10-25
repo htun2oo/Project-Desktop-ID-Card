@@ -13,14 +13,6 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!-- ViewModel နှင့် View များကို ချိတ်ဆက်ပေးသော DataTemplate များ -->
-        <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
-            <views:CredentialsView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
-            <views:ReportsView/>
-        </DataTemplate>
-
         <!-- Modern Enterprise Tab Button Style -->
         <Style x:Key="EnterpriseTabButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -180,7 +172,16 @@
         <!-- 3. Dynamic Content Area -->
         <Grid Grid.Row="2" Margin="20">
             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="5">
-                <ContentControl Content="{Binding CurrentView}"/>
+                <ContentControl Content="{Binding CurrentView}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
+                            <views:CredentialsView/>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
+                            <views:ReportsView/>
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
             </Border>
         </Grid>
 
