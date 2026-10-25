@@ -35,33 +35,36 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
+            // 1. Username နှင့် Password ကို စစ်ဆေးခြင်း
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("Please enter both Username and Password.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
+            // 2. Database တွင် User မှန်/မမှန် စစ်ဆေးခြင်း
             bool isAuthenticated = _databaseService.ValidateUser(Username, Password);
 
             if (isAuthenticated)
             {
-                // 1. Main Window ကို အရင်ဖွင့်ပါ
+                // 3. Login အောင်မြင်ပါက Main Window ကို အသစ်ဖွင့်ပါ
                 var mainWindow = new MainWindow();
+                Application.Current.MainWindow = mainWindow;
                 mainWindow.Show();
 
-                // 2. လက်ရှိ ပွင့်နေသော Login Window ကို ရှာပြီး အသေအချာ ပိတ်ပါ
+                // 4. လက်ရှိ Login Window ကို ပိတ်ပါ
                 foreach (Window window in Application.Current.Windows)
                 {
-                    if (window is LoginWindow)
+                    if (window is LoginWindow loginWin)
                     {
-                        window.Close();
+                        loginWin.Close();
                         break;
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Authentication Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public event PropertyChangedEventHandler? PropertyChanged;
