@@ -5,7 +5,8 @@
         xmlns:views="clr-namespace:IDCard.Desktop.Views"
         Title="Desktop ID Card System" 
         Height="750" Width="1200" 
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+Icon="/Assets/app.ico">
 
     <Window.DataContext>
         <vm:MainViewModel/>
