@@ -8,6 +8,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+  </ItemGroup>
+
   <!-- Nuget Package Dependencies (ModernWPF နှင့် Entity Framework Core) -->
   <ItemGroup>
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
