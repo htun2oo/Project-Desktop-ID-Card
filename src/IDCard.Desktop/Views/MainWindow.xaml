@@ -116,6 +116,7 @@
             <ContentControl VerticalAlignment="Center" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
+                        <!-- Default: Credentials / Tabs ပုံစံ -->
                         <Setter Property="ContentTemplate">
                             <Setter.Value>
                                 <DataTemplate>
@@ -124,7 +125,7 @@
                                             <Button.Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding CurrentPage}" Value="Credentials">
+                                                        <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
                                                             <Setter Property="Background" Value="White"/>
                                                             <Setter Property="Foreground" Value="#6A1B9A"/>
                                                         </DataTrigger>
@@ -151,6 +152,7 @@
                         </Setter>
                         
                         <Style.Triggers>
+                            <!-- အကယ်၍ Reports (Printer Queues) သို့ ရောက်ရှိနေပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -163,13 +165,27 @@
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
+
+                            <!-- အကယ်၍ Design -> Credentials သို့ ရောက်ရှိနေပါက -->
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="Manage Your Credential Designs" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </ContentControl.Style>
             </ContentControl>
         </Border>
 
-        <!-- 3. Dynamic Content Area (DataTemplate များကို ဖယ်ရှားပြီး UserControl ကို တိုက်ရိုက်ပြသခြင်း) -->
+        <!-- 3. Dynamic Content Area -->
         <Grid Grid.Row="2" Margin="20">
             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="5">
                 <ContentControl Content="{Binding CurrentView}"/>
