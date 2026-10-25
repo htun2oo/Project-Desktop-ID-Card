@@ -18,7 +18,6 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        // Active ဖြစ်နေသော Page ကို String ဖြင့် ခြေရာခံရန် (ဥပမာ: "Credentials", "Reports")
         private string _currentPage = "Credentials";
         public string CurrentPage
         {
