@@ -71,16 +71,16 @@ namespace IDCard.Desktop.ViewModels
             var templateKey = mode + "Template";
             
             // 1. MainWindow Resources ကို စစ်ဆေးခြင်း
-            if (Application.Current.MainWindow != null && Application.Current.MainWindow.Resources.Contains(templateKey))
+            if (Application.Current.MainWindow != null && Application.Current.MainWindow.Resources[templateKey] is DataTemplate mainWindowTemplate)
             {
-                CurrentTemplate = Application.Current.MainWindow.Resources[templateKey] as DataTemplate;
+                CurrentTemplate = mainWindowTemplate;
                 return;
             }
 
             // 2. Fallback အနေဖြင့် Application Resources ကို စစ်ဆေးခြင်း
-            if (Application.Current.Resources.Contains(templateKey))
+            if (Application.Current.Resources[templateKey] is DataTemplate appTemplate)
             {
-                CurrentTemplate = Application.Current.Resources.Contains(templateKey) as DataTemplate;
+                CurrentTemplate = appTemplate;
             }
         }
 
