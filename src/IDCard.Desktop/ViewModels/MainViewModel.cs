@@ -29,6 +29,7 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        // Commands for Top Navigation & Sub-Header Tabs
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
 
