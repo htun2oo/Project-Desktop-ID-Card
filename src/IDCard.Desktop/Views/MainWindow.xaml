@@ -20,12 +20,35 @@
         <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
             <views:ReportsView/>
         </DataTemplate>
+
+        <!-- Tab ခလုတ်များအတွက် Style (Modern Tab Look) -->
+        <Style x:Key="EnterpriseTabButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="4,4,0,0" Padding="20,8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#7B21B0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid Background="#F3F3F3">
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="42"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -62,21 +85,23 @@
             </Grid>
         </Border>
 
-        <!-- 2. Purple Sub-Header Bar (Credentials & Reports Tabs) -->
-        <Border Grid.Row="1" Background="#6A1B9A">
-            <StackPanel Orientation="Horizontal" Margin="20,0" VerticalAlignment="Center">
+        <!-- 2. Purple Sub-Header Bar (Credentials & Reports Tabs ပုံစံတူ) -->
+        <Border Grid.Row="1" Background="#6A1B9A" Padding="15,0,0,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                <!-- Credentials Tab (အကယ်၍ CurrentView က Credentials ဖြစ်ပါက အဖြူရောင်၊ ကျန်ချိန် ခရမ်းရောင်) -->
                 <Button Content="Credentials"  
                         Command="{Binding NavigateCredentialsCommand}"  
-                        Width="110" Height="30"  
-                        Margin="0,0,5,0"  
-                        FontWeight="SemiBold"
-                        Foreground="#6A1B9A"/>
+                        Style="{StaticResource EnterpriseTabButtonStyle}"
+                        Background="White"
+                        Foreground="#333333"/>
                 
+                <!-- Reports Tab -->
                 <Button Content="Reports"  
                         Command="{Binding NavigateReportsCommand}"  
-                        Width="110" Height="30"  
-                        FontWeight="SemiBold"
-                        Foreground="#6A1B9A"/>
+                        Style="{StaticResource EnterpriseTabButtonStyle}"
+                        Background="Transparent"
+                        Foreground="White"
+                        Margin="2,0,0,0"/>
             </StackPanel>
         </Border>
 
