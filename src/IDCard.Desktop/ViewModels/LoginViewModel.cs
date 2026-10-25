@@ -11,15 +11,15 @@ namespace IDCard.Desktop.ViewModels
     {
         private readonly DatabaseService _databaseService;
 
-        private string? _username;
-        public string? Username
+        private string _username = string.Empty;
+        public string Username
         {
             get => _username;
             set { _username = value; OnPropertyChanged(); }
         }
 
-        private string? _password;
-        public string? Password
+        private string _password = string.Empty;
+        public string Password
         {
             get => _password;
             set { _password = value; OnPropertyChanged(); }
@@ -35,24 +35,21 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
-            // 1. Username နှင့် Password ကို စစ်ဆေးခြင်း
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("Please enter both Username and Password.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // 2. Database တွင် User မှန်/မမှန် စစ်ဆေးခြင်း
             bool isAuthenticated = _databaseService.ValidateUser(Username, Password);
 
             if (isAuthenticated)
             {
-                // 3. Login အောင်မြင်ပါက Main Window ကို အသစ်ဖွင့်ပါ
+                // Main Window ကို ဖွင့်ပြီး Login Window ကို ပိတ်ခြင်း
                 var mainWindow = new MainWindow();
                 Application.Current.MainWindow = mainWindow;
                 mainWindow.Show();
 
-                // 4. လက်ရှိ Login Window ကို ပိတ်ပါ
                 foreach (Window window in Application.Current.Windows)
                 {
                     if (window is LoginWindow loginWin)
@@ -67,10 +64,34 @@ namespace IDCard.Desktop.ViewModels
                 MessageBox.Show("Invalid Username or Password!\n(Default Admin: admin / admin123)", "Authentication Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
+
+    // Simple RelayCommand Implementation
+    public class RelayCommand : ICommand
+    {
+        private readonly Action<object?> _execute;
+        private readonly Func<object?, bool>? _canExecute;
+
+        public RelayCommand(Action<object?> execute, Func<object?, bool>? canExecute = null)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute;
+        }
+
+        public event EventHandler? CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
+
+        public bool CanExecute(object? parameter) => _canExecute == null || _canExecute(parameter);
+
+        public void Execute(object? parameter) => _execute(parameter);
     }
 }
