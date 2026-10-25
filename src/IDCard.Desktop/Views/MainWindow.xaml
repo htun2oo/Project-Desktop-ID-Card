@@ -12,7 +12,7 @@
         <vm:MainViewModel/>
     </Window.DataContext>
 
-    <!-- DataTemplate များ နှင့် Style များကို ထည့်သွင်းခြင်း -->
+    <!-- DataTemplate များ နှင့် Style များကို သန့်ရှင်းစွာ ထည့်သွင်းခြင်း -->
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
             <views:CredentialsView/>
@@ -70,11 +70,11 @@
                     <TextBlock Text="Adaptive Issuance&#x0a;Instant ID" FontSize="11" FontWeight="SemiBold" Foreground="#4A3B5C" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <!-- အလယ်ပိုင်း: Navigation Menu -->
+                <!-- အလယ်ပိုင်း: Navigation Menu (Home, Design Dropdown, Printer Queues) -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,0,0">
                     <Button Content="Home" Command="{Binding NavigateCredentialsCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold" Margin="0,0,15,0"/>
                     
-                    <!-- Design Dropdown Menu -->
+                    <!-- Design Dropdown Menu (တတိယပုံပါအတိုင်း) -->
                     <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,15,0">
                         <MenuItem Header="Design ▾" FontWeight="SemiBold" Foreground="#333333" Background="Transparent">
                             <MenuItem Header="Quick Start" Command="{Binding NavigateCredentialsCommand}"/>
@@ -86,6 +86,7 @@
                         </MenuItem>
                     </Menu>
 
+                    <!-- Printer Queues Button (စတုတ္ထပုံအတွက်) -->
                     <Button Content="Printer Queues" Command="{Binding NavigateReportsCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold"/>
                 </StackPanel>
 
@@ -102,7 +103,7 @@
             <ContentControl VerticalAlignment="Center">
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
-                        <!-- မူလအစ (Credentials) အတွက် Tab များကို ပြသမည် -->
+                        <!-- Default View: Credentials Tab active ဖြစ်နေမည့် ပုံစံ (ပထမပုံနှင့် ဒုတိယပုံ) -->
                         <Setter Property="ContentTemplate">
                             <Setter.Value>
                                 <DataTemplate>
@@ -139,7 +140,7 @@
                             </Setter.Value>
                         </Setter>
                         <Style.Triggers>
-                            <!-- Printer Queues / Reports View သို့ ရောက်ရှိနေပါက "Manage Your Printer Queues" စာသားကို ပြသမည် -->
+                            <!-- Printer Queues ကို နှိပ်လိုက်ပါက ပေါ်လာမည့် Manage Your Printer Queues စာသား (စတုတ္ထပုံ) -->
                             <DataTrigger Binding="{Binding CurrentView.GetType()}" Value="{x:Type vm:ReportsViewModel}">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
