@@ -10,22 +10,14 @@ namespace IDCard.Desktop.ViewModels
         public object? CurrentView
         {
             get => _currentView;
-            set
-            {
-                _currentView = value;
-                OnPropertyChanged();
-            }
+            set { _currentView = value; OnPropertyChanged(); }
         }
 
         private string _currentPage = "Credentials";
         public string CurrentPage
         {
             get => _currentPage;
-            set
-            {
-                _currentPage = value;
-                OnPropertyChanged();
-            }
+            set { _currentPage = value; OnPropertyChanged(); }
         }
 
         public ICommand NavigateCredentialsCommand { get; }
@@ -33,7 +25,7 @@ namespace IDCard.Desktop.ViewModels
 
         public MainViewModel()
         {
-            // Default View
+            // Default Start View
             CurrentView = new CredentialsViewModel();
             CurrentPage = "Credentials";
 
