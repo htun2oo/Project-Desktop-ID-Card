@@ -91,26 +91,20 @@
             </Grid>
         </Border>
 
-        <!-- 2. Purple Sub-Header Bar with TabControl (Active Tab ပြောင်းလဲမှုအတွက်) -->
+        <!-- 2. Purple Sub-Header Bar with Navigation Buttons -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="15,0,0,0">
-            <TabControl Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom">
-                <TabControl.Template>
-                    <ControlTemplate TargetType="TabControl">
-                        <Grid>
-                            <TabPanel IsItemsHost="True"/>
-                        </Grid>
-                    </ControlTemplate>
-                </TabControl.Template>
-
-                <!-- Credentials Tab (ViewModel ပေါ်မူတည်၍ IsSelected ချိတ်ဆက်ခြင်း) -->
-                <TabItem Header="Credentials" Style="{StaticResource EnterpriseTabStyle}"
-                         IsSelected="{Binding CurrentView, Converter={x:Static local:ViewModelToBoolConverter.Instance}}">
-                    <!-- ဤနေရာတွင် Command ဖြင့် View ကို ပြောင်းလဲမည် -->
-                </TabItem>
-
-                <!-- Reports Tab -->
-                <TabItem Header="Reports" Style="{StaticResource EnterpriseTabStyle}"/>
-            </TabControl>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                <!-- Credentials Button -->
+                <Button Content="Credentials"  
+                        Command="{Binding NavigateCredentialsCommand}"  
+                        Style="{StaticResource EnterpriseTabButtonStyle}"/>
+        
+                <!-- Reports Button -->
+                <Button Content="Reports"  
+                        Command="{Binding NavigateReportsCommand}"  
+                        Style="{StaticResource EnterpriseTabButtonStyle}"
+                        Margin="2,0,0,0"/>
+            </StackPanel>
         </Border>
 
         <!-- 3. Dynamic Content Area -->
