@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using IDCard.Desktop.Views;
 
 namespace IDCard.Desktop.ViewModels
 {
@@ -10,15 +11,33 @@ namespace IDCard.Desktop.ViewModels
         public object? CurrentView
         {
             get => _currentView;
-            set { _currentView = value; OnPropertyChanged(); }
+            set
+            {
+                if (_currentView != value)
+                {
+                    _currentView = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         private string _currentPage = "Credentials";
         public string CurrentPage
         {
             get => _currentPage;
-            set { _currentPage = value; OnPropertyChanged(); }
+            set
+            {
+                if (_currentPage != value)
+                {
+                    _currentPage = value;
+                    OnPropertyChanged();
+                }
+            }
         }
+
+        // Cached Views များ (Instance တစ်ခုတည်းကိုသာ အသုံးပြုရန်)
+        private readonly CredentialsView _credentialsView = new CredentialsView();
+        private readonly ReportsView _reportsView = new ReportsView();
 
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
@@ -26,18 +45,21 @@ namespace IDCard.Desktop.ViewModels
         public MainViewModel()
         {
             // Default Start View
-            CurrentView = new CredentialsViewModel();
+            _credentialsView.DataContext = new CredentialsViewModel();
+            _reportsView.DataContext = new ReportsViewModel();
+
+            CurrentView = _credentialsView;
             CurrentPage = "Credentials";
 
             NavigateCredentialsCommand = new RelayCommand(_ => 
             {
-                CurrentView = new CredentialsViewModel();
+                CurrentView = _credentialsView;
                 CurrentPage = "Credentials";
             });
 
             NavigateReportsCommand = new RelayCommand(_ => 
             {
-                CurrentView = new ReportsViewModel();
+                CurrentView = _reportsView;
                 CurrentPage = "Reports";
             });
         }
