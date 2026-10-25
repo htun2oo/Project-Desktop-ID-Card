@@ -42,11 +42,12 @@ namespace IDCard.Desktop.ViewModels
 
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateCredentialsCommand { get; }
+        public ICommand NavigateWorkflowsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
 
         public MainViewModel()
         {
-            // Default Start View (Home / Credentials View)
+            // Default Start View
             _credentialsView.DataContext = new CredentialsViewModel();
             _reportsView.DataContext = new ReportsViewModel();
 
@@ -63,6 +64,12 @@ namespace IDCard.Desktop.ViewModels
             {
                 CurrentView = _credentialsView;
                 CurrentPage = "CredentialDesigns";
+            });
+
+            NavigateWorkflowsCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _credentialsView; // လိုအပ်ပါက သီးသန့် WorkflowsView သို့ ပြောင်းနိုင်ပါသည်
+                CurrentPage = "Workflows";
             });
 
             NavigateReportsCommand = new RelayCommand(_ => 
