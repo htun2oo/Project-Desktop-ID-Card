@@ -35,9 +35,6 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteLogin(object? parameter)
         {
-            // ယာယီစစ်ဆေးရန် Debug MessageBox (Username နှင့် Password တန်ဖိုး ရ/မရ ကြည့်ရန်)
-            MessageBox.Show($"Username: '{Username}' | Password: '{Password}'", "Debug Test");
-
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("Please enter both Username and Password.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -48,6 +45,7 @@ namespace IDCard.Desktop.ViewModels
 
             if (isAuthenticated)
             {
+                // Main Window ကို ဖွင့်ပြီး Login Window ကို ပိတ်ခြင်း
                 var mainWindow = new MainWindow();
                 Application.Current.MainWindow = mainWindow;
                 mainWindow.Show();
