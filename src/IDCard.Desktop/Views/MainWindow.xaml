@@ -6,7 +6,7 @@
         Title="Desktop ID Card System" 
         Height="750" Width="1200" 
         WindowStartupLocation="CenterScreen"
-        Icon="Images/app.ico">
+        Icon="/Assets/app.ico">
 
     <Window.DataContext>
         <vm:MainViewModel/>
