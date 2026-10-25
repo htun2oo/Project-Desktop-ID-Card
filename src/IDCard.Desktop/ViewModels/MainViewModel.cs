@@ -43,6 +43,7 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateWorkflowsCommand { get; }
+        public ICommand NavigateDesignReportsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
 
         public MainViewModel()
@@ -68,8 +69,14 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateWorkflowsCommand = new RelayCommand(_ => 
             {
-                CurrentView = _credentialsView; // လိုအပ်ပါက သီးသန့် WorkflowsView သို့ ပြောင်းနိုင်ပါသည်
+                CurrentView = _credentialsView;
                 CurrentPage = "Workflows";
+            });
+
+            NavigateDesignReportsCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _reportsView;
+                CurrentPage = "DesignReports";
             });
 
             NavigateReportsCommand = new RelayCommand(_ => 
