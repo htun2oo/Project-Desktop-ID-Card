@@ -7,8 +7,8 @@ namespace IDCard.Desktop.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private object _currentView;
-        public object CurrentView
+        private object? _currentView;
+        public object? CurrentView
         {
             get => _currentView;
             set
