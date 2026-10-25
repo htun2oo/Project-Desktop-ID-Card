@@ -12,7 +12,7 @@
         <vm:MainViewModel/>
     </Window.DataContext>
 
-    <!-- DataTemplate များ နှင့် Style များကို ဤနေရာတွင် ထည့်သွင်းထားသည် -->
+    <!-- DataTemplate များ နှင့် Tab Style များကို ဤနေရာတွင် ထည့်သွင်းသည် -->
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
             <views:CredentialsView/>
@@ -21,8 +21,8 @@
             <views:ReportsView/>
         </DataTemplate>
 
-        <!-- Modern Enterprise Tab Button Style -->
-        <Style x:Key="EnterpriseTabButtonStyle" TargetType="Button">
+        <!-- Active/Inactive ကို လှပစွာ ပြသပေးမည့် TabItem Style -->
+        <Style x:Key="EnterpriseTabStyle" TargetType="TabItem">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
@@ -30,11 +30,17 @@
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="20,8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="22,8" Margin="2,0,0,0">
+                            <ContentPresenter x:Name="contentPresenter" ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
+                            <!-- Tab ကို ရွေးချယ်ထားစဉ် (Active / Selected) -->
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="#6A1B9A"/>
+                            </Trigger>
+                            <!-- Mouse တင်ထားစဉ် (MouseOver) -->
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background" Value="#7B21B0"/>
                             </Trigger>
@@ -85,20 +91,26 @@
             </Grid>
         </Border>
 
-        <!-- 2. Purple Sub-Header Bar with Navigation Buttons -->
+        <!-- 2. Purple Sub-Header Bar with TabControl (Active Tab ပြောင်းလဲမှုအတွက်) -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="15,0,0,0">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                <!-- Credentials Button -->
-                <Button Content="Credentials"  
-                        Command="{Binding NavigateCredentialsCommand}"  
-                        Style="{StaticResource EnterpriseTabButtonStyle}"/>
-                
-                <!-- Reports Button -->
-                <Button Content="Reports"  
-                        Command="{Binding NavigateReportsCommand}"  
-                        Style="{StaticResource EnterpriseTabButtonStyle}"
-                        Margin="2,0,0,0"/>
-            </StackPanel>
+            <TabControl Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Bottom">
+                <TabControl.Template>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+                            <TabPanel IsItemsHost="True"/>
+                        </Grid>
+                    </ControlTemplate>
+                </TabControl.Template>
+
+                <!-- Credentials Tab (ViewModel ပေါ်မူတည်၍ IsSelected ချိတ်ဆက်ခြင်း) -->
+                <TabItem Header="Credentials" Style="{StaticResource EnterpriseTabStyle}"
+                         IsSelected="{Binding CurrentView, Converter={x:Static local:ViewModelToBoolConverter.Instance}}">
+                    <!-- ဤနေရာတွင် Command ဖြင့် View ကို ပြောင်းလဲမည် -->
+                </TabItem>
+
+                <!-- Reports Tab -->
+                <TabItem Header="Reports" Style="{StaticResource EnterpriseTabStyle}"/>
+            </TabControl>
         </Border>
 
         <!-- 3. Dynamic Content Area -->
