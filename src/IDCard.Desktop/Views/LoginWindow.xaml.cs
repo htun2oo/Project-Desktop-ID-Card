@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Input;
+using IDCard.Desktop.ViewModels;
 
 namespace IDCard.Desktop.Views
 {
@@ -19,7 +20,7 @@ namespace IDCard.Desktop.Views
             }
         }
 
-        // Close ခလုတ်နှိပ်သည့်အခါ Window ပိတ်ရန်
+        // Window ပိတ်ရန်
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
