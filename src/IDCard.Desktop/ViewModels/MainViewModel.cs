@@ -36,7 +36,7 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        private readonly CredentialsView _credentialsView = new CredentialsView(); // Home (Quick Start) အတွက် သီးသန့်သုံးသည်
+        private readonly CredentialsView _credentialsView = new CredentialsView(); 
         private readonly CredentialDesignsView _credentialDesignsView = new CredentialDesignsView();
         private readonly WorkflowDesignsView _workflowDesignsView = new WorkflowDesignsView();
         private readonly ReportDesignsView _reportDesignsView = new ReportDesignsView();
@@ -61,6 +61,7 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateToolsCommand { get; }
         public ICommand NavigateUserManagementCommand { get; }
         public ICommand NavigateSystemDashboardCommand { get; }
+        public ICommand SignOutCommand { get; } // Sign Out အတွက် အသစ်ထည့်သွင်းခြင်း
 
         public MainViewModel()
         {
@@ -149,6 +150,15 @@ namespace IDCard.Desktop.ViewModels
             {
                 CurrentView = _systemDashboardView;
                 CurrentPage = "SystemDashboard";
+            });
+
+            // Sign Out လုပ်ဆောင်ချက်
+            SignOutCommand = new RelayCommand(_ => 
+            {
+                if (System.Windows.Application.Current.MainWindow is Views.MainWindow mainWindow)
+                {
+                    mainWindow.Close();
+                }
             });
         }
 
