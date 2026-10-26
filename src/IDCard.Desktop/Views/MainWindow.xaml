@@ -127,7 +127,7 @@
                             <Setter.Value>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Content="Test 1" Command="{Binding NavigateHomeCommand}">
+                                        <Button Content="Credentials" Command="{Binding NavigateHomeCommand}">
                                             <Button.Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
                                                     <Style.Triggers>
@@ -139,7 +139,7 @@
                                                 </Style>
                                             </Button.Style>
                                         </Button>
-                                        <Button Content="Test 2" Command="{Binding NavigateHomeCommand}" Margin="2,0,0,0">
+                                        <Button Content="Reports" Command="{Binding NavigateHomeCommand}" Margin="2,0,0,0">
                                             <Button.Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
                                                     <Style.Triggers>
