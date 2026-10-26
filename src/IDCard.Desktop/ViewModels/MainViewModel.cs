@@ -51,6 +51,7 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateChangePasswordCommand { get; }
         public ICommand NavigateSettingsCommand { get; }
         public ICommand NavigateToolsCommand { get; }
+        public ICommand NavigateUserManagementCommand { get; }
 
         public MainViewModel()
         {
@@ -128,6 +129,12 @@ namespace IDCard.Desktop.ViewModels
             {
                 CurrentView = _preferencesView;
                 CurrentPage = "Tools";
+            });
+
+            NavigateUserManagementCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _preferencesView; // လိုအပ်ပါက သက်ဆိုင်ရာ UserManagementView သို့ ပြောင်းလဲချိတ်ဆက်နိုင်ပါသည်
+                CurrentPage = "UserManagement";
             });
         }
 
