@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IDCard.Desktop.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900"
              Background="White">
@@ -13,7 +12,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Grid View နှင့် List View Icon Toggle Buttons ပါဝင်သော အပိုင်း -->
+        <!-- Grid View နှင့် List View Icon Toggle Buttons -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
             <Border Background="#E8E8E8" CornerRadius="4" BorderBrush="#D0D0D0" BorderThickness="1" Padding="2">
                 <StackPanel Orientation="Horizontal">
@@ -30,7 +29,7 @@
             </Border>
         </StackPanel>
 
-        <!-- Reports ၏ အဓိက Content Area -->
+        <!-- Reports Content Area -->
         <Border Grid.Row="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Background="#FAFAFA" Padding="20">
             <TextBlock Text="Reports Content &amp; Data Grid Area..." FontSize="14" Foreground="#555555" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Border>
