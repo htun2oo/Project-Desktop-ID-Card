@@ -36,6 +36,20 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        private string _homeSubTab = "Credentials";
+        public string HomeSubTab
+        {
+            get => _homeSubTab;
+            set
+            {
+                if (_homeSubTab != value)
+                {
+                    _homeSubTab = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private readonly CredentialsView _credentialsView = new CredentialsView(); 
         private readonly CredentialDesignsView _credentialDesignsView = new CredentialDesignsView();
         private readonly WorkflowDesignsView _workflowDesignsView = new WorkflowDesignsView();
@@ -49,6 +63,8 @@ namespace IDCard.Desktop.ViewModels
         private readonly SystemDashboardView _systemDashboardView = new SystemDashboardView();
 
         public ICommand NavigateHomeCommand { get; }
+        public ICommand NavigateHomeCredentialsCommand { get; }
+        public ICommand NavigateHomeReportsCommand { get; }
         public ICommand NavigateCredentialsCommand { get; }
         public ICommand NavigateWorkflowsCommand { get; }
         public ICommand NavigateDesignReportsCommand { get; }
@@ -61,7 +77,7 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateToolsCommand { get; }
         public ICommand NavigateUserManagementCommand { get; }
         public ICommand NavigateSystemDashboardCommand { get; }
-        public ICommand SignOutCommand { get; } // Sign Out အတွက် အသစ်ထည့်သွင်းခြင်း
+        public ICommand SignOutCommand { get; }
 
         public MainViewModel()
         {
@@ -70,11 +86,27 @@ namespace IDCard.Desktop.ViewModels
 
             CurrentView = _credentialsView;
             CurrentPage = "Home";
+            HomeSubTab = "Credentials";
 
             NavigateHomeCommand = new RelayCommand(_ => 
             {
                 CurrentView = _credentialsView;
                 CurrentPage = "Home";
+                HomeSubTab = "Credentials";
+            });
+
+            NavigateHomeCredentialsCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _credentialsView;
+                CurrentPage = "Home";
+                HomeSubTab = "Credentials";
+            });
+
+            NavigateHomeReportsCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _reportsView;
+                CurrentPage = "Home";
+                HomeSubTab = "Reports";
             });
 
             NavigateCredentialsCommand = new RelayCommand(_ => 
@@ -152,7 +184,6 @@ namespace IDCard.Desktop.ViewModels
                 CurrentPage = "SystemDashboard";
             });
 
-            // Sign Out လုပ်ဆောင်ချက်
             SignOutCommand = new RelayCommand(_ => 
             {
                 if (System.Windows.Application.Current.MainWindow is Views.MainWindow mainWindow)
