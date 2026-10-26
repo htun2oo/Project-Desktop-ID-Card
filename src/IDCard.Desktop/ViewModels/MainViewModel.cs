@@ -40,6 +40,7 @@ namespace IDCard.Desktop.ViewModels
         private readonly ReportsView _reportsView = new ReportsView();
         private readonly SettingsView _settingsView = new SettingsView();
         private readonly ToolsView _toolsView = new ToolsView();
+        private readonly UserManagementView _userManagementView = new UserManagementView();
 
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateCredentialsCommand { get; }
@@ -134,7 +135,7 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateUserManagementCommand = new RelayCommand(_ => 
             {
-                CurrentView = _settingsView;
+                CurrentView = _userManagementView;
                 CurrentPage = "UserManagement";
             });
 
