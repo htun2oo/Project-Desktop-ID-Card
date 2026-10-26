@@ -1,0 +1,47 @@
+<UserControl x:Class="IDCard.Desktop.Views.WorkflowDesignsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1100">
+    
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ဘယ်ဘက်ခြမ်း Side Menu -->
+        <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,0" Padding="0,10,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <Button Content="Workflows List" Background="White" Foreground="#003366" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,-2,2" BorderBrush="#CCCCCC" BorderThickness="1,1,0,1"/>
+                    <Button Content="Issuance Steps" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0"/>
+                    <Button Content="Workflow Rules" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- ညာဘက်ခြမ်း Main Content Area -->
+        <Border Grid.Column="1" BorderBrush="#CCCCCC" BorderThickness="1,0,0,0" Background="White">
+            <Grid Margin="30,20">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Workflows" FontSize="22" FontWeight="Normal" Foreground="#003366" Margin="0,0,0,20"/>
+
+                        <StackPanel>
+                            <TextBlock Text="Manage Issuance Workflows and Processes" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
+                            <TextBlock Text="Configure step-by-step card issuance workflows, capture rules, encoding procedures, and printing sequences." Foreground="#555555" TextWrapping="Wrap" Margin="0,0,0,15"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
+                                <Button Content="Create Workflow" Width="140" Height="30" Background="#0066CC" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
+                                <Button Content="Export Config" Width="120" Height="30" Background="#E0E0E0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
