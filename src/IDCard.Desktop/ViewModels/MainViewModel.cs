@@ -38,7 +38,7 @@ namespace IDCard.Desktop.ViewModels
 
         private readonly CredentialsView _credentialsView = new CredentialsView();
         private readonly ReportsView _reportsView = new ReportsView();
-        private readonly PreferencesView _preferencesView = new PreferencesView();
+        private readonly SettingsView _settingsView = new SettingsView();
         private readonly ToolsView _toolsView = new ToolsView();
 
         public ICommand NavigateHomeCommand { get; }
@@ -59,7 +59,6 @@ namespace IDCard.Desktop.ViewModels
         {
             _credentialsView.DataContext = new CredentialsViewModel();
             _reportsView.DataContext = new ReportsViewModel();
-            _preferencesView.DataContext = new PreferencesViewModel();
 
             CurrentView = _credentialsView;
             CurrentPage = "Home";
@@ -108,23 +107,23 @@ namespace IDCard.Desktop.ViewModels
 
             NavigatePreferencesCommand = new RelayCommand(_ => 
             {
-                CurrentView = _preferencesView;
+                CurrentView = _settingsView;
                 CurrentPage = "Preferences";
-                _preferencesView.SelectPreferencesTab();
+                _settingsView.SelectPreferencesTab();
             });
 
             NavigateChangePasswordCommand = new RelayCommand(_ => 
             {
-                CurrentView = _preferencesView;
+                CurrentView = _settingsView;
                 CurrentPage = "Preferences";
-                _preferencesView.SelectChangePasswordTab();
+                _settingsView.SelectChangePasswordTab();
             });
 
             NavigateSettingsCommand = new RelayCommand(_ => 
             {
-                CurrentView = _preferencesView;
+                CurrentView = _settingsView;
                 CurrentPage = "Preferences";
-                _preferencesView.SelectPreferencesTab();
+                _settingsView.SelectPreferencesTab();
             });
 
             NavigateToolsCommand = new RelayCommand(_ => 
@@ -135,13 +134,13 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateUserManagementCommand = new RelayCommand(_ => 
             {
-                CurrentView = _preferencesView;
+                CurrentView = _settingsView;
                 CurrentPage = "UserManagement";
             });
 
             NavigateSystemDashboardCommand = new RelayCommand(_ => 
             {
-                CurrentView = _preferencesView;
+                CurrentView = _settingsView;
                 CurrentPage = "SystemDashboard";
             });
         }
