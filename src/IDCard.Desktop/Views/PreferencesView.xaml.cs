@@ -11,50 +11,49 @@ namespace IDCard.Desktop.Views
             InitializeComponent();
         }
 
-        public void SelectPreferencesTab()
+        private void MenuTab_Click(object sender, RoutedEventArgs e)
         {
-            PreferencesPanel.Visibility = Visibility.Visible;
-            ChangePasswordPanel.Visibility = Visibility.Collapsed;
+            if (sender is Button clickedButton)
+            {
+                // ဘယ်ဘက် Side Menu ခလုတ်များအားလုံးကို ပုံမှန် မီးခိုးရောင်သို့ ပြောင်းရန်
+                foreach (var child in ((StackPanel)clickedButton.Parent).Children)
+                {
+                    if (child is Button btn)
+                    {
+                        btn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
+                        btn.FontWeight = FontWeights.SemiBold;
+                        btn.Margin = new Thickness(0, 0, 0, 2);
+                        btn.BorderBrush = Brushes.Transparent;
+                        btn.BorderThickness = new Thickness(0);
+                    }
+                }
 
-            PreferencesNavBtn.Background = Brushes.White;
-            PreferencesNavBtn.FontWeight = FontWeights.Bold;
-            PreferencesNavBtn.Margin = new Thickness(0, 0, -1, 2);
-            PreferencesNavBtn.BorderBrush = Brushes.LightGray;
-            PreferencesNavBtn.BorderThickness = new Thickness(1, 1, 0, 1);
+                // နှိပ်လိုက်သော ခလုတ်ကို ညာဘက်အဖြူရောင် Content ဧရိယာနှင့် ချိတ်ဆက်ထားပုံပေါ်စေရန်
+                clickedButton.Background = Brushes.White;
+                clickedButton.FontWeight = FontWeights.Bold;
+                clickedButton.Margin = new Thickness(0, 0, -1, 2);
+                clickedButton.BorderBrush = Brushes.LightGray;
+                clickedButton.BorderThickness = new Thickness(1, 1, 0, 1);
 
-            ChangePasswordNavBtn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
-            ChangePasswordNavBtn.FontWeight = FontWeights.SemiBold;
-            ChangePasswordNavBtn.Margin = new Thickness(0, 0, 0, 2);
-            ChangePasswordNavBtn.BorderBrush = Brushes.Transparent;
-            ChangePasswordNavBtn.BorderThickness = new Thickness(0);
+                // ညာဘက် Content ဧရိယာ၏ ခေါင်းစဉ်ကို ပြောင်းလဲပေးရန်
+                SectionTitleText.Text = clickedButton.Content?.ToString();
+            }
         }
 
-        public void SelectChangePasswordTab()
+        // MainViewModel မှ လိုအပ်သလို လှမ်းခေါ်ရန် Helper Methods များ
+        public void SelectTabByName(string tabName)
         {
-            PreferencesPanel.Visibility = Visibility.Collapsed;
-            ChangePasswordPanel.Visibility = Visibility.Visible;
-
-            ChangePasswordNavBtn.Background = Brushes.White;
-            ChangePasswordNavBtn.FontWeight = FontWeights.Bold;
-            ChangePasswordNavBtn.Margin = new Thickness(0, 0, -1, 2);
-            ChangePasswordNavBtn.BorderBrush = Brushes.LightGray;
-            ChangePasswordNavBtn.BorderThickness = new Thickness(1, 1, 0, 1);
-
-            PreferencesNavBtn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
-            PreferencesNavBtn.FontWeight = FontWeights.SemiBold;
-            PreferencesNavBtn.Margin = new Thickness(0, 0, 0, 2);
-            PreferencesNavBtn.BorderBrush = Brushes.Transparent;
-            PreferencesNavBtn.BorderThickness = new Thickness(0);
+            foreach (var child in ((StackPanel)((ScrollViewer)AccessAttributesBtn.Parent).Content).Children)
+            {
+                if (child is Button btn && btn.Content?.ToString() == tabName)
+                {
+                    MenuTab_Click(btn, new RoutedEventArgs());
+                    break;
+                }
+            }
         }
 
-        private void PreferencesNavBtn_Click(object sender, RoutedEventArgs e)
-        {
-            SelectPreferencesTab();
-        }
-
-        private void ChangePasswordNavBtn_Click(object sender, RoutedEventArgs e)
-        {
-            SelectChangePasswordTab();
-        }
+        public void SelectPreferencesTab() => SelectTabByName("Application Settings");
+        public void SelectChangePasswordTab() => SelectTabByName("Authentication");
     }
 }
