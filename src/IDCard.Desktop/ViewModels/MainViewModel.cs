@@ -37,7 +37,8 @@ namespace IDCard.Desktop.ViewModels
         }
 
         private readonly CredentialsView _credentialsView = new CredentialsView();
-        private readonly ReportsView _reportsView = new ReportsView();
+        private readonly ReportsView _reportsView = new ReportsView(); // Design Reports အတွက် ဆက်သုံးသည်
+        private readonly PrinterQueuesView _printerQueuesView = new PrinterQueuesView(); // Printer Queues အတွက် အသစ်သုံးသည်
         private readonly SettingsView _settingsView = new SettingsView();
         private readonly ToolsView _toolsView = new ToolsView();
         private readonly UserManagementView _userManagementView = new UserManagementView();
@@ -101,9 +102,10 @@ namespace IDCard.Desktop.ViewModels
                 CurrentPage = "FieldConnections";
             });
 
+            // Printer Queues အတွက် PrinterQueuesView သို့ ချိတ်ဆက်ခြင်း
             NavigateReportsCommand = new RelayCommand(_ => 
             {
-                CurrentView = _reportsView;
+                CurrentView = _printerQueuesView;
                 CurrentPage = "Reports";
             });
 
