@@ -87,7 +87,7 @@
                     <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,5,0">
                         <MenuItem Header="admin ▾" FontWeight="SemiBold" FontSize="12" Foreground="#333333" Background="Transparent">
                             <MenuItem Header="Preferences" Command="{Binding NavigatePreferencesCommand}"/>
-                            <MenuItem Header="Change Your Password"/>
+                            <MenuItem Header="Change Your Password" Command="{Binding NavigateChangePasswordCommand}"/>
                             <Separator/>
                             <MenuItem Header="Sign Out"/>
                         </MenuItem>
@@ -246,7 +246,7 @@
             </ContentControl>
         </Border>
 
-        <!-- 3. Dynamic Content Area with ScrollViewer (Margin ကို 0 သို့ပြောင်း၍ ခရမ်းရောင်ဘားနှင့် တိုက်ရိုက်ကပ်စေခြင်း) -->
+        <!-- 3. Dynamic Content Area with ScrollViewer -->
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,0">
             <ContentControl Content="{Binding CurrentView}" MinHeight="600"/>
         </ScrollViewer>
