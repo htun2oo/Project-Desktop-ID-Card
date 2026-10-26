@@ -39,6 +39,7 @@ namespace IDCard.Desktop.ViewModels
         // Cached Views များ
         private readonly CredentialsView _credentialsView = new CredentialsView();
         private readonly ReportsView _reportsView = new ReportsView();
+        private readonly PreferencesView _preferencesView = new PreferencesView();
 
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateCredentialsCommand { get; }
@@ -47,12 +48,14 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateSmartCardWorkflowsCommand { get; }
         public ICommand NavigateFieldConnectionsCommand { get; }
         public ICommand NavigateReportsCommand { get; }
+        public ICommand NavigatePreferencesCommand { get; }
 
         public MainViewModel()
         {
-            // Default Start View
+            // Default Start View နှင့် DataContext များ ချိတ်ဆက်ခြင်း
             _credentialsView.DataContext = new CredentialsViewModel();
             _reportsView.DataContext = new ReportsViewModel();
+            _preferencesView.DataContext = new PreferencesViewModel();
 
             CurrentView = _credentialsView;
             CurrentPage = "Home";
@@ -97,6 +100,12 @@ namespace IDCard.Desktop.ViewModels
             {
                 CurrentView = _reportsView;
                 CurrentPage = "Reports";
+            });
+
+            NavigatePreferencesCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _preferencesView;
+                CurrentPage = "Preferences";
             });
         }
 
