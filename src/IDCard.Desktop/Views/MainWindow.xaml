@@ -88,7 +88,7 @@
                         <MenuItem Header="admin ▾" FontWeight="SemiBold" FontSize="12" Foreground="#333333" Background="Transparent">
                             <Separator/>
                             <MenuItem Header="User Management" Command="{Binding NavigateUserManagementCommand}"/>
-                            <MenuItem Header="System Dashboard"/>
+                            <MenuItem Header="System Dashboard" Command="{Binding NavigateSystemDashboardCommand}"/>
                             <Separator/>
                             <MenuItem Header="Sign Out"/>
                         </MenuItem>
@@ -265,6 +265,19 @@
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
+
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="SystemDashboard">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="System Dashboard" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </ContentControl.Style>
@@ -282,3 +295,4 @@
         </Border>
     </Grid>
 </Window>
+```[cite: 13]
