@@ -87,7 +87,7 @@
                     <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,5,0">
                         <MenuItem Header="admin ▾" FontWeight="SemiBold" FontSize="12" Foreground="#333333" Background="Transparent">
                             <Separator/>
-                            <MenuItem Header="User Management"/>
+                            <MenuItem Header="User Management" Command="{Binding NavigateUserManagementCommand}"/>
                             <MenuItem Header="System Dashboard"/>
                             <Separator/>
                             <MenuItem Header="Sign Out"/>
@@ -247,6 +247,19 @@
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
                                                 <TextBlock Text="Tools" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="UserManagement">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="User Management" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </Setter.Value>
