@@ -37,7 +37,8 @@ namespace IDCard.Desktop.ViewModels
         }
 
         private readonly CredentialsView _credentialsView = new CredentialsView(); // Quick Start အတွက် ဆက်သုံးသည်
-        private readonly CredentialDesignsView _credentialDesignsView = new CredentialDesignsView(); // Credential Designs အတွက် အသစ်သုံးသည်
+        private readonly CredentialDesignsView _credentialDesignsView = new CredentialDesignsView();
+        private readonly WorkflowDesignsView _workflowDesignsView = new WorkflowDesignsView(); // Workflows အတွက် အသစ်သုံးသည်
         private readonly ReportsView _reportsView = new ReportsView();
         private readonly PrinterQueuesView _printerQueuesView = new PrinterQueuesView();
         private readonly SettingsView _settingsView = new SettingsView();
@@ -73,16 +74,16 @@ namespace IDCard.Desktop.ViewModels
                 CurrentPage = "Home";
             });
 
-            // Credential Designs အတွက် CredentialDesignsView သို့ ချိတ်ဆက်ခြင်း
             NavigateCredentialsCommand = new RelayCommand(_ => 
             {
                 CurrentView = _credentialDesignsView;
                 CurrentPage = "CredentialDesigns";
             });
 
+            // Workflows အတွက် WorkflowDesignsView သို့ ချိတ်ဆက်ခြင်း
             NavigateWorkflowsCommand = new RelayCommand(_ => 
             {
-                CurrentView = _credentialsView;
+                CurrentView = _workflowDesignsView;
                 CurrentPage = "Workflows";
             });
 
