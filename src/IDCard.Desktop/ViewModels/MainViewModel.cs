@@ -39,7 +39,8 @@ namespace IDCard.Desktop.ViewModels
         private readonly CredentialsView _credentialsView = new CredentialsView(); 
         private readonly CredentialDesignsView _credentialDesignsView = new CredentialDesignsView();
         private readonly WorkflowDesignsView _workflowDesignsView = new WorkflowDesignsView();
-        private readonly ReportDesignsView _reportDesignsView = new ReportDesignsView(); // Design Reports အတွက် အသစ်သုံးသည်
+        private readonly ReportDesignsView _reportDesignsView = new ReportDesignsView();
+        private readonly FieldConnectionDesignsView _fieldConnectionDesignsView = new FieldConnectionDesignsView(); // Field Connections အတွက် အသစ်သုံးသည်
         private readonly ReportsView _reportsView = new ReportsView();
         private readonly PrinterQueuesView _printerQueuesView = new PrinterQueuesView();
         private readonly SettingsView _settingsView = new SettingsView();
@@ -87,7 +88,6 @@ namespace IDCard.Desktop.ViewModels
                 CurrentPage = "Workflows";
             });
 
-            // Design Reports အတွက် ReportDesignsView သို့ ချိတ်ဆက်ခြင်း
             NavigateDesignReportsCommand = new RelayCommand(_ => 
             {
                 CurrentView = _reportDesignsView;
@@ -100,9 +100,10 @@ namespace IDCard.Desktop.ViewModels
                 CurrentPage = "SmartCardWorkflows";
             });
 
+            // Field Connections အတွက် FieldConnectionDesignsView သို့ ချိတ်ဆက်ခြင်း
             NavigateFieldConnectionsCommand = new RelayCommand(_ => 
             {
-                CurrentView = _credentialsView;
+                CurrentView = _fieldConnectionDesignsView;
                 CurrentPage = "FieldConnections";
             });
 
