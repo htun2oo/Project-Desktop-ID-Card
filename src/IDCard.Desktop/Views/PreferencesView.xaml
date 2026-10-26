@@ -12,13 +12,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ဘယ်ဘက်ခြမ်း Side Menu (Settings Options) -->
+        <!-- ဘယ်ဘက်ခြမ်း Side Menu -->
         <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="0,0,1,0" Padding="0,10,0,0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <Button x:Name="AccessAttributesBtn" Content="Access Attributes" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                     <Button x:Name="ApplicationSettingsBtn" Content="Application Settings" Background="White" Foreground="#003366" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,-1,2" BorderBrush="#CCCCCC" BorderThickness="1,1,0,1" Click="MenuTab_Click"/>
                     <Button x:Name="AuthenticationBtn" Content="Authentication" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    
+                    <!-- Authentication နှင့် Chip Profiles ကြားသို့ Change Your Password ကို ရွေ့ပြောင်းထည့်သွင်းထားသည်[cite: 13] -->
+                    <Button x:Name="ChangePasswordBtn" Content="Change Your Password" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    
                     <Button x:Name="ChipProfilesBtn" Content="Chip Profiles" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                     <Button x:Name="CustomizationToolkitBtn" Content="Customization Toolkit" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                     <Button x:Name="DataSourcesBtn" Content="Data Sources" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
@@ -35,12 +39,10 @@
         <Grid Grid.Column="1" Margin="30,20">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <!-- Dynamic Content Title -->
                     <TextBlock x:Name="SectionTitleText" Text="Application Settings" FontSize="22" FontWeight="Normal" Foreground="#003366" Margin="0,0,0,20"/>
 
-                    <!-- Content Panels -->
                     <StackPanel x:Name="ContentPanel">
-                        <!-- General Preferences / Application Settings -->
+                        <!-- Content Panels -->
                         <TextBlock Text="General Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
                         <CheckBox Content="Display tooltip for license expiration" Margin="0,5"/>
                         <CheckBox Content="Always show Quick Start on sign in" Margin="0,5"/>
@@ -48,46 +50,6 @@
 
                         <Separator Margin="0,20" Background="#DDDDDD"/>
 
-                        <!-- Printer Preferences -->
-                        <TextBlock Text="Printer Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
-                        <Grid Margin="0,5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180"/>
-                                <ColumnDefinition Width="220"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Printer" VerticalAlignment="Center"/>
-                            <ComboBox Grid.Column="1" Height="26"/>
-                        </Grid>
-                        <CheckBox Content="Always prompt for printer" Margin="0,10,0,5"/>
-                        <Grid Margin="0,5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180"/>
-                                <ColumnDefinition Width="220"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Hopper" VerticalAlignment="Center"/>
-                            <ComboBox Grid.Column="1" Height="26"/>
-                        </Grid>
-
-                        <Separator Margin="0,20" Background="#DDDDDD"/>
-
-                        <!-- Quick Start Preferences -->
-                        <TextBlock Text="Quick Start Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
-                        <CheckBox Content="Always confirm exit from Quick Start" Margin="0,5"/>
-
-                        <Separator Margin="0,20" Background="#DDDDDD"/>
-
-                        <!-- Report Preferences -->
-                        <TextBlock Text="Report Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
-                        <Grid Margin="0,5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="240"/>
-                                <ColumnDefinition Width="120"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Maximum number of records per report" VerticalAlignment="Center"/>
-                            <TextBox Grid.Column="1" Text="1000" VerticalAlignment="Center" Padding="4"/>
-                        </Grid>
-
-                        <!-- Action Buttons -->
                         <StackPanel Orientation="Horizontal" Margin="0,30,0,20">
                             <Button Content="Save" Width="90" Height="30" Background="#0066CC" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
                             <Button Content="Cancel" Width="90" Height="30" Background="#E0E0E0"/>
