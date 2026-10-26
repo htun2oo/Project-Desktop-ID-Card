@@ -15,13 +15,13 @@ namespace IDCard.Desktop.Views
         {
             if (sender is Button clickedButton)
             {
-                // မီနူးတက်ဘ်များအားလုံးကို Inactive (မီးခိုးရောင်) အဖြစ်သို့ ပြောင်းလဲခြင်း
                 if (clickedButton.Parent is StackPanel panel)
                 {
                     foreach (var child in panel.Children)
                     {
                         if (child is Button btn)
                         {
+                            // Inactive ဖြစ်နေသော ခလုတ်များ၏ ပုံစံ
                             btn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
                             btn.FontWeight = FontWeights.SemiBold;
                             btn.Margin = new Thickness(0, 0, 0, 2);
@@ -31,14 +31,13 @@ namespace IDCard.Desktop.Views
                     }
                 }
 
-                // နှိပ်လိုက်သော တက်ဘ်ကို Active ပြုလုပ်ပြီး ညာဘက်အဖြူရောင်ဧရိယာနှင့် ချိတ်ဆက်ပြသခြင်း
+                // Active ဖြစ်နေသော (နှိပ်ထားသော) ခလုတ်ကို ညာဘက်အဖြူရောင်ဧရိယာဘက်သို့ ချိတ်ဆက်ပေါ်လာစေရန် Margin နှင့် Border သတ်မှတ်ခြင်း
                 clickedButton.Background = Brushes.White;
                 clickedButton.FontWeight = FontWeights.Bold;
                 clickedButton.Margin = new Thickness(0, 0, -1, 2);
                 clickedButton.BorderBrush = Brushes.LightGray;
                 clickedButton.BorderThickness = new Thickness(1, 1, 0, 1);
 
-                // ညာဘက် Content ခေါင်းစဉ်ကို ပြောင်းလဲပေးခြင်း
                 if (SectionTitleText != null && clickedButton.Content != null)
                 {
                     SectionTitleText.Text = clickedButton.Content.ToString();
