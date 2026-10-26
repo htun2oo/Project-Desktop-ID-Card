@@ -44,7 +44,7 @@
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vm:CredentialsViewModel}">
-            <views:CredentialDesignsView/>
+            <views:CredentialsView/>
         </DataTemplate>
     </Window.Resources>
 
