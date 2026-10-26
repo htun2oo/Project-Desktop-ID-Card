@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace IDCard.Desktop.Views
 {
@@ -10,34 +11,44 @@ namespace IDCard.Desktop.Views
             InitializeComponent();
         }
 
-        private void PreferencesTab_Click(object sender, RoutedEventArgs e)
+        private void PreferencesNavBtn_Click(object sender, RoutedEventArgs e)
         {
-            // ModernWPF Accent Style ကို Preferences Button သို့ ပြန်လည်သတ်မှတ်ခြင်း
-            PreferencesNavBtn.SetResourceReference(StyleProperty, "AccentButtonStyle");
-            PreferencesNavBtn.FontWeight = FontWeights.Bold;
-
-            // Change Password Button ကို Default ပုံစံသို့ ပြောင်းခြင်း
-            ChangePasswordNavBtn.ClearValue(StyleProperty);
-            ChangePasswordNavBtn.Background = System.Windows.Media.Brushes.Transparent;
-            ChangePasswordNavBtn.FontWeight = FontWeights.SemiBold;
-
+            // Preferences ကို ရွေးချယ်သည့်အခါ
             PreferencesPanel.Visibility = Visibility.Visible;
             ChangePasswordPanel.Visibility = Visibility.Collapsed;
+
+            // Button Styles Switching
+            PreferencesNavBtn.Background = Brushes.White;
+            PreferencesNavBtn.FontWeight = FontWeights.Bold;
+            PreferencesNavBtn.Margin = new Thickness(0, 0, -1, 2);
+            PreferencesNavBtn.BorderBrush = Brushes.LightGray;
+            PreferencesNavBtn.BorderThickness = new Thickness(1, 1, 0, 1);
+
+            ChangePasswordNavBtn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
+            ChangePasswordNavBtn.FontWeight = FontWeights.SemiBold;
+            ChangePasswordNavBtn.Margin = new Thickness(0, 0, 0, 2);
+            ChangePasswordNavBtn.BorderBrush = Brushes.Transparent;
+            ChangePasswordNavBtn.BorderThickness = new Thickness(0);
         }
 
-        private void ChangePasswordTab_Click(object sender, RoutedEventArgs e)
+        private void ChangePasswordNavBtn_Click(object sender, RoutedEventArgs e)
         {
-            // ModernWPF Accent Style ကို Change Password Button သို့ ပြန်လည်သတ်မှတ်ခြင်း
-            ChangePasswordNavBtn.SetResourceReference(StyleProperty, "AccentButtonStyle");
-            ChangePasswordNavBtn.FontWeight = FontWeights.Bold;
-
-            // Preferences Button ကို Default ပုံစံသို့ ပြောင်းခြင်း
-            PreferencesNavBtn.ClearValue(StyleProperty);
-            PreferencesNavBtn.Background = System.Windows.Media.Brushes.Transparent;
-            PreferencesNavBtn.FontWeight = FontWeights.SemiBold;
-
-            ChangePasswordPanel.Visibility = Visibility.Visible;
+            // Change Your Password ကို ရွေးချယ်သည့်အခါ
             PreferencesPanel.Visibility = Visibility.Collapsed;
+            ChangePasswordPanel.Visibility = Visibility.Visible;
+
+            // Button Styles Switching
+            ChangePasswordNavBtn.Background = Brushes.White;
+            ChangePasswordNavBtn.FontWeight = FontWeights.Bold;
+            ChangePasswordNavBtn.Margin = new Thickness(0, 0, -1, 2);
+            ChangePasswordNavBtn.BorderBrush = Brushes.LightGray;
+            ChangePasswordNavBtn.BorderThickness = new Thickness(1, 1, 0, 1);
+
+            PreferencesNavBtn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
+            PreferencesNavBtn.FontWeight = FontWeights.SemiBold;
+            PreferencesNavBtn.Margin = new Thickness(0, 0, 0, 2);
+            PreferencesNavBtn.BorderBrush = Brushes.Transparent;
+            PreferencesNavBtn.BorderThickness = new Thickness(0);
         }
     }
 }
