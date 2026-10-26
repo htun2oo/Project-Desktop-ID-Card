@@ -26,9 +26,14 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
+                            <!-- Background သည် Transparent ဖြစ်မှသာ Mouse Over အလုပ်လုပ်မည် (Active ဖြစ်နေလျှင် အရောင်မပြောင်းပါ) -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition TargetName="border" Property="Background" Value="Transparent"/>
+                                </MultiTrigger.Conditions>
                                 <Setter TargetName="border" Property="Background" Value="#7B21B0"/>
-                            </Trigger>
+                            </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
