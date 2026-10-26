@@ -38,6 +38,10 @@
         <DataTemplate DataType="{x:Type vm:PreferencesViewModel}">
             <views:SettingsView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
+            <views:PrinterQueuesView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Background="#F3F3F3">
