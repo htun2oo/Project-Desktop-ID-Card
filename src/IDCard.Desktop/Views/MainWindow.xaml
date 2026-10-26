@@ -231,7 +231,7 @@
                             <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
-                               -         <DataTemplate>
+                                        <DataTemplate>
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
                                                 <TextBlock Text="Manage Your Settings" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
@@ -246,7 +246,7 @@
             </ContentControl>
         </Border>
 
-        <!-- 3. Dynamic Content Area with ScrollViewer (ScrollBar အမြဲပေါ်နေစေရန် Minimum Height သတ်မှတ်ပေးခြင်း) -->
+        <!-- 3. Dynamic Content Area with ScrollViewer -->
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Margin="10">
             <ContentControl Content="{Binding CurrentView}" MinHeight="600"/>
         </ScrollViewer>
