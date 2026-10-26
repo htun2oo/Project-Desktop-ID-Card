@@ -6,58 +6,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1100">
 
-    <UserControl.Resources>
-        <!-- Inactive နှင့် Active အခြေအနေများကို အလိုအလျောက် ပြောင်းလဲပေးမည့် Enterprise Side Menu Button Style -->
-        <Style x:Key="SettingsMenuButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="#003366"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="Padding" Value="15,9"/>
-            <Setter Property="Margin" Value="0,0,0,2"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FFFFFF"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-    
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ဘယ်ဘက်ခြမ်း Side Menu -->
+        <!-- ဘယ်ဘက်ခြမ်း Side Menu (A to Z စီစဉ်ထားသည်) -->
         <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="0,0,1,0" Padding="0,10,0,0">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
-                    <Button x:Name="AccessAttributesBtn" Content="Access Attributes" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="AuthenticationBtn" Content="Authentication" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="ChangePasswordBtn" Content="Change Your Password" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="ChipProfilesBtn" Content="Chip Profiles" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="CustomizationToolkitBtn" Content="Customization Toolkit" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="DataSourcesBtn" Content="Data Sources" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="DevicesBtn" Content="Devices" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="InterfacesBtn" Content="Interfaces" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="LicenseBtn" Content="License" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="LanguagesBtn" Content="Languages" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    
-                    <!-- Application Settings (Default Active Tab) -->
-                    <Button x:Name="ApplicationSettingsBtn" Content="Application Settings" Style="{StaticResource SettingsMenuButtonStyle}" Background="White" FontWeight="Bold" Margin="0,0,-1,2" BorderBrush="#CCCCCC" BorderThickness="1,1,0,1" Click="MenuTab_Click"/>
-                    
-                    <Button x:Name="PrintingBtn" Content="Printing" Style="{StaticResource SettingsMenuButtonStyle}" Background="#EAEAEA" FontWeight="SemiBold" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="AccessAttributesBtn" Content="Access Attributes" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="ApplicationSettingsBtn" Content="Application Settings" Background="White" Foreground="#003366" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,-1,2" BorderBrush="#CCCCCC" BorderThickness="1,1,0,1" Click="MenuTab_Click"/>
+                    <Button x:Name="AuthenticationBtn" Content="Authentication" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="ChangePasswordBtn" Content="Change Your Password" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="ChipProfilesBtn" Content="Chip Profiles" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="CustomizationToolkitBtn" Content="Customization Toolkit" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="DataSourcesBtn" Content="Data Sources" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="DevicesBtn" Content="Devices" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="InterfacesBtn" Content="Interfaces" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="LanguagesBtn" Content="Languages" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="LicenseBtn" Content="License" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    <Button x:Name="PrintingBtn" Content="Printing" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                 </StackPanel>
             </ScrollViewer>
         </Border>
