@@ -17,12 +17,8 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
                     <Button x:Name="AccessAttributesBtn" Content="Access Attributes" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    <Button x:Name="ApplicationSettingsBtn" Content="Application Settings" Background="White" Foreground="#003366" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,-1,2" BorderBrush="#CCCCCC" BorderThickness="1,1,0,1" Click="MenuTab_Click"/>
                     <Button x:Name="AuthenticationBtn" Content="Authentication" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    
-                    <!-- Authentication နှင့် Chip Profiles ကြားသို့ Change Your Password ကို ရွေ့ပြောင်းထည့်သွင်းထားသည်[cite: 13] -->
                     <Button x:Name="ChangePasswordBtn" Content="Change Your Password" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
-                    
                     <Button x:Name="ChipProfilesBtn" Content="Chip Profiles" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                     <Button x:Name="CustomizationToolkitBtn" Content="Customization Toolkit" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                     <Button x:Name="DataSourcesBtn" Content="Data Sources" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
@@ -30,6 +26,10 @@
                     <Button x:Name="InterfacesBtn" Content="Interfaces" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                     <Button x:Name="LicenseBtn" Content="License" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                     <Button x:Name="LanguagesBtn" Content="Languages" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
+                    
+                    <!-- Languages နှင့် Printing ကြားသို့ Preferences (Application Settings) ကို ရွေ့ပြောင်းထည့်သွင်းထားသည်[cite: 14] -->
+                    <Button x:Name="ApplicationSettingsBtn" Content="Preferences" Background="White" Foreground="#003366" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,-1,2" BorderBrush="#CCCCCC" BorderThickness="1,1,0,1" Click="MenuTab_Click"/>
+                    
                     <Button x:Name="PrintingBtn" Content="Printing" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0" Click="MenuTab_Click"/>
                 </StackPanel>
             </ScrollViewer>
@@ -39,7 +39,7 @@
         <Grid Grid.Column="1" Margin="30,20">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <TextBlock x:Name="SectionTitleText" Text="Application Settings" FontSize="22" FontWeight="Normal" Foreground="#003366" Margin="0,0,0,20"/>
+                    <TextBlock x:Name="SectionTitleText" Text="Preferences" FontSize="22" FontWeight="Normal" Foreground="#003366" Margin="0,0,0,20"/>
 
                     <StackPanel x:Name="ContentPanel">
                         <!-- Content Panels -->
