@@ -52,6 +52,7 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateSettingsCommand { get; }
         public ICommand NavigateToolsCommand { get; }
         public ICommand NavigateUserManagementCommand { get; }
+        public ICommand NavigateSystemDashboardCommand { get; }
 
         public MainViewModel()
         {
@@ -133,8 +134,14 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateUserManagementCommand = new RelayCommand(_ => 
             {
-                CurrentView = _preferencesView; // လိုအပ်ပါက သက်ဆိုင်ရာ UserManagementView သို့ ပြောင်းလဲချိတ်ဆက်နိုင်ပါသည်
+                CurrentView = _preferencesView;
                 CurrentPage = "UserManagement";
+            });
+
+            NavigateSystemDashboardCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _preferencesView;
+                CurrentPage = "SystemDashboard";
             });
         }
 
