@@ -246,8 +246,8 @@
             </ContentControl>
         </Border>
 
-        <!-- 3. Dynamic Content Area with ScrollViewer (ညာဘက်တွင် ScrollBar ပါရှိစေရန်) -->
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="10">
+        <!-- 3. Dynamic Content Area with ScrollViewer (ScrollBar ကို အမြဲတန်းပေါ်နေစေရန် Visible ဟု သတ်မှတ်ထားသည်) -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" Margin="10">
             <ContentControl Content="{Binding CurrentView}"/>
         </ScrollViewer>
 
