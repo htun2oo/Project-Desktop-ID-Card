@@ -11,13 +11,11 @@ namespace IDCard.Desktop.Views
             InitializeComponent();
         }
 
-        private void PreferencesNavBtn_Click(object sender, RoutedEventArgs e)
+        public void SelectPreferencesTab()
         {
-            // Preferences ကို ရွေးချယ်သည့်အခါ
             PreferencesPanel.Visibility = Visibility.Visible;
             ChangePasswordPanel.Visibility = Visibility.Collapsed;
 
-            // Button Styles Switching
             PreferencesNavBtn.Background = Brushes.White;
             PreferencesNavBtn.FontWeight = FontWeights.Bold;
             PreferencesNavBtn.Margin = new Thickness(0, 0, -1, 2);
@@ -31,13 +29,11 @@ namespace IDCard.Desktop.Views
             ChangePasswordNavBtn.BorderThickness = new Thickness(0);
         }
 
-        private void ChangePasswordNavBtn_Click(object sender, RoutedEventArgs e)
+        public void SelectChangePasswordTab()
         {
-            // Change Your Password ကို ရွေးချယ်သည့်အခါ
             PreferencesPanel.Visibility = Visibility.Collapsed;
             ChangePasswordPanel.Visibility = Visibility.Visible;
 
-            // Button Styles Switching
             ChangePasswordNavBtn.Background = Brushes.White;
             ChangePasswordNavBtn.FontWeight = FontWeights.Bold;
             ChangePasswordNavBtn.Margin = new Thickness(0, 0, -1, 2);
@@ -49,6 +45,16 @@ namespace IDCard.Desktop.Views
             PreferencesNavBtn.Margin = new Thickness(0, 0, 0, 2);
             PreferencesNavBtn.BorderBrush = Brushes.Transparent;
             PreferencesNavBtn.BorderThickness = new Thickness(0);
+        }
+
+        private void PreferencesNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SelectPreferencesTab();
+        }
+
+        private void ChangePasswordNavBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SelectChangePasswordTab();
         }
     }
 }
