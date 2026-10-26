@@ -39,6 +39,7 @@ namespace IDCard.Desktop.ViewModels
         private readonly CredentialsView _credentialsView = new CredentialsView();
         private readonly ReportsView _reportsView = new ReportsView();
         private readonly PreferencesView _preferencesView = new PreferencesView();
+        private readonly ToolsView _toolsView = new ToolsView();
 
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateCredentialsCommand { get; }
@@ -128,7 +129,7 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateToolsCommand = new RelayCommand(_ => 
             {
-                CurrentView = _preferencesView;
+                CurrentView = _toolsView;
                 CurrentPage = "Tools";
             });
 
