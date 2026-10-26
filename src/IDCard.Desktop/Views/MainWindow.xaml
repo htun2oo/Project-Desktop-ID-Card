@@ -13,7 +13,6 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!-- Modern Enterprise Tab Button Style -->
         <Style x:Key="EnterpriseTabButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -36,7 +35,6 @@
             </Setter>
         </Style>
 
-        <!-- DataTemplate for PreferencesView -->
         <DataTemplate DataType="{x:Type vm:PreferencesViewModel}">
             <views:PreferencesView/>
         </DataTemplate>
@@ -50,7 +48,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <!-- 1. Enterprise Top Navigation & Header Bar -->
+        <!-- 1. Top Bar -->
         <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
             <Grid Margin="15,0">
                 <Grid.ColumnDefinitions>
@@ -59,7 +57,6 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- ဘယ်ဘက်ခြမ်း: Logo နှင့် System Name -->
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                     <Image Source="/Assets/app.ico" Width="32" Height="32" Margin="0,0,10,0"/>
                     <TextBlock Text="ENTRUST" FontWeight="Bold" FontSize="16" Foreground="#333333" VerticalAlignment="Center" Margin="0,0,8,0"/>
@@ -67,7 +64,6 @@
                     <TextBlock Text="Adaptive Issuance&#x0a;Instant ID" FontSize="11" FontWeight="SemiBold" Foreground="#4A3B5C" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <!-- အလယ်ပိုင်း: Navigation Menu -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,0,0">
                     <Button Content="Home" Command="{Binding NavigateHomeCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold" Margin="0,0,15,0"/>
                     
@@ -85,7 +81,6 @@
                     <Button Content="Printer Queues" Command="{Binding NavigateReportsCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold"/>
                 </StackPanel>
 
-                <!-- ညာဘက်ခြမ်း: Login Info နှင့် အိုင်ကွန်များ -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="Last Login at Sat Oct 24 13:04:54 MMT 2026 from IP 192.168.56.1" FontSize="11" Foreground="#666666" VerticalAlignment="Center" Margin="0,0,15,0"/>
                     
@@ -121,7 +116,6 @@
             <ContentControl VerticalAlignment="Center" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
-                        <!-- Default: Home တွင် ပြသမည့် Test 1 နှင့် Test 2 Tab များ -->
                         <Setter Property="ContentTemplate">
                             <Setter.Value>
                                 <DataTemplate>
@@ -138,7 +132,6 @@
                                                 </Style>
                                             </Button.Style>
                                         </Button>
-                                        
                                         <Button Content="Test 2" Command="{Binding NavigateHomeCommand}" Margin="2,0,0,0">
                                             <Button.Style>
                                                 <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -157,7 +150,6 @@
                         </Setter>
                         
                         <Style.Triggers>
-                            <!-- အကယ်၍ Design -> Credentials ကို နှိပ်ပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -171,7 +163,6 @@
                                 </Setter>
                             </DataTrigger>
 
-                            <!-- အကယ်၍ Design -> Workflows ကို နှိပ်ပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -185,7 +176,6 @@
                                 </Setter>
                             </DataTrigger>
 
-                            <!-- အကယ်၍ Design -> Reports ကို နှိပ်ပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -199,7 +189,6 @@
                                 </Setter>
                             </DataTrigger>
 
-                            <!-- အကယ်၍ Design -> Smart Card Workflows ကို နှိပ်ပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="SmartCardWorkflows">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -213,7 +202,6 @@
                                 </Setter>
                             </DataTrigger>
 
-                            <!-- အကယ်၍ Design -> Field Connections ကို နှိပ်ပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -227,7 +215,6 @@
                                 </Setter>
                             </DataTrigger>
 
-                            <!-- အကယ်၍ Printer Queues ကို နှိပ်ပါက -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -241,7 +228,6 @@
                                 </Setter>
                             </DataTrigger>
 
-                            <!-- အကယ်၍ admin -> Preferences ကို နှိပ်ပါက (Manage Your Settings ဟု ပြသရန်) -->
                             <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
                                 <Setter Property="ContentTemplate">
                                     <Setter.Value>
@@ -260,7 +246,7 @@
             </ContentControl>
         </Border>
 
-        <!-- 3. Dynamic Content Area (PreferencesView က သူ့ဘာသာ Side menu ပါပြီးသားဖြစ်၍ Border ဖြုတ်ကာ တိုက်ရိုက်ပြသခြင်း) -->
+        <!-- 3. Dynamic Content Area -->
         <Grid Grid.Row="2" Margin="10">
             <ContentControl Content="{Binding CurrentView}"/>
         </Grid>
