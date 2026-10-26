@@ -120,179 +120,130 @@
 
         <!-- 2. Purple Sub-Header Bar -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0">
-            <ContentControl VerticalAlignment="Center" DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
-                <ContentControl.Style>
-                    <Style TargetType="ContentControl">
-                        <Setter Property="ContentTemplate">
-                            <Setter.Value>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <!-- Credentials Tab Button -->
-                                        <Button Content="Credentials" Command="{Binding NavigateHomeCredentialsCommand}">
-                                            <Button.Style>
-                                                <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding HomeSubTab}" Value="Credentials">
-                                                            <Setter Property="Background" Value="White"/>
-                                                            <Setter Property="Foreground" Value="#6A1B9A"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                        </Button>
+            <Grid VerticalAlignment="Center">
+                <!-- Credentials & Reports Tabs (Home မျက်နှာပြင်တွင် ရှိနေစဉ်) -->
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="Home">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
 
-                                        <!-- Reports Tab Button -->
-                                        <Button Content="Reports" Command="{Binding NavigateHomeReportsCommand}" Margin="2,0,0,0">
-                                            <Button.Style>
-                                                <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding HomeSubTab}" Value="Reports">
-                                                            <Setter Property="Background" Value="White"/>
-                                                            <Setter Property="Foreground" Value="#6A1B9A"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Manage Your Credential Designs" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
+                    <!-- Credentials Tab Button -->
+                    <Button Content="Credentials" Command="{Binding NavigateHomeCredentialsCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HomeSubTab}" Value="Credentials">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
 
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Manage Your Workflows" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
+                    <!-- Reports Tab Button -->
+                    <Button Content="Reports" Command="{Binding NavigateHomeReportsCommand}" Margin="2,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HomeSubTab}" Value="Reports">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
 
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Manage Your Reports" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="SmartCardWorkflows">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Manage Your Smart Card Workflows" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Field Connections" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Manage Your Printer Queues" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Manage Your Settings" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="Tools">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="Tools" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="UserManagement">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="User Management" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding CurrentPage}" Value="SystemDashboard">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                                                <TextBlock Text="System Dashboard" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ContentControl.Style>
-            </ContentControl>
+                <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="SmartCardWorkflows">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="Tools">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="UserManagement">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="SystemDashboard">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    
+                    <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                    <TextBlock FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
+                                        <Setter Property="Text" Value="Manage Your Credential Designs"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
+                                        <Setter Property="Text" Value="Manage Your Workflows"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
+                                        <Setter Property="Text" Value="Manage Your Reports"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="SmartCardWorkflows">
+                                        <Setter Property="Text" Value="Manage Your Smart Card Workflows"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
+                                        <Setter Property="Text" Value="Field Connections"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
+                                        <Setter Property="Text" Value="Manage Your Printer Queues"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
+                                        <Setter Property="Text" Value="Manage Your Settings"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Tools">
+                                        <Setter Property="Text" Value="Tools"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="UserManagement">
+                                        <Setter Property="Text" Value="User Management"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="SystemDashboard">
+                                        <Setter Property="Text" Value="System Dashboard"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
         </Border>
 
         <!-- 3. Dynamic Content Area with ScrollViewer -->
