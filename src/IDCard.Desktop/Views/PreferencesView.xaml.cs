@@ -15,7 +15,7 @@ namespace IDCard.Desktop.Views
         {
             if (sender is Button clickedButton)
             {
-                // ဘယ်ဘက် Side Menu ခလုတ်များအားလုံး၏ နောက်ခံအရောင်နှင့် ပုံစံများကို ပုံမှန်အခြေအနေသို့ ပြန်ပြောင်းရန်
+                // မီနူးတက်ဘ်များအားလုံးကို Inactive (မီးခိုးရောင်) အဖြစ်သို့ ပြောင်းလဲခြင်း
                 if (clickedButton.Parent is StackPanel panel)
                 {
                     foreach (var child in panel.Children)
@@ -31,14 +31,14 @@ namespace IDCard.Desktop.Views
                     }
                 }
 
-                // နှိပ်လိုက်သော ခလုတ်ကို ညာဘက်အဖြူရောင် Content ဧရိယာနှင့် ချိတ်ဆက်ထားပုံပေါ်စေရန်
+                // နှိပ်လိုက်သော တက်ဘ်ကို Active ပြုလုပ်ပြီး ညာဘက်အဖြူရောင်ဧရိယာနှင့် ချိတ်ဆက်ပြသခြင်း
                 clickedButton.Background = Brushes.White;
                 clickedButton.FontWeight = FontWeights.Bold;
                 clickedButton.Margin = new Thickness(0, 0, -1, 2);
                 clickedButton.BorderBrush = Brushes.LightGray;
                 clickedButton.BorderThickness = new Thickness(1, 1, 0, 1);
 
-                // ညာဘက် Content ဧရိယာ၏ ခေါင်းစဉ်ကို ပြောင်းလဲပေးရန်
+                // ညာဘက် Content ခေါင်းစဉ်ကို ပြောင်းလဲပေးခြင်း
                 if (SectionTitleText != null && clickedButton.Content != null)
                 {
                     SectionTitleText.Text = clickedButton.Content.ToString();
@@ -46,10 +46,8 @@ namespace IDCard.Desktop.Views
             }
         }
 
-        // မီနူးအမည်အလိုက် တက်ဘ်ကို အမှားအယွင်းကင်းကင်း ရွေးချယ်ပေးမည့် မီသုဒ်
         public void SelectTabByName(string tabName)
         {
-            // AccessAttributesBtn သို့မဟုတ် မည်သည့်ခလုတ်မှတစ်ဆင့်မဆို StackPanel ကို လုံခြုံစွာ ရှာဖွေခြင်း
             if (AccessAttributesBtn?.Parent is StackPanel panel)
             {
                 foreach (var child in panel.Children)
@@ -64,6 +62,6 @@ namespace IDCard.Desktop.Views
         }
 
         public void SelectPreferencesTab() => SelectTabByName("Application Settings");
-        public void SelectChangePasswordTab() => SelectTabByName("Authentication");
+        public void SelectChangePasswordTab() => SelectTabByName("Change Your Password");
     }
 }
