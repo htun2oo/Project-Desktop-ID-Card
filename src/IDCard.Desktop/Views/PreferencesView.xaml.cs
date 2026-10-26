@@ -15,16 +15,19 @@ namespace IDCard.Desktop.Views
         {
             if (sender is Button clickedButton)
             {
-                // ဘယ်ဘက် Side Menu ခလုတ်များအားလုံးကို ပုံမှန် မီးခိုးရောင်သို့ ပြောင်းရန်
-                foreach (var child in ((StackPanel)clickedButton.Parent).Children)
+                // ဘယ်ဘက် Side Menu ခလုတ်များအားလုံး၏ နောက်ခံအရောင်နှင့် ပုံစံများကို ပုံမှန်အခြေအနေသို့ ပြန်ပြောင်းရန်
+                if (clickedButton.Parent is StackPanel panel)
                 {
-                    if (child is Button btn)
+                    foreach (var child in panel.Children)
                     {
-                        btn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
-                        btn.FontWeight = FontWeights.SemiBold;
-                        btn.Margin = new Thickness(0, 0, 0, 2);
-                        btn.BorderBrush = Brushes.Transparent;
-                        btn.BorderThickness = new Thickness(0);
+                        if (child is Button btn)
+                        {
+                            btn.Background = new SolidColorBrush(Color.FromRgb(234, 234, 234));
+                            btn.FontWeight = FontWeights.SemiBold;
+                            btn.Margin = new Thickness(0, 0, 0, 2);
+                            btn.BorderBrush = Brushes.Transparent;
+                            btn.BorderThickness = new Thickness(0);
+                        }
                     }
                 }
 
@@ -36,19 +39,26 @@ namespace IDCard.Desktop.Views
                 clickedButton.BorderThickness = new Thickness(1, 1, 0, 1);
 
                 // ညာဘက် Content ဧရိယာ၏ ခေါင်းစဉ်ကို ပြောင်းလဲပေးရန်
-                SectionTitleText.Text = clickedButton.Content?.ToString();
+                if (SectionTitleText != null && clickedButton.Content != null)
+                {
+                    SectionTitleText.Text = clickedButton.Content.ToString();
+                }
             }
         }
 
-        // MainViewModel မှ လိုအပ်သလို လှမ်းခေါ်ရန် Helper Methods များ
+        // မီနူးအမည်အလိုက် တက်ဘ်ကို အမှားအယွင်းကင်းကင်း ရွေးချယ်ပေးမည့် မီသုဒ်
         public void SelectTabByName(string tabName)
         {
-            foreach (var child in ((StackPanel)((ScrollViewer)AccessAttributesBtn.Parent).Content).Children)
+            // AccessAttributesBtn သို့မဟုတ် မည်သည့်ခလုတ်မှတစ်ဆင့်မဆို StackPanel ကို လုံခြုံစွာ ရှာဖွေခြင်း
+            if (AccessAttributesBtn?.Parent is StackPanel panel)
             {
-                if (child is Button btn && btn.Content?.ToString() == tabName)
+                foreach (var child in panel.Children)
                 {
-                    MenuTab_Click(btn, new RoutedEventArgs());
-                    break;
+                    if (child is Button btn && btn.Content?.ToString() == tabName)
+                    {
+                        MenuTab_Click(btn, new RoutedEventArgs());
+                        break;
+                    }
                 }
             }
         }
