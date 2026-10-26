@@ -31,10 +31,10 @@ namespace IDCard.Desktop.Views
                     }
                 }
 
-                // Active ဖြစ်နေသော (နှိပ်ထားသော) ခလုတ်ကို ညာဘက်အဖြူရောင်ဧရိယာဘက်သို့ ချိတ်ဆက်ပေါ်လာစေရန် Margin နှင့် Border သတ်မှတ်ခြင်း
+                // Active ဖြစ်နေသော (နှိပ်ထားသော) ခလုတ်ကို ညာဘက်အဖြူရောင်ဧရိယာဘက်သို့ တဆက်တည်း ချိတ်ဆက်ပေါ်လာစေရန်
                 clickedButton.Background = Brushes.White;
                 clickedButton.FontWeight = FontWeights.Bold;
-                clickedButton.Margin = new Thickness(0, 0, -1, 2);
+                clickedButton.Margin = new Thickness(0, 0, -2, 2);
                 clickedButton.BorderBrush = Brushes.LightGray;
                 clickedButton.BorderThickness = new Thickness(1, 1, 0, 1);
 
@@ -60,7 +60,7 @@ namespace IDCard.Desktop.Views
             }
         }
 
-        public void SelectPreferencesTab() => SelectTabByName("Application Settings");
+        public void SelectPreferencesTab() => SelectTabByName("Preferences");
         public void SelectChangePasswordTab() => SelectTabByName("Change Your Password");
     }
 }
