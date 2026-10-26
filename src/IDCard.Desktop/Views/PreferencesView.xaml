@@ -6,40 +6,67 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000">
     
-    <Grid Background="#F8F9FA">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="230"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ဘယ်ဘက်ခြမ်း Side Menu -->
-        <Border Background="#121212" Padding="10">
+        <!-- ဘယ်ဘက်ခြမ်း Side Menu (Preferences / Change Your Password သို့မဟုတ် Test 3 / Test 4) -->
+        <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="0,0,1,0" Padding="0,15,0,0">
             <StackPanel>
-                <Button x:Name="PreferencesNavBtn" Content="Preferences" Background="#007ACC" Foreground="White" FontWeight="Bold" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="10" Margin="0,5"/>
-                <Button x:Name="ChangePasswordNavBtn" Content="Change Your Password" Background="Transparent" Foreground="White" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="10" Margin="0,5"/>
+                <!-- Test 3 / Preferences Tab Button -->
+                <Button x:Name="PreferencesNavBtn" 
+                        Content="Preferences" 
+                        Background="White" 
+                        Foreground="#003366" 
+                        FontWeight="Bold" 
+                        FontSize="13"
+                        HorizontalAlignment="Stretch" 
+                        HorizontalContentAlignment="Left" 
+                        Padding="15,10" 
+                        Margin="0,0,0,2"
+                        BorderBrush="#CCCCCC"
+                        BorderThickness="0,1,1,1"/>
+
+                <!-- Test 4 / Change Your Password Tab Button -->
+                <Button x:Name="ChangePasswordNavBtn" 
+                        Content="Change Your Password" 
+                        Background="#F0F0F0" 
+                        Foreground="#003366" 
+                        FontWeight="SemiBold" 
+                        FontSize="13"
+                        HorizontalAlignment="Stretch" 
+                        HorizontalContentAlignment="Left" 
+                        Padding="15,10" 
+                        Margin="0,0,0,2"
+                        BorderBrush="Transparent"
+                        BorderThickness="0"/>
             </StackPanel>
         </Border>
 
-        <!-- ညာဘက်ခြမ်း Main Settings Content -->
-        <Grid Grid.Column="1" Margin="30">
+        <!-- ညာဘက်ခြမ်း Main Content Area -->
+        <Grid Grid.Column="1" Margin="30,20">
             <!-- Preferences Panel -->
             <StackPanel x:Name="PreferencesPanel" Visibility="Visible">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Height="500">
                     <StackPanel>
+                        <TextBlock Text="Manage Your Preferences" FontSize="22" FontWeight="Normal" Foreground="#003366" Margin="0,0,0,20"/>
+
                         <!-- General Preferences -->
-                        <TextBlock Text="General Preferences" FontWeight="Bold" FontSize="14" Margin="0,0,0,10"/>
+                        <TextBlock Text="General Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
                         <CheckBox Content="Display tooltip for license expiration" Margin="0,5"/>
                         <CheckBox Content="Always show Quick Start on sign in" Margin="0,5"/>
                         <CheckBox Content="Display training tips for designing a credential" Margin="0,5"/>
 
-                        <Separator Margin="0,20"/>
+                        <Separator Margin="0,20" Background="#DDDDDD"/>
 
                         <!-- Printer Preferences -->
-                        <TextBlock Text="Printer Preferences" FontWeight="Bold" FontSize="14" Margin="0,0,0,10"/>
+                        <TextBlock Text="Printer Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="180"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="220"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Printer" VerticalAlignment="Center"/>
                             <ComboBox Grid.Column="1" Height="26"/>
@@ -48,33 +75,33 @@
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="180"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="220"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Hopper" VerticalAlignment="Center"/>
                             <ComboBox Grid.Column="1" Height="26"/>
                         </Grid>
 
-                        <Separator Margin="0,20"/>
+                        <Separator Margin="0,20" Background="#DDDDDD"/>
 
                         <!-- Quick Start Preferences -->
-                        <TextBlock Text="Quick Start Preferences" FontWeight="Bold" FontSize="14" Margin="0,0,0,10"/>
+                        <TextBlock Text="Quick Start Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
                         <CheckBox Content="Always confirm exit from Quick Start" Margin="0,5"/>
 
-                        <Separator Margin="0,20"/>
+                        <Separator Margin="0,20" Background="#DDDDDD"/>
 
                         <!-- Report Preferences -->
-                        <TextBlock Text="Report Preferences" FontWeight="Bold" FontSize="14" Margin="0,0,0,10"/>
+                        <TextBlock Text="Report Preferences" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
                         <Grid Margin="0,5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="180"/>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="240"/>
+                                <ColumnDefinition Width="120"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Maximum number of records per report" VerticalAlignment="Center"/>
                             <TextBox Grid.Column="1" Text="1000" VerticalAlignment="Center" Padding="4"/>
                         </Grid>
 
                         <!-- Action Buttons -->
-                        <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,30,0,20">
                             <Button Content="Save" Width="90" Height="30" Background="#0066CC" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
                             <Button Content="Cancel" Width="90" Height="30" Background="#E0E0E0"/>
                         </StackPanel>
@@ -82,10 +109,10 @@
                 </ScrollViewer>
             </StackPanel>
 
-            <!-- Change Password Panel (အကယ်၍ လိုအပ်ပါက အသုံးပြုရန်) -->
+            <!-- Change Password Panel -->
             <StackPanel x:Name="ChangePasswordPanel" Visibility="Collapsed">
-                <TextBlock Text="Change Your Password" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
-                <!-- Password fields များကို ဤနေရာတွင် ထည့်သွင်းနိုင်ပါသည် -->
+                <TextBlock Text="Change Your Password" FontSize="22" FontWeight="Normal" Foreground="#003366" Margin="0,0,0,20"/>
+                <!-- Password Fields များကို ဤနေရာတွင် ထည့်သွင်းနိုင်ပါသည် -->
             </StackPanel>
         </Grid>
     </Grid>
