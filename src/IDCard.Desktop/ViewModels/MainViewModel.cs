@@ -49,6 +49,7 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateReportsCommand { get; }
         public ICommand NavigatePreferencesCommand { get; }
         public ICommand NavigateChangePasswordCommand { get; }
+        public ICommand NavigateSettingsCommand { get; }
 
         public MainViewModel()
         {
@@ -113,6 +114,13 @@ namespace IDCard.Desktop.ViewModels
                 CurrentView = _preferencesView;
                 CurrentPage = "Preferences";
                 _preferencesView.SelectChangePasswordTab();
+            });
+
+            NavigateSettingsCommand = new RelayCommand(_ => 
+            {
+                CurrentView = _preferencesView;
+                CurrentPage = "Preferences";
+                _preferencesView.SelectPreferencesTab();
             });
         }
 
