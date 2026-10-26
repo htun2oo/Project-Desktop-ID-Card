@@ -6,48 +6,79 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900"
              Background="White">
-    <Grid Margin="25">
+             
+    <UserControl.Resources>
+        <!-- Inner Square Path (Grid Icon - 4 Squares) -->
+        <Geometry x:Key="GridIconGeometry">
+            M 2,2 H 9 V 9 H 2 Z M 11,2 H 18 V 9 H 11 Z M 2,11 H 9 V 18 H 2 Z M 11,11 H 18 V 18 H 11 Z
+        </Geometry>
+
+        <!-- List Icon Path (4 Horizontal Bars) -->
+        <Geometry x:Key="ListIconGeometry">
+            M 2,3 H 18 V 5 H 2 Z M 2,7 H 18 V 9 H 2 Z M 2,11 H 18 V 13 H 2 Z M 2,15 H 18 V 17 H 2 Z
+        </Geometry>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Grid View နှင့် List View Toggle Buttons (Vector Paths ဖြင့် ပုံဖော်ခြင်း) -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
-            <Border Background="#DCDCDC" CornerRadius="3" BorderBrush="#ADADAD" BorderThickness="1" Padding="1" Height="28">
-                <StackPanel Orientation="Horizontal">
-                    <!-- Grid View Button -->
-                    <Button Width="32" Background="#A0A0A0" BorderThickness="0" Cursor="Hand" ToolTip="Grid View">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="2,0,0,2">
-                                    <!-- 4-Square Grid Icon Path -->
-                                    <Path Data="M 4,4 H 11 V 11 H 4 Z M 13,4 H 20 V 11 H 13 Z M 4,13 H 11 V 20 H 4 Z M 13,13 H 20 V 20 H 13 Z" 
-                                          Fill="#002147" Width="14" Height="14" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                    
-                    <!-- List View Button -->
-                    <Button Width="32" Background="Transparent" BorderThickness="0" Cursor="Hand" ToolTip="List View" Margin="1,0,0,0">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="0,2,2,0">
-                                    <!-- 3-Line List Icon Path -->
-                                    <Path Data="M 4,5 H 20 V 7 H 4 Z M 4,10 H 20 V 12 H 4 Z M 4,15 H 20 V 17 H 4 Z" 
-                                          Fill="#002147" Width="14" Height="14" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-            </Border>
-        </StackPanel>
+        <!-- Toggle View Container (Grid / List View Switches) -->
+        <Border Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                BorderBrush="#B0B0B0" BorderThickness="1" CornerRadius="6" 
+                Background="#E6E6E6" SnapsToDevicePixels="True">
+            <StackPanel Orientation="Horizontal">
+                
+                <!-- Grid View Button -->
+                <RadioButton x:Name="BtnGridView" IsChecked="True" Style="{StaticResource {x:Static ToolBar.RadioButtonStyleKey}}" 
+                             Width="38" Height="34" Cursor="Hand" ToolTip="Grid View">
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border x:Name="bdr" CornerRadius="5,0,0,5" Background="#ADADAD" BorderBrush="#999999" BorderThickness="0,0,1,0">
+                                <Path Data="{StaticResource GridIconGeometry}" Fill="#002B66" 
+                                      Width="16" Height="16" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="bdr" Property="Background" Value="#E6E6E6"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="bdr" Property="Background" Value="#A0A0A0"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </RadioButton.Template>
+                </RadioButton>
+
+                <!-- List View Button -->
+                <RadioButton x:Name="BtnListView" IsChecked="False" Style="{StaticResource {x:Static ToolBar.RadioButtonStyleKey}}" 
+                             Width="38" Height="34" Cursor="Hand" ToolTip="List View">
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border x:Name="bdr" CornerRadius="0,5,5,0" Background="#E6E6E6">
+                                <Path Data="{StaticResource ListIconGeometry}" Fill="#002B66" 
+                                      Width="16" Height="16" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="bdr" Property="Background" Value="#E6E6E6"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="bdr" Property="Background" Value="#A0A0A0"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </RadioButton.Template>
+                </RadioButton>
+
+            </StackPanel>
+        </Border>
 
         <!-- Reports Content Area -->
-        <Border Grid.Row="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Background="#FAFAFA" Padding="20">
-            <TextBlock Text="Reports Content &amp; Data Grid Area..." FontSize="14" Foreground="#555555" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Border Grid.Row="1" Margin="0,15,0,0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Background="#FAFAFA" Padding="20">
+            <TextBlock Text="Reports Content Area..." FontSize="14" Foreground="#555555"/>
         </Border>
     </Grid>
 </UserControl>
