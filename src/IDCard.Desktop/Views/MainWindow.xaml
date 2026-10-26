@@ -120,7 +120,7 @@
 
         <!-- 2. Purple Sub-Header Bar -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0" BorderBrush="#6A1B9A" BorderThickness="0">
-            <Grid VerticalAlignment="Bottom">
+            <Grid VerticalAlignment="Center">
                 <!-- Credentials & Reports Tabs -->
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Style>
@@ -164,7 +164,7 @@
                 </StackPanel>
 
                 <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Setter Property="Visibility" Value="Collapsed"/>
