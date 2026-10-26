@@ -35,6 +35,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- DataTemplate for PreferencesView -->
+        <DataTemplate DataType="{x:Type vm:PreferencesViewModel}">
+            <views:PreferencesView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Background="#F3F3F3">
@@ -86,7 +91,7 @@
                     
                     <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,5,0">
                         <MenuItem Header="admin ▾" FontWeight="SemiBold" FontSize="12" Foreground="#333333" Background="Transparent">
-                            <MenuItem Header="Preferences"/>
+                            <MenuItem Header="Preferences" Command="{Binding NavigatePreferencesCommand}"/>
                             <MenuItem Header="Change Your Password"/>
                             <Separator/>
                             <MenuItem Header="Sign Out"/>
@@ -230,6 +235,20 @@
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
                                                 <TextBlock Text="Manage Your Printer Queues" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <!-- အကယ်၍ admin -> Preferences ကို နှိပ်ပါက -->
+                            <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="Manage Your Preferences" FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </Setter.Value>
