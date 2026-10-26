@@ -98,7 +98,7 @@
                             <MenuItem Header="User Management" Command="{Binding NavigateUserManagementCommand}"/>
                             <MenuItem Header="System Dashboard" Command="{Binding NavigateSystemDashboardCommand}"/>
                             <Separator/>
-                            <MenuItem Header="Sign Out"/>
+                            <MenuItem Header="Sign Out" Command="{Binding SignOutCommand}"/>
                         </MenuItem>
                     </Menu>
 
