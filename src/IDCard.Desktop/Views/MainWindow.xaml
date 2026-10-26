@@ -22,7 +22,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="22,8">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="22,8" Margin="0,0,0,-2">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -119,9 +119,9 @@
         </Border>
 
         <!-- 2. Purple Sub-Header Bar -->
-        <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0">
-            <Grid VerticalAlignment="Center">
-                <!-- Credentials & Reports Tabs (Home မျက်နှာပြင်တွင် ရှိနေစဉ်) -->
+        <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0" BorderBrush="#6A1B9A" BorderThickness="0">
+            <Grid VerticalAlignment="Bottom">
+                <!-- Credentials & Reports Tabs -->
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -164,7 +164,7 @@
                 </StackPanel>
 
                 <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Setter Property="Visibility" Value="Collapsed"/>
