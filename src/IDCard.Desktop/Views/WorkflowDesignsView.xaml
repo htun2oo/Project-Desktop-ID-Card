@@ -37,7 +37,7 @@
     <Grid Background="White" Margin="20,5,20,20">
         <StackPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <Button Content="Create New Design" Style="{StaticResource StableButtonStyle}"/>
+                <Button Content="Create New Workflow" Style="{StaticResource StableButtonStyle}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
