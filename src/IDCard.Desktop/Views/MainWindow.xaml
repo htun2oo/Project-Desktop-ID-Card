@@ -132,7 +132,8 @@
                                 </Style>
                             </MenuItem.Style>
                             <MenuItem Header="Quick Start" Command="{Binding NavigateHomeCommand}"/>
-                            <MenuItem Header="Credentials" Command="{Binding NavigateCredentialsCommand}"/>
+                            <!-- Credentials ကို Credential Design ဟု ပြောင်းလဲထားခြင်း -->
+                            <MenuItem Header="Credential Design" Command="{Binding NavigateCredentialsCommand}"/>
                             <MenuItem Header="Workflows" Command="{Binding NavigateWorkflowsCommand}"/>
                             <MenuItem Header="Reports" Command="{Binding NavigateDesignReportsCommand}"/>
                             <MenuItem Header="Smart Card Workflows" Command="{Binding NavigateSmartCardWorkflowsCommand}"/>
