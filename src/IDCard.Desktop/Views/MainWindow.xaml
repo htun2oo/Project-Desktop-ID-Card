@@ -122,7 +122,7 @@
         <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0,20,0" BorderBrush="#6A1B9A" BorderThickness="0">
             <Grid VerticalAlignment="Bottom">
                 <!-- Credentials & Reports Tabs -->
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Setter Property="Visibility" Value="Collapsed"/>
