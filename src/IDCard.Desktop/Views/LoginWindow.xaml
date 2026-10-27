@@ -7,7 +7,8 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
-        Background="Transparent">
+        Background="Transparent"
+        FocusManager.FocusedElement="{Binding ElementName=TxtUserId}">
 
     <Border Background="#6A1B9A" CornerRadius="10" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid Margin="20">
@@ -41,7 +42,9 @@
             <Border Grid.Row="1" Background="White" CornerRadius="15" Padding="25" VerticalAlignment="Center">
                 <StackPanel>
                     <TextBlock Text="User ID" Foreground="#4A148C" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0,0,0,5"/>
-                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                    <!-- x:Name="TxtUserId" ထည့်သွင်းထားပါသည် -->
+                    <TextBox x:Name="TxtUserId" 
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
                              Height="35" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
 
                     <TextBlock Text="Password" Foreground="#4A148C" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="0,0,0,5"/>
