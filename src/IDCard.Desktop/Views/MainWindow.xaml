@@ -26,14 +26,10 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <!-- Background သည် Transparent ဖြစ်မှသာ Mouse Over အလုပ်လုပ်မည် (Active ဖြစ်နေလျှင် အရောင်မပြောင်းပါ) -->
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsMouseOver" Value="True"/>
-                                    <Condition TargetName="border" Property="Background" Value="Transparent"/>
-                                </MultiTrigger.Conditions>
+                            <!-- ရိုးရှင်းသော Trigger ကို အသုံးပြု၍ Mouse Hover တွင် အရောင်ပြောင်းရန် -->
+                            <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background" Value="#7B21B0"/>
-                            </MultiTrigger>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -147,6 +143,7 @@
                                     <DataTrigger Binding="{Binding HomeSubTab}" Value="Credentials">
                                         <Setter Property="Background" Value="White"/>
                                         <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -161,6 +158,7 @@
                                     <DataTrigger Binding="{Binding HomeSubTab}" Value="Reports">
                                         <Setter Property="Background" Value="White"/>
                                         <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
