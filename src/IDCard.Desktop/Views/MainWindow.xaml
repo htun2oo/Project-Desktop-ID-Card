@@ -22,7 +22,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="22,8" Margin="0,0,0,-2">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="6,6,0,0" Padding="18,8" Margin="0,0,0,-2">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -111,6 +111,7 @@
                         </TextBlock>
                     </Button>
                     
+                    <!-- Design Menu (Quick Start နှင့် Smart Card Workflows ဖယ်ရှားပြီး ကျန်တာများကို Nav bar သို့ ရွေ့ရန်ပြင်ဆင်ခြင်း) -->
                     <Menu Background="Transparent" VerticalAlignment="Center" Margin="10,0">
                         <MenuItem Header="Design ▾" FontWeight="SemiBold" Background="Transparent">
                             <MenuItem.Style>
@@ -124,6 +125,10 @@
                                             <Setter Property="Foreground" Value="#6A1B9A"/>
                                             <Setter Property="FontWeight" Value="Bold"/>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
                                             <Setter Property="Foreground" Value="#6A1B9A"/>
                                             <Setter Property="FontWeight" Value="Bold"/>
@@ -131,12 +136,9 @@
                                     </Style.Triggers>
                                 </Style>
                             </MenuItem.Style>
-                            <MenuItem Header="Quick Start" Command="{Binding NavigateHomeCommand}"/>
-                            <!-- Credentials ကို Credential Design ဟု ပြောင်းလဲထားခြင်း -->
                             <MenuItem Header="Credential Design" Command="{Binding NavigateCredentialsCommand}"/>
                             <MenuItem Header="Workflows" Command="{Binding NavigateWorkflowsCommand}"/>
                             <MenuItem Header="Reports" Command="{Binding NavigateDesignReportsCommand}"/>
-                            <MenuItem Header="Smart Card Workflows" Command="{Binding NavigateSmartCardWorkflowsCommand}"/>
                             <MenuItem Header="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}"/>
                         </MenuItem>
                     </Menu>
@@ -197,7 +199,7 @@
         <!-- 2. Purple Sub-Header Bar -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0,20,0" BorderBrush="#6A1B9A" BorderThickness="0">
             <Grid VerticalAlignment="Bottom">
-                <!-- Credentials & Reports Tabs -->
+                <!-- Home Context Sub-Tabs (Credentials & Reports) -->
                 <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -210,7 +212,6 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <!-- Credentials Tab Button -->
                     <Button Content="Credentials" Command="{Binding NavigateHomeCredentialsCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -225,7 +226,6 @@
                         </Button.Style>
                     </Button>
 
-                    <!-- Reports Tab Button -->
                     <Button Content="Reports" Command="{Binding NavigateHomeReportsCommand}" Margin="2,0,0,0">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -241,8 +241,8 @@
                     </Button>
                 </StackPanel>
 
-                <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
+                <!-- Design Context Sub-Tabs (Credential Design, Workflows, Reports, Field Connections) -->
+                <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -256,15 +256,80 @@
                                 <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding CurrentPage}" Value="SmartCardWorkflows">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+
+                    <!-- Credential Design Tab -->
+                    <Button Content="Credential Design" Command="{Binding NavigateCredentialsCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Workflows Tab -->
+                    <Button Content="Workflows" Command="{Binding NavigateWorkflowsCommand}" Margin="2,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Reports Tab -->
+                    <Button Content="Reports" Command="{Binding NavigateDesignReportsCommand}" Margin="2,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Field Connections Tab -->
+                    <Button Content="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}" Margin="2,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <!-- အခြားသော မျက်နှာပြင်များ (ဥပမာ Preferences, Tools စသည်) အတွက် စာသားများပြရန် -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
                                 <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
@@ -286,24 +351,6 @@
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
-                                        <Setter Property="Text" Value="Manage Your Credential Designs"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
-                                        <Setter Property="Text" Value="Manage Your Workflows"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
-                                        <Setter Property="Text" Value="Manage Your Reports"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="SmartCardWorkflows">
-                                        <Setter Property="Text" Value="Manage Your Smart Card Workflows"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
-                                        <Setter Property="Text" Value="Field Connections"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
-                                        <Setter Property="Text" Value="Manage Your Printer Queues"/>
-                                    </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
                                         <Setter Property="Text" Value="Manage Your Settings"/>
                                     </DataTrigger>
