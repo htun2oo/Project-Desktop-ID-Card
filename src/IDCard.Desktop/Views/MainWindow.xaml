@@ -202,7 +202,6 @@
                     
                     <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,5,0">
                         <MenuItem Header="admin ▾" FontWeight="SemiBold" FontSize="12" Foreground="#333333" Background="Transparent">
-                            <Separator/>
                             <MenuItem Header="User Management" Command="{Binding NavigateUserManagementCommand}"/>
                             <MenuItem Header="System Dashboard" Command="{Binding NavigateSystemDashboardCommand}"/>
                             <Separator/>
