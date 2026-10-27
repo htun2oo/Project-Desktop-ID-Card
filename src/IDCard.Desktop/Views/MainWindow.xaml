@@ -26,11 +26,25 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <!-- ရိုးရှင်းသော Trigger ကို အသုံးပြု၍ Mouse Hover တွင် အရောင်ပြောင်းရန် -->
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background" Value="#7B21B0"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TopNavButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" Padding="10,5" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -74,10 +88,49 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,0,0">
-                    <Button Content="Home" Command="{Binding NavigateHomeCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold" Margin="0,0,15,0"/>
+                    <!-- Home Button -->
+                    <Button Command="{Binding NavigateHomeCommand}" Style="{StaticResource TopNavButtonStyle}">
+                        <TextBlock Text="Home">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="#333333"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentPage}" Value="Home">
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button>
                     
-                    <Menu Background="Transparent" VerticalAlignment="Center" Margin="0,0,15,0">
-                        <MenuItem Header="Design ▾" FontWeight="SemiBold" Foreground="#333333" Background="Transparent">
+                    <Menu Background="Transparent" VerticalAlignment="Center" Margin="10,0">
+                        <MenuItem Header="Design ▾" FontWeight="SemiBold" Background="Transparent">
+                            <MenuItem.Style>
+                                <Style TargetType="MenuItem">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </MenuItem.Style>
                             <MenuItem Header="Quick Start" Command="{Binding NavigateHomeCommand}"/>
                             <MenuItem Header="Credentials" Command="{Binding NavigateCredentialsCommand}"/>
                             <MenuItem Header="Workflows" Command="{Binding NavigateWorkflowsCommand}"/>
@@ -87,7 +140,28 @@
                         </MenuItem>
                     </Menu>
 
-                    <Button Content="Printer Queues" Command="{Binding NavigateReportsCommand}" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontWeight="SemiBold"/>
+                    <!-- Printer Queues Button -->
+                    <Button Command="{Binding NavigateReportsCommand}" Style="{StaticResource TopNavButtonStyle}">
+                        <TextBlock Text="Printer Queues">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="#333333"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentPage}" Value="Reports">
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
