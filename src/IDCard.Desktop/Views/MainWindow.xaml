@@ -111,37 +111,67 @@
                         </TextBlock>
                     </Button>
                     
-                    <!-- Design Menu (Quick Start နှင့် Smart Card Workflows ဖယ်ရှားပြီး ကျန်တာများကို Nav bar သို့ ရွေ့ရန်ပြင်ဆင်ခြင်း) -->
-                    <Menu Background="Transparent" VerticalAlignment="Center" Margin="10,0">
-                        <MenuItem Header="Design ▾" FontWeight="SemiBold" Background="Transparent">
-                            <MenuItem.Style>
-                                <Style TargetType="MenuItem">
+                    <!-- Design Button (Drop-down အစား ခလုတ်အဖြစ် ပြောင်းလဲထားခြင်း) -->
+                    <Button Command="{Binding NavigateCredentialsCommand}" Style="{StaticResource TopNavButtonStyle}" Margin="5,0">
+                        <TextBlock Text="Design">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="#333333"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CurrentPage}" Value="CredentialDesigns">
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding CurrentPage}" Value="CredentialDesigns"/>
+                                            </MultiDataTrigger.Conditions>
                                             <Setter Property="Foreground" Value="#6A1B9A"/>
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentPage}" Value="Workflows">
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding CurrentPage}" Value="Workflows"/>
+                                            </MultiDataTrigger.Conditions>
                                             <Setter Property="Foreground" Value="#6A1B9A"/>
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentPage}" Value="DesignReports">
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding CurrentPage}" Value="DesignReports"/>
+                                            </MultiDataTrigger.Conditions>
                                             <Setter Property="Foreground" Value="#6A1B9A"/>
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnections">
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding CurrentPage}" Value="FieldConnections"/>
+                                            </MultiDataTrigger.Conditions>
                                             <Setter Property="Foreground" Value="#6A1B9A"/>
                                             <Setter Property="FontWeight" Value="Bold"/>
-                                        </DataTrigger>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiDataTrigger>
                                     </Style.Triggers>
                                 </Style>
-                            </MenuItem.Style>
-                            <MenuItem Header="Credential Design" Command="{Binding NavigateCredentialsCommand}"/>
-                            <MenuItem Header="Workflows" Command="{Binding NavigateWorkflowsCommand}"/>
-                            <MenuItem Header="Reports" Command="{Binding NavigateDesignReportsCommand}"/>
-                            <MenuItem Header="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}"/>
-                        </MenuItem>
-                    </Menu>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button>
 
                     <!-- Printer Queues Button -->
                     <Button Command="{Binding NavigateReportsCommand}" Style="{StaticResource TopNavButtonStyle}">
