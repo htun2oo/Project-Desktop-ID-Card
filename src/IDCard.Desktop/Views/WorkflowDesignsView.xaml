@@ -59,9 +59,14 @@
             </Grid.RowDefinitions>
 
             <!-- ထိပ်ဆုံးခရမ်းရောင် Sub-Header (Workflow Design 1 နှင့် Properties Tabs) -->
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#7B1FA2" Padding="10,0">
-                <Button Content="Workflow Design 1" Width="140" Height="30" Background="White" Foreground="#7B1FA2" FontWeight="Bold" BorderThickness="0" Margin="0,0,5,0"/>
-                <Button Content="Properties" Width="100" Height="30" Background="Transparent" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#7B1FA2" Margin="0">
+                <!-- Padding ကို StackPanel အစား Border ထဲတွင် သုံးထားသည် -->
+                <Border Padding="10,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Workflow Design 1" Width="140" Height="30" Background="White" Foreground="#7B1FA2" FontWeight="Bold" BorderThickness="0" Margin="0,0,5,0"/>
+                        <Button Content="Properties" Width="100" Height="30" Background="Transparent" Foreground="White" FontWeight="SemiBold" BorderThickness="0"/>
+                    </StackPanel>
+                </Border>
             </StackPanel>
 
             <!-- အလယ်ပိုင်း Main Content Area (ဘယ်ဘက် Steps, အလယ် Canvas, ညာဘက် Properties) -->
@@ -100,14 +105,17 @@
             </Grid>
 
             <!-- အောက်ဆုံး Buttons (Save, Save As..., Close) -->
-            <Border Grid.Row="2" Background="#F5F5F5" BorderBrush="#DDDDDD" BorderThickness="0,1,0,0" Padding="15,0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Button Content="Save" Style="{StaticResource StableButtonStyle}" Width="80" Margin="0,0,10,0"/>
-                    <Button Content="Save As..." Style="{StaticResource StableButtonStyle}" Background="#757575" Width="90" Margin="0,0,10,0"/>
-                    <Button Content="Close" 
-                            Command="{Binding CloseWorkflowCommand}"
-                            Style="{StaticResource StableButtonStyle}" Background="#B0BEC5" Width="80"/>
-                </StackPanel>
+            <Border Grid.Row="2" Background="#F5F5F5" BorderBrush="#DDDDDD" BorderThickness="0,1,0,0">
+                <!-- StackPanel တွင် Padding မသုံးဘဲ အပြင်ဘက် Border တွင် Padding ထည့်ထားသည် -->
+                <Border Padding="15,0" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Content="Save" Style="{StaticResource StableButtonStyle}" Width="80" Margin="0,0,10,0"/>
+                        <Button Content="Save As..." Style="{StaticResource StableButtonStyle}" Background="#757575" Width="90" Margin="0,0,10,0"/>
+                        <Button Content="Close" 
+                                Command="{Binding CloseWorkflowCommand}"
+                                Style="{StaticResource StableButtonStyle}" Background="#B0BEC5" Width="80"/>
+                    </StackPanel>
+                </Border>
             </Border>
         </Grid>
     </Grid>
