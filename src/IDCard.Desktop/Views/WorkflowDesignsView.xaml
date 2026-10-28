@@ -39,7 +39,7 @@
     </UserControl.Resources>
 
     <Grid Background="White">
-        <!-- ၁။ ပထမဦးဆုံးပေါ်ရမည့် မျက်နှာပြင်: Create New Workflow ခလုတ်ပါသော စာမျက်နှာ (IsListVisible ကိုသုံးသည်) -->
+        <!-- ၁။ ပထမဦးဆုံးပေါ်ရမည့် မျက်နှာပြင်: "Create New Workflow" ခလုတ်သာပါသော စာမျက်နှာ (IsListVisible ကိုသုံးသည်) -->
         <Grid Margin="20,5,20,20" Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -50,7 +50,7 @@
             </StackPanel>
         </Grid>
 
-        <!-- ၂။ "Create New Workflow" ခလုတ်ကို နှိပ်မှ ပေါ်လာမည့် Workflow Designer မျက်နှာပြင် (IsEditingWorkflow ကိုသုံးသည်) -->
+        <!-- ၂။ "Create New Workflow" ခလုတ်ကို နှိပ်မှသာ ပေါ်လာမည့် Workflow Designer မျက်နှာပြင် (IsEditingWorkflow ကိုသုံးသည်) -->
         <Grid Visibility="{Binding IsEditingWorkflow, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
