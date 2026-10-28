@@ -7,7 +7,6 @@
              d:DesignHeight="600" d:DesignWidth="1000">
 
     <UserControl.Resources>
-        <!-- Stable Button Style -->
         <Style x:Key="StableButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#1E88E5"/>
             <Setter Property="Foreground" Value="White"/>
@@ -33,19 +32,14 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!-- Boolean to Visibility Converter -->
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
 
-    <Grid Background="White">
-        <!-- မျက်နှာပြင် ၁: Workflow Designs ကိုစဝင်ချင်းတွင် "Create New Workflow" ခလုတ်ပေါ်လာရန် -->
-        <Grid Margin="20,20,20,20" Visibility="{Binding IsEditingWorkflow, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <Button Content="Create New Workflow" 
-                        Command="{Binding CreateNewWorkflowCommand}"
-                        Style="{StaticResource StableButtonStyle}"/>
-            </StackPanel>
-        </Grid>
+    <!-- Create New Workflow ခလုတ်သာပါသော မူလစာမျက်နှာ -->
+    <Grid Background="White" Margin="20,20,20,20">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Button Content="Create New Workflow" 
+                    Command="{Binding CreateNewWorkflowCommand}"
+                    Style="{StaticResource StableButtonStyle}"/>
+        </StackPanel>
     </Grid>
 </UserControl>
