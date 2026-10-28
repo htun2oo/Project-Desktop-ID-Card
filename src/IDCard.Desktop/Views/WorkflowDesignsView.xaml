@@ -40,7 +40,27 @@
 
     <Grid Background="White">
         <!-- ၁။ ပထမဦးဆုံးပေါ်ရမည့် မျက်နှာပြင်: "Create New Workflow" ခလုတ်သာပါသော စာမျက်နှာ -->
-        <Grid Margin="20,5,20,20" Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid Margin="20,5,20,20">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <!-- IsListVisible သည် true ဖြစ်မှသာ ဤ Grid ပေါ်မည် -->
+                        <DataBindingBinding Property="{Binding IsListVisible}" Value="True"/>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEditingWorkflow}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            
             <StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Button Content="Create New Workflow" 
@@ -51,7 +71,19 @@
         </Grid>
 
         <!-- ၂။ "Create New Workflow" ခလုတ်ကို နှိပ်မှသာ ပေါ်လာမည့် Workflow Designer မျက်နှာပြင် -->
-        <Grid Visibility="{Binding IsEditingWorkflow, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <!-- IsEditingWorkflow သည် true ဖြစ်မှသာ Designer မျက်နှာပြင် ပေါ်မည် -->
+                        <DataTrigger Binding="{Binding IsEditingWorkflow}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="*"/>
