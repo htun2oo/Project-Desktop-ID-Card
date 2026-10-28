@@ -39,7 +39,7 @@
     </UserControl.Resources>
 
     <Grid Background="White">
-        <!-- ၁။ ပထမပုံ: Workflow List / Create New Workflow ခလုတ်ပြမည့် မျက်နှာပြင် -->
+        <!-- ၁။ ပထမဦးဆုံးပေါ်ရမည့် မျက်နှာပြင်: Create New Workflow ခလုတ်ပါသော စာမျက်နှာ -->
         <Grid Margin="20,5,20,20" Visibility="{Binding IsEditingWorkflow, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -50,7 +50,7 @@
             </StackPanel>
         </Grid>
 
-        <!-- ၂။ ဒုတိယ နှင့် တတိယပုံ: Workflow Designer & Properties မျက်နှာပြင် -->
+        <!-- ၂။ "Create New Workflow" ခလုတ်ကို နှိပ်မှသာ ပေါ်လာရမည့် Workflow Designer မျက်နှာပြင် -->
         <Grid Visibility="{Binding IsEditingWorkflow, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
@@ -60,7 +60,6 @@
 
             <!-- ထိပ်ဆုံးခရမ်းရောင် Sub-Header (Workflow Design 1 နှင့် Properties Tabs) -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#7B1FA2" Margin="0">
-                <!-- Padding ကို StackPanel အစား Border ထဲတွင် သုံးထားသည် -->
                 <Border Padding="10,0">
                     <StackPanel Orientation="Horizontal">
                         <Button Content="Workflow Design 1" Width="140" Height="30" Background="White" Foreground="#7B1FA2" FontWeight="Bold" BorderThickness="0" Margin="0,0,5,0"/>
@@ -106,11 +105,11 @@
 
             <!-- အောက်ဆုံး Buttons (Save, Save As..., Close) -->
             <Border Grid.Row="2" Background="#F5F5F5" BorderBrush="#DDDDDD" BorderThickness="0,1,0,0">
-                <!-- StackPanel တွင် Padding မသုံးဘဲ အပြင်ဘက် Border တွင် Padding ထည့်ထားသည် -->
                 <Border Padding="15,0" VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Button Content="Save" Style="{StaticResource StableButtonStyle}" Width="80" Margin="0,0,10,0"/>
                         <Button Content="Save As..." Style="{StaticResource StableButtonStyle}" Background="#757575" Width="90" Margin="0,0,10,0"/>
+                        <!-- Close ခလုတ်ကို နှိပ်လျှင် ပထမစာမျက်နှာသို့ ပြန်သွားရန် -->
                         <Button Content="Close" 
                                 Command="{Binding CloseWorkflowCommand}"
                                 Style="{StaticResource StableButtonStyle}" Background="#B0BEC5" Width="80"/>
