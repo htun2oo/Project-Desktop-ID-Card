@@ -24,22 +24,23 @@ namespace IDCard.Desktop.ViewModels
 
         public WorkflowDesignsViewModel()
         {
-            // စစချင်းဝင်ချင်းတွင် Create New Workflow ခလုတ်မျက်နှာပြင်ကို ပြရန် false ဟု သတ်မှတ်သည်
+            // စစချင်း ဝင်လာချိန်တွင် Create New Workflow မျက်နှာပြင်ပြရန် false ဟု သတ်မှတ်သည်
             _isEditingWorkflow = false;
 
-            CreateNewWorkflowCommand = new RelayCommand(ExecuteCreateNewWorkflow);
-            CloseWorkflowCommand = new RelayCommand(ExecuteCloseWorkflow);
+            // Nullability Warnings ကင်းစင်စေရန် Parameter မပါသော Action များကို သုံးသည်
+            CreateNewWorkflowCommand = new RelayCommand(_ => ExecuteCreateNewWorkflow());
+            CloseWorkflowCommand = new RelayCommand(_ => ExecuteCloseWorkflow());
         }
 
-        private void ExecuteCreateNewWorkflow(object obj)
+        private void ExecuteCreateNewWorkflow()
         {
-            // "Create New Workflow" ခလုတ်နှိပ်ပါက Designer မျက်နှာပြင်သို့ ပြောင်းရန် true သို့ ပြောင်းမည်
+            // Create New Workflow ခလုတ်ကို နှိပ်ပါက Designer မျက်နှာပြင်သို့ ပြောင်းရန်
             IsEditingWorkflow = true;
         }
 
-        private void ExecuteCloseWorkflow(object obj)
+        private void ExecuteCloseWorkflow()
         {
-            // Designer မှ Close နှိပ်ပါက မူလ Create New Workflow ခလုတ်ရှိရာ မျက်နှာပြင်သို့ ပြန်သွားရန် false သို့ ပြောင်းမည်
+            // Designer မှ Close နှိပ်ပါက မူလ မျက်နှာပြင်သို့ ပြန်သွားရန်
             IsEditingWorkflow = false;
         }
     }
