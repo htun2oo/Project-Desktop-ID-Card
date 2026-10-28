@@ -33,9 +33,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!-- Boolean to Visibility Converter -->
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
 
     <Grid Background="White">
@@ -43,24 +40,16 @@
         <Grid Margin="20,5,20,20">
             <Grid.Style>
                 <Style TargetType="Grid">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <!-- IsListVisible သည် true ဖြစ်မှသာ ဤ Grid ပေါ်မည် -->
-                        <DataBindingBinding Property="{Binding IsListVisible}" Value="True"/>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-            <Grid.Style>
-                <Style TargetType="Grid">
                     <Setter Property="Visibility" Value="Visible"/>
                     <Style.Triggers>
+                        <!-- IsEditingWorkflow သည် true ဖြစ်သွားမှသာ ဤစာမျက်နှာ ပျောက်သွားမည် -->
                         <DataTrigger Binding="{Binding IsEditingWorkflow}" Value="True">
                             <Setter Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
-            
+
             <StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Button Content="Create New Workflow" 
