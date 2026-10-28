@@ -50,6 +50,21 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        // Workflow Editor Sub-Tab အတွက် State ထိန်းချုပ်ရန် (Design သို့မဟုတ် Properties)
+        private string _workflowEditorSubTab = "Design";
+        public string WorkflowEditorSubTab
+        {
+            get => _workflowEditorSubTab;
+            set
+            {
+                if (_workflowEditorSubTab != value)
+                {
+                    _workflowEditorSubTab = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private readonly CredentialsView _credentialsView = new CredentialsView(); 
         private readonly CredentialDesignsView _credentialDesignsView = new CredentialDesignsView();
         private readonly WorkflowDesignsView _workflowDesignsView = new WorkflowDesignsView();
@@ -81,6 +96,8 @@ namespace IDCard.Desktop.ViewModels
 
         public ICommand EnterWorkflowEditorCommand { get; }
         public ICommand ExitWorkflowEditorCommand { get; }
+        public ICommand SelectWorkflowDesignTabCommand { get; }
+        public ICommand SelectWorkflowPropertiesTabCommand { get; }
 
         public MainViewModel()
         {
@@ -197,11 +214,22 @@ namespace IDCard.Desktop.ViewModels
             EnterWorkflowEditorCommand = new RelayCommand(_ => 
             {
                 CurrentPage = "WorkflowEditor";
+                WorkflowEditorSubTab = "Design";
             });
 
             ExitWorkflowEditorCommand = new RelayCommand(_ => 
             {
                 CurrentPage = "Workflows";
+            });
+
+            SelectWorkflowDesignTabCommand = new RelayCommand(_ => 
+            {
+                WorkflowEditorSubTab = "Design";
+            });
+
+            SelectWorkflowPropertiesTabCommand = new RelayCommand(_ => 
+            {
+                WorkflowEditorSubTab = "Properties";
             });
 
             SignOutCommand = new RelayCommand(_ =>  
