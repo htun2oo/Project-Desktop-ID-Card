@@ -33,23 +33,16 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Boolean to Visibility Converters -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
     </UserControl.Resources>
 
     <Grid Background="White">
-        <!-- ၁။ ပထမဦးဆုံးပေါ်မည့် မျက်နှာပြင်: "Create New Workflow" ခလုတ်သာပါသော စာမျက်နှာ -->
-        <Grid Margin="20,5,20,20">
-            <Grid.Style>
-                <Style TargetType="Grid">
-                    <Setter Property="Visibility" Value="Visible"/>
-                    <Style.Triggers>
-                        <!-- IsEditingWorkflow သည် true ဖြစ်သွားပါက ဤစာမျက်နှာ ပျောက်သွားမည် -->
-                        <DataTrigger Binding="{Binding IsEditingWorkflow}" Value="True">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-
+        <!-- ၁။ ပထမဦးဆုံးပေါ်ရမည့် မျက်နှာပြင်: "Create New Workflow" ခလုတ်သာပါသော စာမျက်နှာ -->
+        <!-- IsEditingWorkflow သည် false ဖြစ်မှသာ Visibility=Visible ဖြစ်မည် (စစချင်းပေါ်မည်) -->
+        <Grid Margin="20,5,20,20" 
+              Visibility="{Binding IsEditingWorkflow, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=Invert}">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                     <Button Content="Create New Workflow" 
@@ -59,20 +52,9 @@
             </StackPanel>
         </Grid>
 
-        <!-- ၂။ "Create New Workflow" ခလုတ်ကို နှိပ်မှသာ ပေါ်လာမည့် Workflow Designer မျက်နှာပြင် (Workflow Design 1 & Properties) -->
-        <Grid>
-            <Grid.Style>
-                <Style TargetType="Grid">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <!-- IsEditingWorkflow သည် true ဖြစ်မှသာ ဤ Designer မျက်နှာပြင် ပေါ်လာမည် -->
-                        <DataTrigger Binding="{Binding IsEditingWorkflow}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-
+        <!-- ၂။ "Create New Workflow" ခလုတ်ကို နှိပ်မှသာ ပေါ်လာမည့် Workflow Designer မျက်နှာပြင် -->
+        <!-- IsEditingWorkflow သည် true ဖြစ်မှသာ Visibility=Visible ဖြစ်မည် -->
+        <Grid Visibility="{Binding IsEditingWorkflow, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="45"/>
                 <RowDefinition Height="*"/>
