@@ -79,7 +79,6 @@ namespace IDCard.Desktop.ViewModels
         public ICommand NavigateSystemDashboardCommand { get; }
         public ICommand SignOutCommand { get; }
 
-        // Workflow Designer အတွက် အသစ်ထည့်သွင်းသော Commands
         public ICommand EnterWorkflowEditorCommand { get; }
         public ICommand ExitWorkflowEditorCommand { get; }
 
@@ -88,7 +87,6 @@ namespace IDCard.Desktop.ViewModels
             _credentialsView.DataContext = new CredentialsViewModel();
             _reportsView.DataContext = new ReportsViewModel();
 
-            // WorkflowDesignsViewModel တွင် MainViewModel သို့ command လှမ်းချိတ်ရန် instance ပေးပို့ခြင်း
             var workflowDesignsVm = new WorkflowDesignsViewModel(
                 enterEditor: () => EnterWorkflowEditorCommand.Execute(null),
                 exitEditor: () => ExitWorkflowEditorCommand.Execute(null)
@@ -128,7 +126,6 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateWorkflowsCommand = new RelayCommand(_ =>  
             {
-                // Workflow Designs tab ကို နှိပ်လိုက်တိုင်း List View အစပိုင်း (Create New Workflow ခလုတ်) သို့ ပြန်ရောက်စေရန်
                 workflowDesignsVm.ResetToListView();
                 CurrentView = _workflowDesignsView;
                 CurrentPage = "Workflows";
@@ -197,13 +194,11 @@ namespace IDCard.Desktop.ViewModels
                 CurrentPage = "SystemDashboard";
             });
 
-            // Create New Workflow နှိပ်လိုက်သောအခါ Main Tabs များကို ဖျောက်ပြီး Workflow Editor မျက်နှာပြင်သို့ ပြောင်းရန်
             EnterWorkflowEditorCommand = new RelayCommand(_ => 
             {
                 CurrentPage = "WorkflowEditor";
             });
 
-            // Close နှိပ်လိုက်သောအခါ မူလ Workflow Designs မျက်နှာပြင်သို့ ပြန်သွားရန်
             ExitWorkflowEditorCommand = new RelayCommand(_ => 
             {
                 CurrentPage = "Workflows";
