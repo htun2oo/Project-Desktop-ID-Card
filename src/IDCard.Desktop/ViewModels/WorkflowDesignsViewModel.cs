@@ -11,13 +11,16 @@ namespace IDCard.Desktop.ViewModels
             get => _isEditingWorkflow;
             set 
             { 
-                _isEditingWorkflow = value; 
-                OnPropertyChanged(); 
-                OnPropertyChanged(nameof(IsListVisible)); 
+                if (_isEditingWorkflow != value)
+                {
+                    _isEditingWorkflow = value; 
+                    OnPropertyChanged(); 
+                    OnPropertyChanged(nameof(IsListVisible)); 
+                }
             }
         }
 
-        // စစချင်းဝင်ချင်းတွင် Create New Workflow ခလုတ်ကိုပြရန် True ဖြစ်ရပါမည်
+        // မျက်နှာပြင်စတင်ဖွင့်ချိန်တွင် Create New Workflow ခလုတ်ကိုသာ ပထမဆုံးပြရန်
         public bool IsListVisible => !_isEditingWorkflow;
 
         public ICommand CreateNewWorkflowCommand { get; }
@@ -25,7 +28,7 @@ namespace IDCard.Desktop.ViewModels
 
         public WorkflowDesignsViewModel()
         {
-            // အရေးကြီးသည်: စစချင်း ဝင်လာချိန်တွင် Editing မလုပ်သေးသောကြောင့် false ဟัตထားရပါမည်
+            // View အသစ်ဆောက်လိုက်တိုင်း သေချာပေါက် false (Create New Workflow မျက်နှာပြင်) ဖြစ်နေစေရန်
             _isEditingWorkflow = false;
 
             CreateNewWorkflowCommand = new RelayCommand(ExecuteCreateNewWorkflow);
@@ -34,13 +37,13 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteCreateNewWorkflow(object obj)
         {
-            // "Create New Workflow" ခလုတ်ကို နှိပ်မှသာ Designer မျက်နှာပြင်သို့ သွားရန် true ပြောင်းမည်
+            // "Create New Workflow" ခလုတ်ကို နှိပ်မှသာ Designer သို့ ပြောင်းမည်
             IsEditingWorkflow = true;
         }
 
         private void ExecuteCloseWorkflow(object obj)
         {
-            // Designer ထဲမှ Close နှိပ်ပါက မူလ Create New Workflow ခလုတ်ရှိရာ စာမျက်နှာသို့ ပြန်လာရန် false ပြောင်းမည်
+            // Close နှိပ်ပါက Create New Workflow မျက်နှာပြင်သို့ ပြန်သွားမည်
             IsEditingWorkflow = false;
         }
     }
