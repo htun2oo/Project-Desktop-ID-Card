@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 using IDCard.Desktop.Helpers;
 
@@ -5,6 +6,9 @@ namespace IDCard.Desktop.ViewModels
 {
     public class WorkflowDesignsViewModel : ViewModelBase
     {
+        private readonly Action _enterEditor;
+        private readonly Action _exitEditor;
+
         private bool _isEditingWorkflow;
         public bool IsEditingWorkflow
         {
@@ -22,26 +26,33 @@ namespace IDCard.Desktop.ViewModels
         public ICommand CreateNewWorkflowCommand { get; }
         public ICommand CloseWorkflowCommand { get; }
 
-        public WorkflowDesignsViewModel()
+        public WorkflowDesignsViewModel(Action enterEditor, Action exitEditor)
         {
-            // စစချင်း ဝင်လာချိန်တွင် Create New Workflow မျက်နှာပြင်ပြရန် false ဟု သတ်မှတ်သည်
+            _enterEditor = enterEditor;
+            _exitEditor = exitEditor;
+
             _isEditingWorkflow = false;
 
-            // Nullability Warnings ကင်းစင်စေရန် Parameter မပါသော Action များကို သုံးသည်
             CreateNewWorkflowCommand = new RelayCommand(_ => ExecuteCreateNewWorkflow());
             CloseWorkflowCommand = new RelayCommand(_ => ExecuteCloseWorkflow());
         }
 
+        public void ResetToListView()
+        {
+            _isEditingWorkflow = false;
+            OnPropertyChanged(nameof(IsEditingWorkflow));
+        }
+
         private void ExecuteCreateNewWorkflow()
         {
-            // Create New Workflow ခလုတ်ကို နှိပ်ပါက Designer မျက်နှာပြင်သို့ ပြောင်းရန်
             IsEditingWorkflow = true;
+            _enterEditor?.Invoke(); // Main Window ၏ Main Tabs များကို Workflow Design 1 & Properties သို့ ပြောင်းရန် လှမ်းအကြောင်းကြားခြင်း
         }
 
         private void ExecuteCloseWorkflow()
         {
-            // Designer မှ Close နှိပ်ပါက မူလ မျက်နှာပြင်သို့ ပြန်သွားရန်
             IsEditingWorkflow = false;
+            _exitEditor?.Invoke(); // မူလ Tab များဆီသို့ ပြန်သွားရန်
         }
     }
 }
