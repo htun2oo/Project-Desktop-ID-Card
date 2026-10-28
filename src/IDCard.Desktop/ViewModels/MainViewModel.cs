@@ -105,8 +105,8 @@ namespace IDCard.Desktop.ViewModels
             _reportsView.DataContext = new ReportsViewModel();
 
             var workflowDesignsVm = new WorkflowDesignsViewModel(
-                enterEditor: () => EnterWorkflowEditorCommand.Execute(null),
-                exitEditor: () => ExitWorkflowEditorCommand.Execute(null)
+                enterEditor: () => EnterWorkflowEditorCommand?.Execute(null),
+                exitEditor: () => ExitWorkflowEditorCommand?.Execute(null)
             );
             _workflowDesignsView.DataContext = workflowDesignsVm;
 
