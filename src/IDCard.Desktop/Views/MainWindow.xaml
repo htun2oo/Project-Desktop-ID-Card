@@ -365,7 +365,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Workflow Editor Mode Sub-Tabs (Workflow Design 1 နှင့် Properties Tabs) -->
+                <!-- Workflow Editor Mode Sub-Tabs (Workflow Design 1 နှင့် Properties Tabs - အပြန်အလှန် Active ဖြစ်နိုင်သည်) -->
                 <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -378,11 +378,46 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <Button Content="Workflow Design 1" Background="White" Foreground="#6A1B9A" FontWeight="Bold" Style="{StaticResource EnterpriseTabButtonStyle}" IsHitTestVisible="False"/>
-                    <Button Content="Properties" Background="Transparent" Foreground="White" FontWeight="SemiBold" Style="{StaticResource EnterpriseTabButtonStyle}" Margin="2,0,0,0" IsHitTestVisible="False"/>
+                    <!-- Workflow Design 1 Tab -->
+                    <Button Content="Workflow Design 1" Command="{Binding SelectWorkflowDesignTabCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding WorkflowEditorSubTab}" Value="Design">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Properties Tab -->
+                    <Button Content="Properties" Command="{Binding SelectWorkflowPropertiesTabCommand}" Margin="2,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding WorkflowEditorSubTab}" Value="Properties">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#6A1B9A"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="IsHitTestVisible" Value="False"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </StackPanel>
 
-                <!-- အခြားသော မျက်နှာပြင်များ (ဥပမာ Preferences, Tools စသည်) အတွက် စာသားများပြရန် -->
+                <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
