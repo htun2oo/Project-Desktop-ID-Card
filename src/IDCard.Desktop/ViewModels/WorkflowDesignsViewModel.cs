@@ -30,7 +30,6 @@ namespace IDCard.Desktop.ViewModels
         {
             _enterEditor = enterEditor;
             _exitEditor = exitEditor;
-
             _isEditingWorkflow = false;
 
             CreateNewWorkflowCommand = new RelayCommand(_ => ExecuteCreateNewWorkflow());
@@ -46,7 +45,7 @@ namespace IDCard.Desktop.ViewModels
         private void ExecuteCreateNewWorkflow()
         {
             IsEditingWorkflow = true;
-            _enterEditor?.Invoke(); // Main Window ၏ Main Tabs များကို Workflow Design 1 & Properties သို့ ပြောင်းရန် လှမ်းအကြောင်းကြားခြင်း
+            _enterEditor?.Invoke(); // Main Window ၏ Tabs များကို Workflow Design 1 & Properties သို့ ပြောင်းရန်
         }
 
         private void ExecuteCloseWorkflow()
