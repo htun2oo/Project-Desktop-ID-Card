@@ -24,7 +24,7 @@ namespace IDCard.Desktop.ViewModels
 
         public WorkflowDesignsViewModel()
         {
-            // စစချင်းဝင်ချင်းတွင် Create New Workflow ခလုတ်ကိုပြရန် false ဟု တိကျစွာသတ်မှတ်သည်
+            // စစချင်းဝင်ချင်းတွင် Create New Workflow ခလုတ်မျက်နှာပြင်ကို ပြရန် false ဟု သတ်မှတ်သည်
             _isEditingWorkflow = false;
 
             CreateNewWorkflowCommand = new RelayCommand(ExecuteCreateNewWorkflow);
@@ -33,11 +33,13 @@ namespace IDCard.Desktop.ViewModels
 
         private void ExecuteCreateNewWorkflow(object obj)
         {
+            // "Create New Workflow" ခလုတ်နှိပ်ပါက Designer မျက်နှာပြင်သို့ ပြောင်းရန် true သို့ ပြောင်းမည်
             IsEditingWorkflow = true;
         }
 
         private void ExecuteCloseWorkflow(object obj)
         {
+            // Designer မှ Close နှိပ်ပါက မူလ Create New Workflow ခလုတ်ရှိရာ မျက်နှာပြင်သို့ ပြန်သွားရန် false သို့ ပြောင်းမည်
             IsEditingWorkflow = false;
         }
     }
