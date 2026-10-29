@@ -6,7 +6,8 @@
         Title="Desktop ID Card System"  
         Height="750" Width="1200"  
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/app.ico">
+        Icon="/Assets/app.ico"
+        x:Name="RootWindow">
 
     <Window.DataContext>
         <vm:MainViewModel/>
@@ -382,7 +383,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Credential Editor Mode Header (Credential Design 1) - Vertical Center ညှိထားခြင်း -->
+                <!-- Credential Editor Mode Header -->
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -396,7 +397,8 @@
                     </StackPanel.Style>
 
                     <TextBlock Text="Credential Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                    <Button Width="26" Height="26" Background="#1E88E5" Foreground="White" BorderBrush="White" BorderThickness="1" Cursor="Hand" ToolTip="Edit Name" VerticalAlignment="Center">
+                    <Button Width="26" Height="26" Background="#1E88E5" Foreground="White" BorderBrush="White" BorderThickness="1" Cursor="Hand" ToolTip="Edit Name" VerticalAlignment="Center"
+                            Command="{Binding DataContext.OpenEditPropertiesCommand, ElementName=RootWindow}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
@@ -458,7 +460,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Report Editor Mode Header (Report Design 1) -->
+                <!-- Report Editor Mode Header -->
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -482,51 +484,6 @@
                         </Button.Template>
                         <TextBlock Text="✏" FontSize="11"/>
                     </Button>
-                </StackPanel>
-
-                <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
-                    <StackPanel.Style>
-                        <Style TargetType="StackPanel">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding CurrentPage}" Value="Tools">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding CurrentPage}" Value="UserManagement">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding CurrentPage}" Value="SystemDashboard">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </StackPanel.Style>
-                    
-                    <TextBlock Text="⚙" FontSize="16" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center"/>
-                    <TextBlock FontSize="15" FontWeight="SemiBold" Foreground="White" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Preferences">
-                                        <Setter Property="Text" Value="Manage Your Settings"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="Tools">
-                                        <Setter Property="Text" Value="Tools"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="UserManagement">
-                                        <Setter Property="Text" Value="User Management"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding CurrentPage}" Value="SystemDashboard">
-                                        <Setter Property="Text" Value="System Dashboard"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
                 </StackPanel>
             </Grid>
         </Border>
