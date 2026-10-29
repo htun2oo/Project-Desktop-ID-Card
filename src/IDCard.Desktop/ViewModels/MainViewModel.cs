@@ -101,14 +101,20 @@ namespace IDCard.Desktop.ViewModels
         public ICommand EnterReportEditorCommand { get; }
         public ICommand ExitReportEditorCommand { get; }
 
-        // Field Connection Editor အတွက် Commands
-        public ICommand EnterFieldConnectionEditorCommand { get; }
-        public ICommand ExitFieldConnectionEditorCommand { get; }
+        // Credential Editor အတွက် Commands
+        public ICommand EnterCredentialEditorCommand { get; }
+        public ICommand ExitCredentialEditorCommand { get; }
 
         public MainViewModel()
         {
             _credentialsView.DataContext = new CredentialsViewModel();
             _reportsView.DataContext = new ReportsViewModel();
+
+            var credentialDesignsVm = new CredentialDesignsViewModel(
+                enterEditor: () => EnterCredentialEditorCommand?.Execute(null),
+                exitEditor: () => ExitCredentialEditorCommand?.Execute(null)
+            );
+            _credentialDesignsView.DataContext = credentialDesignsVm;
 
             var workflowDesignsVm = new WorkflowDesignsViewModel(
                 enterEditor: () => EnterWorkflowEditorCommand?.Execute(null),
@@ -121,12 +127,6 @@ namespace IDCard.Desktop.ViewModels
                 exitEditor: () => ExitReportEditorCommand?.Execute(null)
             );
             _reportDesignsView.DataContext = reportDesignsVm;
-
-            var fieldConnectionVm = new FieldConnectionDesignsViewModel(
-                enterEditor: () => EnterFieldConnectionEditorCommand?.Execute(null),
-                exitEditor: () => ExitFieldConnectionEditorCommand?.Execute(null)
-            );
-            _fieldConnectionDesignsView.DataContext = fieldConnectionVm;
 
             CurrentView = _credentialsView;
             CurrentPage = "Home";
@@ -155,6 +155,7 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateCredentialsCommand = new RelayCommand(_ =>  
             {
+                credentialDesignsVm.ResetToListView();
                 CurrentView = _credentialDesignsView;
                 CurrentPage = "CredentialDesigns";
             });
@@ -181,7 +182,6 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateFieldConnectionsCommand = new RelayCommand(_ =>  
             {
-                fieldConnectionVm.ResetToListView();
                 CurrentView = _fieldConnectionDesignsView;
                 CurrentPage = "FieldConnections";
             });
@@ -231,6 +231,16 @@ namespace IDCard.Desktop.ViewModels
                 CurrentPage = "SystemDashboard";
             });
 
+            EnterCredentialEditorCommand = new RelayCommand(_ => 
+            {
+                CurrentPage = "CredentialEditor";
+            });
+
+            ExitCredentialEditorCommand = new RelayCommand(_ => 
+            {
+                CurrentPage = "CredentialDesigns";
+            });
+
             EnterWorkflowEditorCommand = new RelayCommand(_ => 
             {
                 CurrentPage = "WorkflowEditor";
@@ -260,16 +270,6 @@ namespace IDCard.Desktop.ViewModels
             ExitReportEditorCommand = new RelayCommand(_ => 
             {
                 CurrentPage = "DesignReports";
-            });
-
-            EnterFieldConnectionEditorCommand = new RelayCommand(_ => 
-            {
-                CurrentPage = "FieldConnectionEditor";
-            });
-
-            ExitFieldConnectionEditorCommand = new RelayCommand(_ => 
-            {
-                CurrentPage = "FieldConnections";
             });
 
             SignOutCommand = new RelayCommand(_ =>  
