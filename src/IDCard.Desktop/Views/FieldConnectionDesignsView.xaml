@@ -4,44 +4,102 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1100">
-    
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <Style x:Key="StableButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E88E5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <!-- ၁။ ပထမပုံ: List မျက်နှာပြင် -->
+        <Grid Margin="20" Background="White">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEditing}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
-        <!-- ဘယ်ဘက်ခြမ်း Side Menu -->
-        <Border Background="#E0E0E0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,0" Padding="0,10,0,0">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <StackPanel>
-                    <Button Content="Connections List" Background="White" Foreground="#003366" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,-2,2" BorderBrush="#CCCCCC" BorderThickness="1,1,0,1"/>
-                    <Button Content="Database Mapping" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0"/>
-                    <Button Content="API Integrations" Background="#EAEAEA" Foreground="#003366" FontWeight="SemiBold" FontSize="12" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="15,9" Margin="0,0,0,2" BorderBrush="Transparent" BorderThickness="0"/>
+            <StackPanel>
+                <TextBlock Text="Field Connections" FontSize="22" FontWeight="SemiBold" Foreground="#0D47A1" Margin="0,0,0,10"/>
+                <TextBlock Text="Manage Data Source Connections and Mappings" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,5"/>
+                <TextBlock Text="Configure database links, external data sources, and field mapping rules for card personalization." Foreground="#666666" Margin="0,0,0,20"/>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Add Connection" Command="{Binding OpenEditorCommand}" Style="{StaticResource StableButtonStyle}" Margin="0,0,10,0"/>
+                    <Button Content="Test Connection" Style="{StaticResource StableButtonStyle}" Background="#CCCCCC" Foreground="#333333" IsEnabled="False"/>
                 </StackPanel>
-            </ScrollViewer>
-        </Border>
+            </StackPanel>
+        </Grid>
 
-        <!-- ညာဘက်ခြမ်း Main Content Area -->
-        <Border Grid.Column="1" BorderBrush="#CCCCCC" BorderThickness="1,0,0,0" Background="White">
-            <Grid Margin="30,20">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <TextBlock Text="Field Connections" FontSize="22" FontWeight="Normal" Foreground="#003366" Margin="0,0,0,20"/>
+        <!-- ၂။ ဒုတိယပုံ: Field Connections Editor မျက်နှာပြင် -->
+        <Grid Background="White" Margin="20">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEditing}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
-                        <StackPanel>
-                            <TextBlock Text="Manage Data Source Connections and Mappings" FontWeight="Bold" FontSize="13" Foreground="#333333" Margin="0,0,0,10"/>
-                            <TextBlock Text="Configure database links, external data sources, and field mapping rules for card personalization." Foreground="#555555" TextWrapping="Wrap" Margin="0,0,0,15"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
-                                <Button Content="Add Connection" Width="140" Height="30" Background="#0066CC" Foreground="White" FontWeight="Bold" Margin="0,0,10,0"/>
-                                <Button Content="Test Connection" Width="130" Height="30" Background="#E0E0E0"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+                <ComboBox Width="150" Height="28" SelectedIndex="0" VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="Source"/>
+                </ComboBox>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,30,0">
+                    <TextBlock Text="Workflows:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox Width="150" Height="28" VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,30,0">
+                    <TextBlock Text="Steps:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox Width="120" Height="28" SelectedIndex="0" VerticalContentAlignment="Center">
+                        <ComboBoxItem Content="All Steps"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="Credential Designs:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox Width="150" Height="28" VerticalContentAlignment="Center"/>
+                </StackPanel>
             </Grid>
-        </Border>
+
+            <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Background="White" MinHeight="350" Margin="0,0,0,15"/>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <Button Content="Save" Style="{StaticResource StableButtonStyle}" Width="80" Margin="0,0,10,0"/>
+                <Button Content="Close" Command="{Binding CloseEditorCommand}" Style="{StaticResource StableButtonStyle}" Background="#1E88E5" Width="80"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
