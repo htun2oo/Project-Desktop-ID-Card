@@ -23,23 +23,44 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        private bool _isEditPropertiesOpen;
+        public bool IsEditPropertiesOpen
+        {
+            get => _isEditPropertiesOpen;
+            set 
+            { 
+                if (_isEditPropertiesOpen != value)
+                {
+                    _isEditPropertiesOpen = value; 
+                    OnPropertyChanged(); 
+                }
+            }
+        }
+
         public ICommand CreateNewCredentialCommand { get; }
         public ICommand CloseCredentialCommand { get; }
+        public ICommand OpenEditPropertiesCommand { get; }
+        public ICommand CloseEditPropertiesCommand { get; }
 
         public CredentialDesignsViewModel(Action enterEditor, Action exitEditor)
         {
             _enterEditor = enterEditor;
             _exitEditor = exitEditor;
             _isEditingCredential = false;
+            _isEditPropertiesOpen = false;
 
             CreateNewCredentialCommand = new RelayCommand(_ => ExecuteCreateNewCredential());
             CloseCredentialCommand = new RelayCommand(_ => ExecuteCloseCredential());
+            OpenEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = true);
+            CloseEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = false);
         }
 
         public void ResetToListView()
         {
             _isEditingCredential = false;
+            _isEditPropertiesOpen = false;
             OnPropertyChanged(nameof(IsEditingCredential));
+            OnPropertyChanged(nameof(IsEditPropertiesOpen));
         }
 
         private void ExecuteCreateNewCredential()
