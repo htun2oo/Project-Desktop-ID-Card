@@ -50,7 +50,7 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        // Workflow Editor Sub-Tab အတွက် State ထိန်းချုပ်ရန် (Design သို့မဟုတ် Properties)
+        // Workflow Editor Sub-Tab အတွက် State
         private string _workflowEditorSubTab = "Design";
         public string WorkflowEditorSubTab
         {
@@ -99,6 +99,10 @@ namespace IDCard.Desktop.ViewModels
         public ICommand SelectWorkflowDesignTabCommand { get; }
         public ICommand SelectWorkflowPropertiesTabCommand { get; }
 
+        // Report Editor အတွက် Commands
+        public ICommand EnterReportEditorCommand { get; }
+        public ICommand ExitReportEditorCommand { get; }
+
         public MainViewModel()
         {
             _credentialsView.DataContext = new CredentialsViewModel();
@@ -109,6 +113,12 @@ namespace IDCard.Desktop.ViewModels
                 exitEditor: () => ExitWorkflowEditorCommand?.Execute(null)
             );
             _workflowDesignsView.DataContext = workflowDesignsVm;
+
+            var reportDesignsVm = new ReportDesignsViewModel(
+                enterEditor: () => EnterReportEditorCommand?.Execute(null),
+                exitEditor: () => ExitReportEditorCommand?.Execute(null)
+            );
+            _reportDesignsView.DataContext = reportDesignsVm;
 
             CurrentView = _credentialsView;
             CurrentPage = "Home";
@@ -150,6 +160,7 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateDesignReportsCommand = new RelayCommand(_ =>  
             {
+                reportDesignsVm.ResetToListView();
                 CurrentView = _reportDesignsView;
                 CurrentPage = "DesignReports";
             });
@@ -230,6 +241,16 @@ namespace IDCard.Desktop.ViewModels
             SelectWorkflowPropertiesTabCommand = new RelayCommand(_ => 
             {
                 WorkflowEditorSubTab = "Properties";
+            });
+
+            EnterReportEditorCommand = new RelayCommand(_ => 
+            {
+                CurrentPage = "ReportEditor";
+            });
+
+            ExitReportEditorCommand = new RelayCommand(_ => 
+            {
+                CurrentPage = "DesignReports";
             });
 
             SignOutCommand = new RelayCommand(_ =>  
