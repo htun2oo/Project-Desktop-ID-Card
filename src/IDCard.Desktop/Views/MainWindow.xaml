@@ -88,7 +88,6 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,0,0">
-                    <!-- Home Button -->
                     <Button Command="{Binding NavigateHomeCommand}" Style="{StaticResource TopNavButtonStyle}">
                         <TextBlock Text="Home">
                             <TextBlock.Style>
@@ -111,7 +110,6 @@
                         </TextBlock>
                     </Button>
                     
-                    <!-- Design Button -->
                     <Button Command="{Binding NavigateCredentialsCommand}" Style="{StaticResource TopNavButtonStyle}" Margin="5,0">
                         <TextBlock Text="Design">
                             <TextBlock.Style>
@@ -169,6 +167,18 @@
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding CurrentPage}" Value="ReportEditor"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
                                                 <Condition Binding="{Binding CurrentPage}" Value="FieldConnections"/>
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="Foreground" Value="#6A1B9A"/>
@@ -185,7 +195,6 @@
                         </TextBlock>
                     </Button>
 
-                    <!-- Printer Queues Button -->
                     <Button Command="{Binding NavigateReportsCommand}" Style="{StaticResource TopNavButtonStyle}">
                         <TextBlock Text="Printer Queues">
                             <TextBlock.Style>
@@ -240,7 +249,7 @@
         <!-- 2. Purple Sub-Header Bar -->
         <Border Grid.Row="1" Background="#6A1B9A" Padding="20,0,20,0" BorderBrush="#6A1B9A" BorderThickness="0">
             <Grid VerticalAlignment="Bottom">
-                <!-- Home Context Sub-Tabs (Credentials & Reports) -->
+                <!-- Home Context Sub-Tabs -->
                 <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -282,7 +291,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Design Context Sub-Tabs (Credential Designs, Workflow Designs, Report Designs, Field Connections) -->
+                <!-- Design Context Sub-Tabs -->
                 <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -304,7 +313,6 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <!-- Credential Designs Tab -->
                     <Button Content="Credential Designs" Command="{Binding NavigateCredentialsCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -319,7 +327,6 @@
                         </Button.Style>
                     </Button>
 
-                    <!-- Workflow Designs Tab -->
                     <Button Content="Workflow Designs" Command="{Binding NavigateWorkflowsCommand}" Margin="2,0,0,0">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -334,7 +341,6 @@
                         </Button.Style>
                     </Button>
 
-                    <!-- Report Designs Tab -->
                     <Button Content="Report Designs" Command="{Binding NavigateDesignReportsCommand}" Margin="2,0,0,0">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -349,7 +355,6 @@
                         </Button.Style>
                     </Button>
 
-                    <!-- Field Connections Tab -->
                     <Button Content="Field Connections" Command="{Binding NavigateFieldConnectionsCommand}" Margin="2,0,0,0">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -365,7 +370,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Workflow Editor Mode Sub-Tabs (Workflow Design 1 နှင့် Properties Tabs - အပြန်အလှန် Active ဖြစ်နိုင်သည်) -->
+                <!-- Workflow Editor Mode Sub-Tabs -->
                 <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -378,7 +383,6 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <!-- Workflow Design 1 Tab -->
                     <Button Content="Workflow Design 1" Command="{Binding SelectWorkflowDesignTabCommand}">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -397,7 +401,6 @@
                         </Button.Style>
                     </Button>
 
-                    <!-- Properties Tab -->
                     <Button Content="Properties" Command="{Binding SelectWorkflowPropertiesTabCommand}" Margin="2,0,0,0">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
@@ -415,6 +418,23 @@
                             </Style>
                         </Button.Style>
                     </Button>
+                </StackPanel>
+
+                <!-- Report Editor Mode Header (Report Design 1) -->
+                <StackPanel Orientation="Horizontal" Margin="0,-4,0,0" VerticalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="ReportEditor">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+
+                    <TextBlock Text="Report Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                    <Button Content="✏" Width="28" Height="28" Background="Transparent" Foreground="White" FontSize="14" BorderThickness="0" Cursor="Hand" ToolTip="Edit Name"/>
                 </StackPanel>
 
                 <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
