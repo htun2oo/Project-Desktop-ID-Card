@@ -50,7 +50,6 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
-        // Workflow Editor Sub-Tab အတွက် State
         private string _workflowEditorSubTab = "Design";
         public string WorkflowEditorSubTab
         {
@@ -99,9 +98,12 @@ namespace IDCard.Desktop.ViewModels
         public ICommand SelectWorkflowDesignTabCommand { get; }
         public ICommand SelectWorkflowPropertiesTabCommand { get; }
 
-        // Report Editor အတွက် Commands
         public ICommand EnterReportEditorCommand { get; }
         public ICommand ExitReportEditorCommand { get; }
+
+        // Field Connection Editor အတွက် Commands
+        public ICommand EnterFieldConnectionEditorCommand { get; }
+        public ICommand ExitFieldConnectionEditorCommand { get; }
 
         public MainViewModel()
         {
@@ -119,6 +121,12 @@ namespace IDCard.Desktop.ViewModels
                 exitEditor: () => ExitReportEditorCommand?.Execute(null)
             );
             _reportDesignsView.DataContext = reportDesignsVm;
+
+            var fieldConnectionVm = new FieldConnectionDesignsViewModel(
+                enterEditor: () => EnterFieldConnectionEditorCommand?.Execute(null),
+                exitEditor: () => ExitFieldConnectionEditorCommand?.Execute(null)
+            );
+            _fieldConnectionDesignsView.DataContext = fieldConnectionVm;
 
             CurrentView = _credentialsView;
             CurrentPage = "Home";
@@ -173,6 +181,7 @@ namespace IDCard.Desktop.ViewModels
 
             NavigateFieldConnectionsCommand = new RelayCommand(_ =>  
             {
+                fieldConnectionVm.ResetToListView();
                 CurrentView = _fieldConnectionDesignsView;
                 CurrentPage = "FieldConnections";
             });
@@ -251,6 +260,16 @@ namespace IDCard.Desktop.ViewModels
             ExitReportEditorCommand = new RelayCommand(_ => 
             {
                 CurrentPage = "DesignReports";
+            });
+
+            EnterFieldConnectionEditorCommand = new RelayCommand(_ => 
+            {
+                CurrentPage = "FieldConnectionEditor";
+            });
+
+            ExitFieldConnectionEditorCommand = new RelayCommand(_ => 
+            {
+                CurrentPage = "FieldConnections";
             });
 
             SignOutCommand = new RelayCommand(_ =>  
