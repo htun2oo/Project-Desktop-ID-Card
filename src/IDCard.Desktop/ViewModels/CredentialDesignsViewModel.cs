@@ -37,10 +37,26 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        private string _selectedSide = "Front";
+        public string SelectedSide
+        {
+            get => _selectedSide;
+            set
+            {
+                if (_selectedSide != value)
+                {
+                    _selectedSide = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ICommand CreateNewCredentialCommand { get; }
         public ICommand CloseCredentialCommand { get; }
         public ICommand OpenEditPropertiesCommand { get; }
         public ICommand CloseEditPropertiesCommand { get; }
+        public ICommand SelectFrontSideCommand { get; }
+        public ICommand SelectBackSideCommand { get; }
 
         public CredentialDesignsViewModel(Action enterEditor, Action exitEditor)
         {
@@ -48,19 +64,24 @@ namespace IDCard.Desktop.ViewModels
             _exitEditor = exitEditor;
             _isEditingCredential = false;
             _isEditPropertiesOpen = false;
+            _selectedSide = "Front";
 
             CreateNewCredentialCommand = new RelayCommand(_ => ExecuteCreateNewCredential());
             CloseCredentialCommand = new RelayCommand(_ => ExecuteCloseCredential());
             OpenEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = true);
             CloseEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = false);
+            SelectFrontSideCommand = new RelayCommand(_ => SelectedSide = "Front");
+            SelectBackSideCommand = new RelayCommand(_ => SelectedSide = "Back");
         }
 
         public void ResetToListView()
         {
             _isEditingCredential = false;
             _isEditPropertiesOpen = false;
+            _selectedSide = "Front";
             OnPropertyChanged(nameof(IsEditingCredential));
             OnPropertyChanged(nameof(IsEditPropertiesOpen));
+            OnPropertyChanged(nameof(SelectedSide));
         }
 
         private void ExecuteCreateNewCredential()
