@@ -6,8 +6,7 @@
         Title="Desktop ID Card System"  
         Height="750" Width="1200"  
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/app.ico"
-        x:Name="RootWindow">
+        Icon="/Assets/app.ico">
 
     <Window.DataContext>
         <vm:MainViewModel/>
@@ -383,7 +382,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Credential Editor Mode Header (Credential Design 1) -->
+                <!-- Credential Editor Mode Header -->
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -398,7 +397,7 @@
 
                     <TextBlock Text="Credential Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <Button Width="26" Height="26" Background="#1E88E5" Foreground="White" BorderBrush="White" BorderThickness="1" Cursor="Hand" ToolTip="Edit Name" VerticalAlignment="Center"
-                            Command="{Binding CurrentView.OpenEditPropertiesCommand}">
+                            Command="{Binding DataContext.CurrentView.DataContext.OpenEditPropertiesCommand, RelativeSource={RelativeSource AncestorType=Window}}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
