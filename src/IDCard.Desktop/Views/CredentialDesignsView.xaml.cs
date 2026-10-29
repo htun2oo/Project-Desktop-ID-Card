@@ -7,7 +7,8 @@ namespace IDCard.Desktop.Views
     public partial class CredentialDesignsView : UserControl
     {
         private bool _isDragging;
-        private Point _clickPosition;
+        private Point _startPoint;
+        private Thickness _startMargin;
 
         public CredentialDesignsView()
         {
@@ -17,7 +18,8 @@ namespace IDCard.Desktop.Views
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             _isDragging = true;
-            _clickPosition = e.GetPosition(DialogBorder);
+            _startPoint = e.GetPosition(ParentCanvas);
+            _startMargin = DialogBorder.Margin;
             HeaderBorder.CaptureMouse();
         }
 
@@ -25,12 +27,17 @@ namespace IDCard.Desktop.Views
         {
             if (_isDragging)
             {
-                Point currentPosition = e.GetPosition(ParentCanvas);
+                Point currentPoint = e.GetPosition(ParentCanvas);
                 
-                double newLeft = currentPosition.X - _clickPosition.X;
-                double newTop = currentPosition.Y - _clickPosition.Y;
+                double offsetX = currentPoint.X - _startPoint.X;
+                double offsetY = currentPoint.Y - _startPoint.Y;
 
-                DialogBorder.Margin = new Thickness(newLeft, newTop, 0, 0);
+                DialogBorder.Margin = new Thickness(
+                    _startMargin.Left + offsetX,
+                    _startMargin.Top + offsetY,
+                    0, 0
+                );
+                
                 DialogBorder.HorizontalAlignment = HorizontalAlignment.Left;
                 DialogBorder.VerticalAlignment = VerticalAlignment.Top;
             }
