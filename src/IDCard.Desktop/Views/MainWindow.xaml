@@ -189,6 +189,18 @@
                                                 </Setter.Value>
                                             </Setter>
                                         </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding CurrentPage}" Value="FieldConnectionEditor"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Foreground" Value="#6A1B9A"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="#6A1B9A" BlurRadius="2" ShadowDepth="1" Opacity="0.4"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </MultiDataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </TextBlock.Style>
@@ -420,7 +432,7 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Report Editor Mode Header (Report Design 1) -->
+                <!-- Report Editor Mode Header -->
                 <StackPanel Orientation="Horizontal" Margin="0,-4,0,0" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
@@ -435,6 +447,23 @@
 
                     <TextBlock Text="Report Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0"/>
                     <Button Content="✏" Width="28" Height="28" Background="Transparent" Foreground="White" FontSize="14" BorderThickness="0" Cursor="Hand" ToolTip="Edit Name"/>
+                </StackPanel>
+
+                <!-- Field Connection Editor Mode Header (⚙ Field Connections) -->
+                <StackPanel Orientation="Horizontal" Margin="0,-4,0,0" VerticalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentPage}" Value="FieldConnectionEditor">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+
+                    <TextBlock Text="⚙" FontSize="16" Foreground="White" VerticalAlignment="Center" Margin="10,0,8,0"/>
+                    <TextBlock Text="Field Connections" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
