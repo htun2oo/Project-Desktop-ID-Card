@@ -382,8 +382,8 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Credential Editor Mode Header -->
-                <StackPanel Orientation="Horizontal" Margin="0,-4,0,0" VerticalAlignment="Center">
+                <!-- Credential Editor Mode Header (Credential Design 1) - Vertical Center ညှိထားခြင်း -->
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -395,7 +395,7 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <TextBlock Text="Credential Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                    <TextBlock Text="Credential Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <Button Width="26" Height="26" Background="#1E88E5" Foreground="White" BorderBrush="White" BorderThickness="1" Cursor="Hand" ToolTip="Edit Name" VerticalAlignment="Center">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -409,7 +409,7 @@
                 </StackPanel>
 
                 <!-- Workflow Editor Mode Sub-Tabs -->
-                <StackPanel Orientation="Horizontal" Margin="0,-4,0,0">
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -421,7 +421,7 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <Button Content="Workflow Design 1" Command="{Binding SelectWorkflowDesignTabCommand}">
+                    <Button Content="Workflow Design 1" Command="{Binding SelectWorkflowDesignTabCommand}" Height="30" VerticalAlignment="Center">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
                                 <Setter Property="Background" Value="Transparent"/>
@@ -439,7 +439,7 @@
                         </Button.Style>
                     </Button>
 
-                    <Button Content="Properties" Command="{Binding SelectWorkflowPropertiesTabCommand}" Margin="2,0,0,0">
+                    <Button Content="Properties" Command="{Binding SelectWorkflowPropertiesTabCommand}" Margin="2,0,0,0" Height="30" VerticalAlignment="Center">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource EnterpriseTabButtonStyle}">
                                 <Setter Property="Background" Value="Transparent"/>
@@ -458,8 +458,8 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Report Editor Mode Header -->
-                <StackPanel Orientation="Horizontal" Margin="0,-4,0,0" VerticalAlignment="Center">
+                <!-- Report Editor Mode Header (Report Design 1) -->
+                <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -471,8 +471,17 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <TextBlock Text="Report Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                    <Button Content="✏" Width="28" Height="28" Background="Transparent" Foreground="White" FontSize="14" BorderThickness="0" Cursor="Hand" ToolTip="Edit Name"/>
+                    <TextBlock Text="Report Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <Button Width="26" Height="26" Background="#1E88E5" Foreground="White" BorderBrush="White" BorderThickness="1" Cursor="Hand" ToolTip="Edit Name" VerticalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <TextBlock Text="✏" FontSize="11"/>
+                    </Button>
                 </StackPanel>
 
                 <!-- အခြားသော မျက်နှာပြင်များအတွက် စာသားများပြရန် -->
