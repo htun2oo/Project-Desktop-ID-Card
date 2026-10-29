@@ -396,7 +396,16 @@
                     </StackPanel.Style>
 
                     <TextBlock Text="Credential Design 1" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0"/>
-                    <Button Content="✏" Width="28" Height="28" Background="Transparent" Foreground="White" FontSize="14" BorderThickness="0" Cursor="Hand" ToolTip="Edit Name"/>
+                    <Button Width="26" Height="26" Background="#1E88E5" Foreground="White" BorderBrush="White" BorderThickness="1" Cursor="Hand" ToolTip="Edit Name" VerticalAlignment="Center">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <TextBlock Text="✏" FontSize="11"/>
+                    </Button>
                 </StackPanel>
 
                 <!-- Workflow Editor Mode Sub-Tabs -->
