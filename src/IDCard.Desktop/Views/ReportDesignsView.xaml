@@ -7,6 +7,7 @@
              d:DesignHeight="600" d:DesignWidth="1000">
 
     <UserControl.Resources>
+        <!-- Stable Button Style with CornerRadius -->
         <Style x:Key="StableButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#1E88E5"/>
             <Setter Property="Foreground" Value="White"/>
@@ -14,6 +15,23 @@
             <Setter Property="Padding" Value="15,8"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#1565C0"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#0D47A1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </UserControl.Resources>
 
