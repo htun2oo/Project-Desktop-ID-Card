@@ -119,10 +119,12 @@ namespace IDCard.Desktop.ViewModels
             _exitEditor?.Invoke();
         }
 
-        private void ExecuteDropText(object parameter)
+        private void ExecuteDropText(object? parameter)
         {
-            string textType = parameter as string;
-            // Canvas ပေါ်သို့ Drag and Drop လုပ်ပြီး Drop ချလိုက်သည့်အခါ လုပ်ဆောင်မည့် Logic များကို ဤနေရာတွင် ဆက်လက်ရေးသားနိုင်ပါသည်။
+            if (parameter is string textType)
+            {
+                // Canvas ပေါ်သို့ Drag and Drop လုပ်ပြီး Drop ချလိုက်သည့်အခါ လုပ်ဆောင်မည့် Logic
+            }
         }
     }
 }
