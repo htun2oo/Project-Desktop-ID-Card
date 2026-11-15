@@ -170,6 +170,10 @@ namespace IDCard.Desktop.ViewModels
         {
             if (parameter is string textType)
             {
+                // ဖန်တီးလိုက်သော Element အသစ်များကို Select လုပ်ရန်အတွက် အရင်ရှိပစ္စည်းများအားလုံးကို Unselect လုပ်ပါ
+                foreach (var el in FrontSideElements) el.IsSelected = false;
+                foreach (var el in BackSideElements) el.IsSelected = false;
+
                 var newElement = new DesignTextElement
                 {
                     Text = "Text Field",
