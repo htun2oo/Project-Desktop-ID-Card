@@ -14,10 +14,9 @@ namespace IDCard.Desktop.Views
 
         private void TextButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (sender is Button button)
+            if (sender is Button button && button.ToolTip is string toolTipText)
             {
-                string textType = button.ToolTip?.ToString(); // "Dynamic Text" သို့မဟုတ် "Static Text"
-                DataObject data = new DataObject("TextType", textType);
+                DataObject data = new DataObject("TextType", toolTipText);
                 DragDrop.DoDragDrop(button, data, DragDropEffects.Copy);
             }
         }
@@ -26,9 +25,8 @@ namespace IDCard.Desktop.Views
         {
             if (e.Data.GetDataPresent("TextType"))
             {
-                string textType = e.Data.GetData("TextType") as string;
-
-                if (DataContext is CredentialDesignsViewModel viewModel)
+                var rawData = e.Data.GetData("TextType");
+                if (rawData is string textType && DataContext is CredentialDesignsViewModel viewModel)
                 {
                     viewModel.DropTextCommand.Execute(textType);
                 }
