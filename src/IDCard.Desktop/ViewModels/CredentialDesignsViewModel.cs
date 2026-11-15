@@ -175,7 +175,7 @@ namespace IDCard.Desktop.ViewModels
 
                 var newElement = new DesignTextElement
                 {
-                    Text = "Text Field",
+                    Text = "Dynamic Text Field",
                     IsSelected = true
                 };
 
