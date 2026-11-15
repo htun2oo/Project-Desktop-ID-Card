@@ -46,6 +46,63 @@ namespace IDCard.Desktop.ViewModels
         }
     }
 
+    public class DesignGraphicElement : ViewModelBase
+    {
+        private bool _isSelected = true;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set { if (_isSelected != value) { _isSelected = value; OnPropertyChanged(); } }
+        }
+    }
+
+    public class DesignVariableGraphicElement : ViewModelBase
+    {
+        private bool _isSelected = true;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set { if (_isSelected != value) { _isSelected = value; OnPropertyChanged(); } }
+        }
+    }
+
+    public class DesignDateElement : ViewModelBase
+    {
+        private string _dateText = "11/15/2026 06:51:20 PM";
+        public string DateText
+        {
+            get => _dateText;
+            set { if (_dateText != value) { _dateText = value; OnPropertyChanged(); } }
+        }
+
+        private bool _isSelected = true;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set { if (_isSelected != value) { _isSelected = value; OnPropertyChanged(); } }
+        }
+    }
+
+    public class DesignSignatureElement : ViewModelBase
+    {
+        private bool _isSelected = true;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set { if (_isSelected != value) { _isSelected = value; OnPropertyChanged(); } }
+        }
+    }
+
+    public class DesignBarCodeElement : ViewModelBase
+    {
+        private bool _isSelected = true;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set { if (_isSelected != value) { _isSelected = value; OnPropertyChanged(); } }
+        }
+    }
+
     public class CredentialDesignsViewModel : ViewModelBase
     {
         private readonly Action _enterEditor;
@@ -93,11 +150,61 @@ namespace IDCard.Desktop.ViewModels
             set { if (_isPhotoSelected != value) { _isPhotoSelected = value; OnPropertyChanged(); } }
         }
 
+        private bool _isStaticGraphicSelected;
+        public bool IsStaticGraphicSelected
+        {
+            get => _isStaticGraphicSelected;
+            set { if (_isStaticGraphicSelected != value) { _isStaticGraphicSelected = value; OnPropertyChanged(); } }
+        }
+
+        private bool _isVariableGraphicSelected;
+        public bool IsVariableGraphicSelected
+        {
+            get => _isVariableGraphicSelected;
+            set { if (_isVariableGraphicSelected != value) { _isVariableGraphicSelected = value; OnPropertyChanged(); } }
+        }
+
+        private bool _isDateSelected;
+        public bool IsDateSelected
+        {
+            get => _isDateSelected;
+            set { if (_isDateSelected != value) { _isDateSelected = value; OnPropertyChanged(); } }
+        }
+
+        private bool _isSignatureSelected;
+        public bool IsSignatureSelected
+        {
+            get => _isSignatureSelected;
+            set { if (_isSignatureSelected != value) { _isSignatureSelected = value; OnPropertyChanged(); } }
+        }
+
+        private bool _isBarCodeSelected;
+        public bool IsBarCodeSelected
+        {
+            get => _isBarCodeSelected;
+            set { if (_isBarCodeSelected != value) { _isBarCodeSelected = value; OnPropertyChanged(); } }
+        }
+
         public ObservableCollection<DesignTextElement> FrontSideElements { get; } = new ObservableCollection<DesignTextElement>();
         public ObservableCollection<DesignTextElement> BackSideElements { get; } = new ObservableCollection<DesignTextElement>();
         
         public ObservableCollection<DesignPhotoElement> FrontSidePhotos { get; } = new ObservableCollection<DesignPhotoElement>();
         public ObservableCollection<DesignPhotoElement> BackSidePhotos { get; } = new ObservableCollection<DesignPhotoElement>();
+
+        public ObservableCollection<DesignGraphicElement> FrontSideGraphics { get; } = new ObservableCollection<DesignGraphicElement>();
+        public ObservableCollection<DesignGraphicElement> BackSideGraphics { get; } = new ObservableCollection<DesignGraphicElement>();
+
+        public ObservableCollection<DesignVariableGraphicElement> FrontSideVarGraphics { get; } = new ObservableCollection<DesignVariableGraphicElement>();
+        public ObservableCollection<DesignVariableGraphicElement> BackSideVarGraphics { get; } = new ObservableCollection<DesignVariableGraphicElement>();
+
+        public ObservableCollection<DesignDateElement> FrontSideDates { get; } = new ObservableCollection<DesignDateElement>();
+        public ObservableCollection<DesignDateElement> BackSideDates { get; } = new ObservableCollection<DesignDateElement>();
+
+        public ObservableCollection<DesignSignatureElement> FrontSideSignatures { get; } = new ObservableCollection<DesignSignatureElement>();
+        public ObservableCollection<DesignSignatureElement> BackSideSignatures { get; } = new ObservableCollection<DesignSignatureElement>();
+
+        public ObservableCollection<DesignBarCodeElement> FrontSideBarCodes { get; } = new ObservableCollection<DesignBarCodeElement>();
+        public ObservableCollection<DesignBarCodeElement> BackSideBarCodes { get; } = new ObservableCollection<DesignBarCodeElement>();
 
         public ICommand CreateNewCredentialCommand { get; }
         public ICommand CloseCredentialCommand { get; }
@@ -133,51 +240,103 @@ namespace IDCard.Desktop.ViewModels
             IsLayersTabSelected = false;
             IsTextSelected = false;
             IsPhotoSelected = false;
+            IsStaticGraphicSelected = false;
+            IsVariableGraphicSelected = false;
+            IsDateSelected = false;
+            IsSignatureSelected = false;
+            IsBarCodeSelected = false;
+
             FrontSideElements.Clear();
             BackSideElements.Clear();
             FrontSidePhotos.Clear();
             BackSidePhotos.Clear();
+            FrontSideGraphics.Clear();
+            BackSideGraphics.Clear();
+            FrontSideVarGraphics.Clear();
+            BackSideVarGraphics.Clear();
+            FrontSideDates.Clear();
+            BackSideDates.Clear();
+            FrontSideSignatures.Clear();
+            BackSideSignatures.Clear();
+            FrontSideBarCodes.Clear();
+            BackSideBarCodes.Clear();
         }
 
         private void ExecuteDropItem(object? parameter)
         {
             if (parameter is string itemType)
             {
+                // Clear all selections
                 foreach (var el in FrontSideElements) el.IsSelected = false;
                 foreach (var el in BackSideElements) el.IsSelected = false;
                 foreach (var ph in FrontSidePhotos) ph.IsSelected = false;
                 foreach (var ph in BackSidePhotos) ph.IsSelected = false;
+                foreach (var gr in FrontSideGraphics) gr.IsSelected = false;
+                foreach (var gr in BackSideGraphics) gr.IsSelected = false;
+                foreach (var vg in FrontSideVarGraphics) vg.IsSelected = false;
+                foreach (var vg in BackSideVarGraphics) vg.IsSelected = false;
+                foreach (var dt in FrontSideDates) dt.IsSelected = false;
+                foreach (var dt in BackSideDates) dt.IsSelected = false;
+                foreach (var sg in FrontSideSignatures) sg.IsSelected = false;
+                foreach (var sg in BackSideSignatures) sg.IsSelected = false;
+                foreach (var bc in FrontSideBarCodes) bc.IsSelected = false;
+                foreach (var bc in BackSideBarCodes) bc.IsSelected = false;
 
                 IsTextSelected = false;
                 IsPhotoSelected = false;
+                IsStaticGraphicSelected = false;
+                IsVariableGraphicSelected = false;
+                IsDateSelected = false;
+                IsSignatureSelected = false;
+                IsBarCodeSelected = false;
 
                 if (itemType == "Photo")
                 {
                     var newPhoto = new DesignPhotoElement { IsSelected = true };
                     IsPhotoSelected = true;
-
                     if (SelectedSide == "Front") FrontSidePhotos.Add(newPhoto);
                     else BackSidePhotos.Add(newPhoto);
                 }
+                else if (itemType == "Static Graphic")
+                {
+                    var newGraphic = new DesignGraphicElement { IsSelected = true };
+                    IsStaticGraphicSelected = true;
+                    if (SelectedSide == "Front") FrontSideGraphics.Add(newGraphic);
+                    else BackSideGraphics.Add(newGraphic);
+                }
+                else if (itemType == "Variable Graphic")
+                {
+                    var newVarGraphic = new DesignVariableGraphicElement { IsSelected = true };
+                    IsVariableGraphicSelected = true;
+                    if (SelectedSide == "Front") FrontSideVarGraphics.Add(newVarGraphic);
+                    else BackSideVarGraphics.Add(newVarGraphic);
+                }
+                else if (itemType == "Date")
+                {
+                    var newDate = new DesignDateElement { IsSelected = true };
+                    IsDateSelected = true;
+                    if (SelectedSide == "Front") FrontSideDates.Add(newDate);
+                    else BackSideDates.Add(newDate);
+                }
+                else if (itemType == "Signature")
+                {
+                    var newSig = new DesignSignatureElement { IsSelected = true };
+                    IsSignatureSelected = true;
+                    if (SelectedSide == "Front") FrontSideSignatures.Add(newSig);
+                    else BackSideSignatures.Add(newSig);
+                }
+                else if (itemType == "Bar Code")
+                {
+                    var newBarCode = new DesignBarCodeElement { IsSelected = true };
+                    IsBarCodeSelected = true;
+                    if (SelectedSide == "Front") FrontSideBarCodes.Add(newBarCode);
+                    else BackSideBarCodes.Add(newBarCode);
+                }
                 else
                 {
-                    string defaultText;
-                    if (itemType.Contains("Static"))
-                    {
-                        defaultText = "Static Text Field";
-                    }
-                    else if (itemType.Contains("Dynamic"))
-                    {
-                        defaultText = "Dynamic Text Field";
-                    }
-                    else
-                    {
-                        defaultText = "Text Field";
-                    }
-
+                    string defaultText = itemType.Contains("Static") ? "Static Text Field" : "Dynamic Text Field";
                     var newText = new DesignTextElement { Text = defaultText, IsSelected = true };
                     IsTextSelected = true;
-
                     if (SelectedSide == "Front") FrontSideElements.Add(newText);
                     else BackSideElements.Add(newText);
                 }
