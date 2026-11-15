@@ -173,8 +173,20 @@ namespace IDCard.Desktop.ViewModels
                 foreach (var el in FrontSideElements) el.IsSelected = false;
                 foreach (var el in BackSideElements) el.IsSelected = false;
 
-                // ToolTip ပေါ်မူတည်၍ Dynamic သို့မဟုတ် Static text ကို ခွဲခြားသတ်မှတ်ခြင်း
-                string defaultText = textType.Contains("Dynamic") ? "Dynamic Text Field" : "Static Text Field";
+                // ToolTip ပေါ်မူတည်၍ Static သို့မဟုတ် Dynamic text ကို ခွဲခြားသတ်မှတ်ခြင်း
+                string defaultText;
+                if (textType.Contains("Static"))
+                {
+                    defaultText = "Static Text Field";
+                }
+                else if (textType.Contains("Dynamic"))
+                {
+                    defaultText = "Dynamic Text Field";
+                }
+                else
+                {
+                    defaultText = "Text Field";
+                }
 
                 var newElement = new DesignTextElement
                 {
