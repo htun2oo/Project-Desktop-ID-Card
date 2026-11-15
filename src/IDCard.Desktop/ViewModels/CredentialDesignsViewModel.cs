@@ -1,9 +1,16 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using IDCard.Desktop.Helpers;
 
 namespace IDCard.Desktop.ViewModels
 {
+    public class DesignTextElement
+    {
+        public string Text { get; set; } = "Text Field";
+        public bool IsSelected { get; set; } = true;
+    }
+
     public class CredentialDesignsViewModel : ViewModelBase
     {
         private readonly Action _enterEditor;
@@ -65,6 +72,9 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        public ObservableCollection<DesignTextElement> FrontSideElements { get; } = new ObservableCollection<DesignTextElement>();
+        public ObservableCollection<DesignTextElement> BackSideElements { get; } = new ObservableCollection<DesignTextElement>();
+
         public ICommand CreateNewCredentialCommand { get; }
         public ICommand CloseCredentialCommand { get; }
         public ICommand OpenEditPropertiesCommand { get; }
@@ -101,6 +111,8 @@ namespace IDCard.Desktop.ViewModels
             _isEditPropertiesOpen = false;
             _selectedSide = "Front";
             _isLayersTabSelected = false;
+            FrontSideElements.Clear();
+            BackSideElements.Clear();
             OnPropertyChanged(nameof(IsEditingCredential));
             OnPropertyChanged(nameof(IsEditPropertiesOpen));
             OnPropertyChanged(nameof(SelectedSide));
@@ -123,7 +135,20 @@ namespace IDCard.Desktop.ViewModels
         {
             if (parameter is string textType)
             {
-                // Canvas ပေါ်သို့ Drag and Drop လုပ်ပြီး Drop ချလိုက်သည့်အခါ လုပ်ဆောင်မည့် Logic
+                var newElement = new DesignTextElement
+                {
+                    Text = "Text Field",
+                    IsSelected = true
+                };
+
+                if (SelectedSide == "Front")
+                {
+                    FrontSideElements.Add(newElement);
+                }
+                else
+                {
+                    BackSideElements.Add(newElement);
+                }
             }
         }
     }
