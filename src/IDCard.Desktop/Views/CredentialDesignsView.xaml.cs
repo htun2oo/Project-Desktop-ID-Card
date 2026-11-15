@@ -16,19 +16,25 @@ namespace IDCard.Desktop.Views
         {
             if (sender is Button button && button.ToolTip is string toolTipText)
             {
-                DataObject data = new DataObject("TextType", toolTipText);
+                DataObject data = new DataObject("ItemType", toolTipText);
                 DragDrop.DoDragDrop(button, data, DragDropEffects.Copy);
             }
         }
 
+        private void PhotoButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DataObject data = new DataObject("ItemType", "Photo");
+            DragDrop.DoDragDrop((Button)sender, data, DragDropEffects.Copy);
+        }
+
         private void Canvas_Drop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent("TextType"))
+            if (e.Data.GetDataPresent("ItemType"))
             {
-                var rawData = e.Data.GetData("TextType");
-                if (rawData is string textType && DataContext is CredentialDesignsViewModel viewModel)
+                var itemType = e.Data.GetData("ItemType")?.ToString();
+                if (DataContext is CredentialDesignsViewModel viewModel)
                 {
-                    viewModel.DropTextCommand.Execute(textType);
+                    viewModel.DropItemCommand.Execute(itemType);
                 }
             }
         }
@@ -39,15 +45,35 @@ namespace IDCard.Desktop.Views
             {
                 if (DataContext is CredentialDesignsViewModel viewModel)
                 {
-                    // အခြား Elements အားလုံးကို unselect လုပ်ပါ
                     foreach (var el in viewModel.FrontSideElements) el.IsSelected = false;
                     foreach (var el in viewModel.BackSideElements) el.IsSelected = false;
+                    foreach (var ph in viewModel.FrontSidePhotos) ph.IsSelected = false;
+                    foreach (var ph in viewModel.BackSidePhotos) ph.IsSelected = false;
 
-                    // ယခု နှိပ်လိုက်သော Element ကိုသာ select လုပ်ပါ
                     clickedElement.IsSelected = true;
                     viewModel.IsTextSelected = true;
+                    viewModel.IsPhotoSelected = false;
                 }
-                e.Handled = true; // Event အခြားသို့ မပျံ့နှံ့စေရန် တားဆီးခြင်း
+                e.Handled = true;
+            }
+        }
+
+        private void PhotoElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is DesignPhotoElement clickedPhoto)
+            {
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    foreach (var el in viewModel.FrontSideElements) el.IsSelected = false;
+                    foreach (var el in viewModel.BackSideElements) el.IsSelected = false;
+                    foreach (var ph in viewModel.FrontSidePhotos) ph.IsSelected = false;
+                    foreach (var ph in viewModel.BackSidePhotos) ph.IsSelected = false;
+
+                    clickedPhoto.IsSelected = true;
+                    viewModel.IsTextSelected = false;
+                    viewModel.IsPhotoSelected = true;
+                }
+                e.Handled = true;
             }
         }
 
@@ -56,17 +82,12 @@ namespace IDCard.Desktop.Views
             if (DataContext is CredentialDesignsViewModel viewModel)
             {
                 viewModel.IsTextSelected = false;
+                viewModel.IsPhotoSelected = false;
 
-                // ကတ်ပြားအလွတ်ကို နှိပ်လိုက်သည့်အခါ Text Elements အားလုံး၏ IsSelected ကိုပါ false သို့ ပြောင်းပါ
-                foreach (var element in viewModel.FrontSideElements)
-                {
-                    element.IsSelected = false;
-                }
-
-                foreach (var element in viewModel.BackSideElements)
-                {
-                    element.IsSelected = false;
-                }
+                foreach (var element in viewModel.FrontSideElements) element.IsSelected = false;
+                foreach (var element in viewModel.BackSideElements) element.IsSelected = false;
+                foreach (var photo in viewModel.FrontSidePhotos) photo.IsSelected = false;
+                foreach (var photo in viewModel.BackSidePhotos) photo.IsSelected = false;
             }
         }
 
