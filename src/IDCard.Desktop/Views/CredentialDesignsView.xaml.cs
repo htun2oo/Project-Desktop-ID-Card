@@ -38,15 +38,15 @@ namespace IDCard.Desktop.Views
             if (DataContext is CredentialDesignsViewModel viewModel)
             {
                 viewModel.IsTextSelected = true;
-                e.Handled = true;
+                e.Handled = true; // Prevents bubbling to card background
             }
         }
 
-        private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        private void CardBackground_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (DataContext is CredentialDesignsViewModel viewModel)
             {
-                viewModel.IsTextSelected = false;
+                viewModel.IsTextSelected = false; // Unselects text field when clicking on card background
             }
         }
 
