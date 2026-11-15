@@ -5,10 +5,28 @@ using IDCard.Desktop.Helpers;
 
 namespace IDCard.Desktop.ViewModels
 {
-    public class DesignTextElement
+    public class DesignTextElement : ViewModelBase
     {
-        public string Text { get; set; } = "Text Field";
-        public bool IsSelected { get; set; } = true;
+        private string _text = "Text Field";
+        public string Text
+        {
+            get => _text;
+            set { _text = value; OnPropertyChanged(); }
+        }
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set 
+            { 
+                if (_isSelected != value)
+                {
+                    _isSelected = value; 
+                    OnPropertyChanged(); 
+                }
+            }
+        }
     }
 
     public class CredentialDesignsViewModel : ViewModelBase
@@ -72,6 +90,20 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        private bool _isTextSelected;
+        public bool IsTextSelected
+        {
+            get => _isTextSelected;
+            set
+            {
+                if (_isTextSelected != value)
+                {
+                    _isTextSelected = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ObservableCollection<DesignTextElement> FrontSideElements { get; } = new ObservableCollection<DesignTextElement>();
         public ObservableCollection<DesignTextElement> BackSideElements { get; } = new ObservableCollection<DesignTextElement>();
 
@@ -93,6 +125,7 @@ namespace IDCard.Desktop.ViewModels
             _isEditPropertiesOpen = false;
             _selectedSide = "Front";
             _isLayersTabSelected = false;
+            _isTextSelected = false;
 
             CreateNewCredentialCommand = new RelayCommand(_ => ExecuteCreateNewCredential());
             CloseCredentialCommand = new RelayCommand(_ => ExecuteCloseCredential());
@@ -111,12 +144,14 @@ namespace IDCard.Desktop.ViewModels
             _isEditPropertiesOpen = false;
             _selectedSide = "Front";
             _isLayersTabSelected = false;
+            _isTextSelected = false;
             FrontSideElements.Clear();
             BackSideElements.Clear();
             OnPropertyChanged(nameof(IsEditingCredential));
             OnPropertyChanged(nameof(IsEditPropertiesOpen));
             OnPropertyChanged(nameof(SelectedSide));
             OnPropertyChanged(nameof(IsLayersTabSelected));
+            OnPropertyChanged(nameof(IsTextSelected));
         }
 
         private void ExecuteCreateNewCredential()
@@ -140,6 +175,8 @@ namespace IDCard.Desktop.ViewModels
                     Text = "Text Field",
                     IsSelected = true
                 };
+
+                IsTextSelected = true;
 
                 if (SelectedSide == "Front")
                 {
