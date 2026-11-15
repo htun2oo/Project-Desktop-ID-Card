@@ -12,19 +12,13 @@ namespace IDCard.Desktop.Views
             InitializeComponent();
         }
 
-        private void TextButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ToolBarButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is Button button && button.ToolTip is string toolTipText)
             {
                 DataObject data = new DataObject("ItemType", toolTipText);
                 DragDrop.DoDragDrop(button, data, DragDropEffects.Copy);
             }
-        }
-
-        private void PhotoButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DataObject data = new DataObject("ItemType", "Photo");
-            DragDrop.DoDragDrop((Button)sender, data, DragDropEffects.Copy);
         }
 
         private void Canvas_Drop(object sender, DragEventArgs e)
@@ -45,14 +39,9 @@ namespace IDCard.Desktop.Views
             {
                 if (DataContext is CredentialDesignsViewModel viewModel)
                 {
-                    foreach (var el in viewModel.FrontSideElements) el.IsSelected = false;
-                    foreach (var el in viewModel.BackSideElements) el.IsSelected = false;
-                    foreach (var ph in viewModel.FrontSidePhotos) ph.IsSelected = false;
-                    foreach (var ph in viewModel.BackSidePhotos) ph.IsSelected = false;
-
+                    ClearAllSelections(viewModel);
                     clickedElement.IsSelected = true;
                     viewModel.IsTextSelected = true;
-                    viewModel.IsPhotoSelected = false;
                 }
                 e.Handled = true;
             }
@@ -64,14 +53,79 @@ namespace IDCard.Desktop.Views
             {
                 if (DataContext is CredentialDesignsViewModel viewModel)
                 {
-                    foreach (var el in viewModel.FrontSideElements) el.IsSelected = false;
-                    foreach (var el in viewModel.BackSideElements) el.IsSelected = false;
-                    foreach (var ph in viewModel.FrontSidePhotos) ph.IsSelected = false;
-                    foreach (var ph in viewModel.BackSidePhotos) ph.IsSelected = false;
-
+                    ClearAllSelections(viewModel);
                     clickedPhoto.IsSelected = true;
-                    viewModel.IsTextSelected = false;
                     viewModel.IsPhotoSelected = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void GraphicElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is DesignGraphicElement clickedGraphic)
+            {
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    ClearAllSelections(viewModel);
+                    clickedGraphic.IsSelected = true;
+                    viewModel.IsStaticGraphicSelected = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void VarGraphicElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is DesignVariableGraphicElement clickedVarGraphic)
+            {
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    ClearAllSelections(viewModel);
+                    clickedVarGraphic.IsSelected = true;
+                    viewModel.IsVariableGraphicSelected = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void DateElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is DesignDateElement clickedDate)
+            {
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    ClearAllSelections(viewModel);
+                    clickedDate.IsSelected = true;
+                    viewModel.IsDateSelected = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void SignatureElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is DesignSignatureElement clickedSig)
+            {
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    ClearAllSelections(viewModel);
+                    clickedSig.IsSelected = true;
+                    viewModel.IsSignatureSelected = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void BarCodeElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement element && element.DataContext is DesignBarCodeElement clickedBarCode)
+            {
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    ClearAllSelections(viewModel);
+                    clickedBarCode.IsSelected = true;
+                    viewModel.IsBarCodeSelected = true;
                 }
                 e.Handled = true;
             }
@@ -81,14 +135,34 @@ namespace IDCard.Desktop.Views
         {
             if (DataContext is CredentialDesignsViewModel viewModel)
             {
-                viewModel.IsTextSelected = false;
-                viewModel.IsPhotoSelected = false;
-
-                foreach (var element in viewModel.FrontSideElements) element.IsSelected = false;
-                foreach (var element in viewModel.BackSideElements) element.IsSelected = false;
-                foreach (var photo in viewModel.FrontSidePhotos) photo.IsSelected = false;
-                foreach (var photo in viewModel.BackSidePhotos) photo.IsSelected = false;
+                ClearAllSelections(viewModel);
             }
+        }
+
+        private void ClearAllSelections(CredentialDesignsViewModel viewModel)
+        {
+            viewModel.IsTextSelected = false;
+            viewModel.IsPhotoSelected = false;
+            viewModel.IsStaticGraphicSelected = false;
+            viewModel.IsVariableGraphicSelected = false;
+            viewModel.IsDateSelected = false;
+            viewModel.IsSignatureSelected = false;
+            viewModel.IsBarCodeSelected = false;
+
+            foreach (var el in viewModel.FrontSideElements) el.IsSelected = false;
+            foreach (var el in viewModel.BackSideElements) el.IsSelected = false;
+            foreach (var ph in viewModel.FrontSidePhotos) ph.IsSelected = false;
+            foreach (var ph in viewModel.BackSidePhotos) ph.IsSelected = false;
+            foreach (var gr in viewModel.FrontSideGraphics) gr.IsSelected = false;
+            foreach (var gr in viewModel.BackSideGraphics) gr.IsSelected = false;
+            foreach (var vg in viewModel.FrontSideVarGraphics) vg.IsSelected = false;
+            foreach (var vg in viewModel.BackSideVarGraphics) vg.IsSelected = false;
+            foreach (var dt in viewModel.FrontSideDates) dt.IsSelected = false;
+            foreach (var dt in viewModel.BackSideDates) dt.IsSelected = false;
+            foreach (var sg in viewModel.FrontSideSignatures) sg.IsSelected = false;
+            foreach (var sg in viewModel.BackSideSignatures) sg.IsSelected = false;
+            foreach (var bc in viewModel.FrontSideBarCodes) bc.IsSelected = false;
+            foreach (var bc in viewModel.BackSideBarCodes) bc.IsSelected = false;
         }
 
         // Draggable Header Logic for Dialog
