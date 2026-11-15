@@ -83,24 +83,38 @@ namespace IDCard.Desktop.ViewModels
             _selectedSide = "Front";
             _isLayersTabSelected = false;
 
-            CreateNewCredentialCommand = new RelayCommand(_ => {
-                _enterEditor?.Invoke();
-                IsEditingCredential = true;
-            });
-
-            CloseCredentialCommand = new RelayCommand(_ => {
-                _exitEditor?.Invoke();
-                IsEditingCredential = false;
-            });
-
+            CreateNewCredentialCommand = new RelayCommand(_ => ExecuteCreateNewCredential());
+            CloseCredentialCommand = new RelayCommand(_ => ExecuteCloseCredential());
             OpenEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = true);
             CloseEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = false);
-
             SelectFrontSideCommand = new RelayCommand(_ => SelectedSide = "Front");
             SelectBackSideCommand = new RelayCommand(_ => SelectedSide = "Back");
-
             ShowPropertiesTabCommand = new RelayCommand(_ => IsLayersTabSelected = false);
             ShowLayersTabCommand = new RelayCommand(_ => IsLayersTabSelected = true);
+        }
+
+        public void ResetToListView()
+        {
+            _isEditingCredential = false;
+            _isEditPropertiesOpen = false;
+            _selectedSide = "Front";
+            _isLayersTabSelected = false;
+            OnPropertyChanged(nameof(IsEditingCredential));
+            OnPropertyChanged(nameof(IsEditPropertiesOpen));
+            OnPropertyChanged(nameof(SelectedSide));
+            OnPropertyChanged(nameof(IsLayersTabSelected));
+        }
+
+        private void ExecuteCreateNewCredential()
+        {
+            IsEditingCredential = true;
+            _enterEditor?.Invoke();
+        }
+
+        private void ExecuteCloseCredential()
+        {
+            IsEditingCredential = false;
+            _exitEditor?.Invoke();
         }
     }
 }
