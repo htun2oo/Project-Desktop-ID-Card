@@ -1,52 +1,77 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using IDCard.Desktop.ViewModels;
 
 namespace IDCard.Desktop.Views
 {
     public partial class CredentialDesignsView : UserControl
     {
-        private bool _isDragging;
-        private Point _startPoint;
-        private Thickness _startMargin;
-
         public CredentialDesignsView()
         {
             InitializeComponent();
         }
 
+        private void TextButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                string textType = button.ToolTip?.ToString(); // "Dynamic Text" သို့မဟုတ် "Static Text"
+                DataObject data = new DataObject("TextType", textType);
+                DragDrop.DoDragDrop(button, data, DragDropEffects.Copy);
+            }
+        }
+
+        private void Canvas_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent("TextType"))
+            {
+                string textType = e.Data.GetData("TextType") as string;
+
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    viewModel.DropTextCommand.Execute(textType);
+                }
+            }
+        }
+
+        // Draggable Header Logic for Dialog
+        private bool isDragging = false;
+        private Point clickPosition;
+
         private void Header_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _isDragging = true;
-            _startPoint = e.GetPosition(ParentCanvas);
-            _startMargin = DialogBorder.Margin;
-            HeaderBorder.CaptureMouse();
+            isDragging = true;
+            clickPosition = e.GetPosition(ParentCanvas);
+            if (sender is UIElement element)
+            {
+                element.CaptureMouse();
+            }
         }
 
         private void Header_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isDragging)
+            if (isDragging)
             {
-                Point currentPoint = e.GetPosition(ParentCanvas);
-                
-                double offsetX = currentPoint.X - _startPoint.X;
-                double offsetY = currentPoint.Y - _startPoint.Y;
+                Point currentPosition = e.GetPosition(ParentCanvas);
+                Vector diff = currentPosition - clickPosition;
+                clickPosition = currentPosition;
 
-                DialogBorder.Margin = new Thickness(
-                    _startMargin.Left + offsetX,
-                    _startMargin.Top + offsetY,
-                    0, 0
-                );
-                
-                DialogBorder.HorizontalAlignment = HorizontalAlignment.Left;
-                DialogBorder.VerticalAlignment = VerticalAlignment.Top;
+                double newLeft = Canvas.GetLeft(DialogBorder) + diff.X;
+                double newTop = Canvas.GetTop(DialogBorder) + diff.Y;
+
+                Canvas.SetLeft(DialogBorder, newLeft);
+                Canvas.SetTop(DialogBorder, newTop);
             }
         }
 
         private void Header_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _isDragging = false;
-            HeaderBorder.ReleaseMouseCapture();
+            isDragging = false;
+            if (sender is UIElement element)
+            {
+                element.ReleaseMouseCapture();
+            }
         }
     }
 }
