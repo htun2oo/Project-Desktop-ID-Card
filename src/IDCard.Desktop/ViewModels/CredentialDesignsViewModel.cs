@@ -51,12 +51,28 @@ namespace IDCard.Desktop.ViewModels
             }
         }
 
+        private bool _isLayersTabSelected;
+        public bool IsLayersTabSelected
+        {
+            get => _isLayersTabSelected;
+            set
+            {
+                if (_isLayersTabSelected != value)
+                {
+                    _isLayersTabSelected = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ICommand CreateNewCredentialCommand { get; }
         public ICommand CloseCredentialCommand { get; }
         public ICommand OpenEditPropertiesCommand { get; }
         public ICommand CloseEditPropertiesCommand { get; }
         public ICommand SelectFrontSideCommand { get; }
         public ICommand SelectBackSideCommand { get; }
+        public ICommand ShowPropertiesTabCommand { get; }
+        public ICommand ShowLayersTabCommand { get; }
 
         public CredentialDesignsViewModel(Action enterEditor, Action exitEditor)
         {
@@ -65,35 +81,26 @@ namespace IDCard.Desktop.ViewModels
             _isEditingCredential = false;
             _isEditPropertiesOpen = false;
             _selectedSide = "Front";
+            _isLayersTabSelected = false;
 
-            CreateNewCredentialCommand = new RelayCommand(_ => ExecuteCreateNewCredential());
-            CloseCredentialCommand = new RelayCommand(_ => ExecuteCloseCredential());
+            CreateNewCredentialCommand = new RelayCommand(_ => {
+                _enterEditor?.Invoke();
+                IsEditingCredential = true;
+            });
+
+            CloseCredentialCommand = new RelayCommand(_ => {
+                _exitEditor?.Invoke();
+                IsEditingCredential = false;
+            });
+
             OpenEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = true);
             CloseEditPropertiesCommand = new RelayCommand(_ => IsEditPropertiesOpen = false);
+
             SelectFrontSideCommand = new RelayCommand(_ => SelectedSide = "Front");
             SelectBackSideCommand = new RelayCommand(_ => SelectedSide = "Back");
-        }
 
-        public void ResetToListView()
-        {
-            _isEditingCredential = false;
-            _isEditPropertiesOpen = false;
-            _selectedSide = "Front";
-            OnPropertyChanged(nameof(IsEditingCredential));
-            OnPropertyChanged(nameof(IsEditPropertiesOpen));
-            OnPropertyChanged(nameof(SelectedSide));
-        }
-
-        private void ExecuteCreateNewCredential()
-        {
-            IsEditingCredential = true;
-            _enterEditor?.Invoke();
-        }
-
-        private void ExecuteCloseCredential()
-        {
-            IsEditingCredential = false;
-            _exitEditor?.Invoke();
+            ShowPropertiesTabCommand = new RelayCommand(_ => IsLayersTabSelected = false);
+            ShowLayersTabCommand = new RelayCommand(_ => IsLayersTabSelected = true);
         }
     }
 }
