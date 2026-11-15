@@ -73,6 +73,7 @@ namespace IDCard.Desktop.ViewModels
         public ICommand SelectBackSideCommand { get; }
         public ICommand ShowPropertiesTabCommand { get; }
         public ICommand ShowLayersTabCommand { get; }
+        public ICommand DropTextCommand { get; }
 
         public CredentialDesignsViewModel(Action enterEditor, Action exitEditor)
         {
@@ -91,6 +92,7 @@ namespace IDCard.Desktop.ViewModels
             SelectBackSideCommand = new RelayCommand(_ => SelectedSide = "Back");
             ShowPropertiesTabCommand = new RelayCommand(_ => IsLayersTabSelected = false);
             ShowLayersTabCommand = new RelayCommand(_ => IsLayersTabSelected = true);
+            DropTextCommand = new RelayCommand(parameter => ExecuteDropText(parameter));
         }
 
         public void ResetToListView()
@@ -115,6 +117,12 @@ namespace IDCard.Desktop.ViewModels
         {
             IsEditingCredential = false;
             _exitEditor?.Invoke();
+        }
+
+        private void ExecuteDropText(object parameter)
+        {
+            string textType = parameter as string;
+            // Canvas ပေါ်သို့ Drag and Drop လုပ်ပြီး Drop ချလိုက်သည့်အခါ လုပ်ဆောင်မည့် Logic များကို ဤနေရာတွင် ဆက်လက်ရေးသားနိုင်ပါသည်။
         }
     }
 }
