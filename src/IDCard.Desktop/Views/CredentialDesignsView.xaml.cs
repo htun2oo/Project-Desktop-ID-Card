@@ -35,10 +35,19 @@ namespace IDCard.Desktop.Views
 
         private void TextElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (DataContext is CredentialDesignsViewModel viewModel)
+            if (sender is FrameworkElement element && element.DataContext is DesignTextElement clickedElement)
             {
-                viewModel.IsTextSelected = true;
-                e.Handled = true; // Prevents bubbling to card background
+                if (DataContext is CredentialDesignsViewModel viewModel)
+                {
+                    // အခြား Elements အားလုံးကို unselect လုပ်ပါ
+                    foreach (var el in viewModel.FrontSideElements) el.IsSelected = false;
+                    foreach (var el in viewModel.BackSideElements) el.IsSelected = false;
+
+                    // ယခု နှိပ်လိုက်သော Element ကိုသာ select လုပ်ပါ
+                    clickedElement.IsSelected = true;
+                    viewModel.IsTextSelected = true;
+                }
+                e.Handled = true; // Event အခြားသို့ မပျံ့နှံ့စေရန် တားဆီးခြင်း
             }
         }
 
@@ -46,7 +55,18 @@ namespace IDCard.Desktop.Views
         {
             if (DataContext is CredentialDesignsViewModel viewModel)
             {
-                viewModel.IsTextSelected = false; // Unselects text field when clicking on card background
+                viewModel.IsTextSelected = false;
+
+                // ကတ်ပြားအလွတ်ကို နှိပ်လိုက်သည့်အခါ Text Elements အားလုံး၏ IsSelected ကိုပါ false သို့ ပြောင်းပါ
+                foreach (var element in viewModel.FrontSideElements)
+                {
+                    element.IsSelected = false;
+                }
+
+                foreach (var element in viewModel.BackSideElements)
+                {
+                    element.IsSelected = false;
+                }
             }
         }
 
