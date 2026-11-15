@@ -33,6 +33,23 @@ namespace IDCard.Desktop.Views
             }
         }
 
+        private void TextElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is CredentialDesignsViewModel viewModel)
+            {
+                viewModel.IsTextSelected = true;
+                e.Handled = true;
+            }
+        }
+
+        private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is CredentialDesignsViewModel viewModel)
+            {
+                viewModel.IsTextSelected = false;
+            }
+        }
+
         // Draggable Header Logic for Dialog
         private bool isDragging = false;
         private Point clickPosition;
