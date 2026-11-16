@@ -13,10 +13,10 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4.2.2  # ဗားရှင်းအသစ်သို့ မြှင့်တင်ခြင်း
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v4.2.0  # ဗားရှင်းအသစ်သို့ မြှင့်တင်ခြင်း
       with:
         dotnet-version: '10.0.x'
 
@@ -30,7 +30,7 @@ jobs:
       run: dotnet publish src/IDCard.Desktop/IDCard.Desktop.csproj --configuration Release --output ./publish-output
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4.4.3  # ဗားရှင်းအသစ်သို့ မြှင့်တင်ခြင်း
       with:
         name: IDCard-Desktop-App
         path: ./publish-output/
