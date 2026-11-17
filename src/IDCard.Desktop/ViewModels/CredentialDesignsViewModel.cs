@@ -185,6 +185,21 @@ namespace IDCard.Desktop.ViewModels
             set { if (_isBarCodeSelected != value) { _isBarCodeSelected = value; OnPropertyChanged(); } }
         }
 
+        // Properties for Expand/Collapse states of General and Appearance
+        private bool _isGeneralExpanded = true;
+        public bool IsGeneralExpanded
+        {
+            get => _isGeneralExpanded;
+            set { if (_isGeneralExpanded != value) { _isGeneralExpanded = value; OnPropertyChanged(); } }
+        }
+
+        private bool _isAppearanceExpanded = false;
+        public bool IsAppearanceExpanded
+        {
+            get => _isAppearanceExpanded;
+            set { if (_isAppearanceExpanded != value) { _isAppearanceExpanded = value; OnPropertyChanged(); } }
+        }
+
         public ObservableCollection<DesignTextElement> FrontSideElements { get; } = new ObservableCollection<DesignTextElement>();
         public ObservableCollection<DesignTextElement> BackSideElements { get; } = new ObservableCollection<DesignTextElement>();
         
@@ -215,6 +230,8 @@ namespace IDCard.Desktop.ViewModels
         public ICommand ShowPropertiesTabCommand { get; }
         public ICommand ShowLayersTabCommand { get; }
         public ICommand DropItemCommand { get; }
+        public ICommand ToggleGeneralCommand { get; }
+        public ICommand ToggleAppearanceCommand { get; }
 
         public CredentialDesignsViewModel(Action enterEditor, Action exitEditor)
         {
@@ -230,6 +247,9 @@ namespace IDCard.Desktop.ViewModels
             ShowPropertiesTabCommand = new RelayCommand(_ => IsLayersTabSelected = false);
             ShowLayersTabCommand = new RelayCommand(_ => IsLayersTabSelected = true);
             DropItemCommand = new RelayCommand(parameter => ExecuteDropItem(parameter));
+
+            ToggleGeneralCommand = new RelayCommand(_ => IsGeneralExpanded = !IsGeneralExpanded);
+            ToggleAppearanceCommand = new RelayCommand(_ => IsAppearanceExpanded = !IsAppearanceExpanded);
         }
 
         public void ResetToListView()
@@ -245,6 +265,8 @@ namespace IDCard.Desktop.ViewModels
             IsDateSelected = false;
             IsSignatureSelected = false;
             IsBarCodeSelected = false;
+            IsGeneralExpanded = true;
+            IsAppearanceExpanded = false;
 
             FrontSideElements.Clear();
             BackSideElements.Clear();
