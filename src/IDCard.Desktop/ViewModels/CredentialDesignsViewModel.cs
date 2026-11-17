@@ -35,14 +35,7 @@ namespace IDCard.Desktop.ViewModels
         public bool IsSelected
         {
             get => _isSelected;
-            set 
-            { 
-                if (_isSelected != value)
-                {
-                    _isSelected = value; 
-                    OnPropertyChanged(); 
-                }
-            }
+            set { if (_isSelected != value) { _isSelected = value; OnPropertyChanged(); } }
         }
     }
 
@@ -185,7 +178,7 @@ namespace IDCard.Desktop.ViewModels
             set { if (_isBarCodeSelected != value) { _isBarCodeSelected = value; OnPropertyChanged(); } }
         }
 
-        // Properties for Expand/Collapse states of General and Appearance
+        // Expand/Collapse states for General and Appearance
         private bool _isGeneralExpanded = true;
         public bool IsGeneralExpanded
         {
@@ -198,6 +191,35 @@ namespace IDCard.Desktop.ViewModels
         {
             get => _isAppearanceExpanded;
             set { if (_isAppearanceExpanded != value) { _isAppearanceExpanded = value; OnPropertyChanged(); } }
+        }
+
+        // Active Text Field Properties for General Section
+        private string _selectedFieldName = "Dynamic Text Field 1";
+        public string SelectedFieldName
+        {
+            get => _selectedFieldName;
+            set { if (_selectedFieldName != value) { _selectedFieldName = value; OnPropertyChanged(); } }
+        }
+
+        private string _selectedFieldSampleData = "Dynamic Text Field";
+        public string SelectedFieldSampleData
+        {
+            get => _selectedFieldSampleData;
+            set { if (_selectedFieldSampleData != value) { _selectedFieldSampleData = value; OnPropertyChanged(); } }
+        }
+
+        private double _left = 1.6188;
+        public double Left
+        {
+            get => _left;
+            set { if (_left != value) { _left = value; OnPropertyChanged(); } }
+        }
+
+        private double _top = 0.8953;
+        public double Top
+        {
+            get => _top;
+            set { if (_top != value) { _top = value; OnPropertyChanged(); } }
         }
 
         public ObservableCollection<DesignTextElement> FrontSideElements { get; } = new ObservableCollection<DesignTextElement>();
@@ -288,7 +310,6 @@ namespace IDCard.Desktop.ViewModels
         {
             if (parameter is string itemType)
             {
-                // Clear all selections
                 foreach (var el in FrontSideElements) el.IsSelected = false;
                 foreach (var el in BackSideElements) el.IsSelected = false;
                 foreach (var ph in FrontSidePhotos) ph.IsSelected = false;
